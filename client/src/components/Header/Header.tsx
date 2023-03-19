@@ -4,10 +4,11 @@ import { setQuery } from '../../redux/slices/recipeQuerySlice';
 import './style.css';
 import { RootState } from '../../redux/store';
 
-const Header = () => {
+const Header: React.FC = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state: RootState) => state.currentUser.user);
+  const userName = useSelector((state: RootState) => state.currentUser.user);
+  const userId = useSelector((state: RootState) => state.currentUserId.userId);
 
   return (
     <nav className="navbar">
@@ -23,7 +24,11 @@ const Header = () => {
         <Link to="/">Home</Link>
         <Link to="/create">New Recipe</Link>
         <Link to="/auth">Auth</Link>
-        {user ? <Link to="/user">{user}</Link> : <Link to="/login">Login</Link>}
+        {userName ? (
+          <Link to={`/user/${userId}`}>{userName}</Link>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </div>
     </nav>
   );

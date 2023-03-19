@@ -45,7 +45,7 @@ const RecipeList: React.FC = () => {
               <p>{recipe.user}</p>
               <article>{recipe.time} minutes to cook</article>
               <footer>{recipe.method}</footer>
-              <Link to={`/recipes/${recipe._id}`}>
+              <Link to={`/recipe/${recipe._id}`}>
                 <button>Cook this</button>
               </Link>
             </div>

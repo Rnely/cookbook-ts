@@ -8,6 +8,7 @@ import { store } from './redux/store';
 import RecipeDetails from './pages/RecipeDetails';
 import Auth from './pages/Auth';
 import Login from './pages/Login';
+import UserDetails from './components/UserDetails';
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/create" element={<Create />} />
-              <Route path="/recipes/:id" element={<RecipeDetails />} />
+              <Route path="/recipe/:id" element={<RecipeDetails />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/user/:id" element={<UserDetails />} />
             </Routes>
           </div>
         </div>

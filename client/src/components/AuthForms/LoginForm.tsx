@@ -22,8 +22,8 @@ const LoginForm = () => {
         name,
         password,
       });
-      nav('/');
       dispatch(setUser(name));
+      nav('/');
     } catch (error) {
       console.log(error);
     }
