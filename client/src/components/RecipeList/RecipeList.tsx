@@ -22,7 +22,7 @@ const RecipeList: React.FC = () => {
   }, []);
 
   const getRecipes = async () => {
-    const response = await axios.get('http://localhost:3000/recipes');
+    const response = await axios.get('http://localhost:5000/cookbook/recipes');
     setRecipes(response.data);
   };
   return (

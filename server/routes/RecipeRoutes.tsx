@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get('/recipes', getRecipes);
-router.get('/recipes/:id', getRecipeById);
-router.post('/recipes', saveRecipe);
-router.patch('/recipes/:id', updateRecipe);
-router.delete('/recipes/:id', deleteRecipe);
+router.get('/cookbook/recipes', getRecipes);
+router.get('/cookbook/recipes/:id', getRecipeById);
+router.post('/cookbook/recipes', saveRecipe);
+router.patch('/cookbook/recipes/:id', updateRecipe);
+router.delete('/cookbook/recipes/:id', deleteRecipe);
 
 export default router;

@@ -22,14 +22,16 @@ const RecipeDetails: React.FC = () => {
   }, []);
 
   const getRecipe = async () => {
-    const response = await axios.get(`http://localhost:3000/recipes/${id}`);
+    const response = await axios.get(
+      `http://localhost:5000/cookbook/recipes/${id}`,
+    );
     setRecipes([response.data]);
     setListIng(response.data.listIngredients);
   };
 
   const handleClick = async () => {
     try {
-      await axios.delete(`http://localhost:3000/recipes/${id}`);
+      await axios.delete(`http://localhost:5000/cookbook/recipes/${id}`);
       nav('/');
     } catch (error) {
       console.log(error);

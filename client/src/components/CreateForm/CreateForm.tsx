@@ -25,7 +25,7 @@ const CreateForm = () => {
   const handleSubmit2 = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/recipes', {
+      await axios.post('http://localhost:5000/cookbook/recipes', {
         title,
         listIngredients,
         method,
