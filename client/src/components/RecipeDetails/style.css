@@ -1,0 +1,32 @@
+.recipe-details {
+  padding: 10px 16px;
+  margin: 20px 0;
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #fafafa;
+  text-align: center;
+}
+.recipe-details h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.recipe-details p {
+  margin-bottom: 0px;
+}
+.recipe-details .ing {
+  color: rgb(143, 143, 143);
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+.recipe-details div {
+  margin: 20px 0;
+}
+.recipe-details button {
+  background: rgb(132, 3, 192);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
