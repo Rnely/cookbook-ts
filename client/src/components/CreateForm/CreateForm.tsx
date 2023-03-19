@@ -13,6 +13,7 @@ const CreateForm = () => {
   const [listIngredients, setListIngredients] = useState(Array);
 
   const isPending = useSelector((state: RootState) => state.pending);
+  const user = useSelector((state: RootState) => state.currentUser.user);
 
   const nav = useNavigate();
 
@@ -26,6 +27,7 @@ const CreateForm = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/cookbook/recipes', {
+        user,
         title,
         listIngredients,
         method,

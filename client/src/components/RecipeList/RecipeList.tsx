@@ -7,6 +7,7 @@ import './style.css';
 
 interface Recipe {
   _id: string;
+  user: string;
   title: string;
   time: number;
   method: string;
@@ -41,6 +42,7 @@ const RecipeList: React.FC = () => {
           return (
             <div className="recipe-preview" key={recipe._id}>
               <h2>{recipe.title}</h2>
+              <p>{recipe.user}</p>
               <article>{recipe.time} minutes to cook</article>
               <footer>{recipe.method}</footer>
               <Link to={`/recipes/${recipe._id}`}>
