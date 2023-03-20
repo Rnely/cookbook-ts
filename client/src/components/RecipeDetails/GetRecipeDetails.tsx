@@ -2,9 +2,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 interface Recipe {
   _id: string;
+  user: string;
+  userId: string;
   title: string;
   time: number;
   method: string;
@@ -48,6 +51,9 @@ const RecipeDetails: React.FC = () => {
         return (
           <article key={recipe._id}>
             <h2>{recipe.title}</h2>
+            <Link to={`/user/${recipe.userId}`}>
+              <h3>{recipe.user}</h3>
+            </Link>
             <p>Takes {recipe.time} minutes to cook</p>
             <p className="ing">{listIng.join(', ')}</p>
             <div>{recipe.method}</div>

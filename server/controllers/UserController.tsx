@@ -31,6 +31,18 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+export const addNewDataToUser = async (req: Request, res: Response) => {
+  try {
+    const updatedDataUser = await User.updateOne(
+      { _id: req.params.id },
+      { $push: req.body },
+    );
+    res.status(200).json(updatedDataUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const deletedUser = await User.deleteOne({ _id: req.params.id });

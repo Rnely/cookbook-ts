@@ -1,29 +1,29 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import GetRecipes from '../GetRecipes';
-import { useState } from 'react';
 import './style.css';
 
 interface Recipe {
   _id: string;
   user: string;
+  userId: string;
   title: string;
   time: number;
   method: string;
 }
 
 const UserRecipes = () => {
-  const userName = useSelector((state: RootState) => state.currentUser.user);
   const recipe: Recipe[] = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
+  const { id } = useParams();
 
   if (recipe) {
     GetRecipes();
   }
 
-  const userRecipes = recipe.filter((recipe) => recipe.user === userName);
+  const userRecipes = recipe.filter((recipe) => recipe.userId === id);
 
   return (
     <div className="recipe-list">

@@ -2,16 +2,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { setUserId } from '../../redux/slices/userIdSlice';
 import { setUserFollowing } from '../../redux/slices/userFollowingSlice';
 
 interface User {
   _id: string;
   name: string;
-  following: Array<string>;
+  following: Array<String>;
 }
 
-const GetUserId = () => {
+const GetUserFollowing = () => {
   const [users, setUsers] = useState<User[]>([]);
   const dispatch = useDispatch();
 
@@ -23,13 +22,13 @@ const GetUserId = () => {
       setUsers(response.data);
       const userData = users.find(({ name }) => name === userName);
       if (userData) {
-        dispatch(setUserId(userData._id));
         dispatch(setUserFollowing(userData.following));
+        console.log(userData.following);
       }
     };
 
     getUsers();
-  }, [userName]);
+  }, []);
 };
 
-export default GetUserId;
+export default GetUserFollowing;
