@@ -4,6 +4,7 @@ import pendingReducer from './slices/pendingSlice';
 import queryReducer from './slices/recipeQuerySlice';
 import userReducer from './slices/userSlice';
 import userIdReducer from './slices/userIdSlice';
+import recipesReducer from './slices/recipeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     recipeFilter: queryReducer,
     currentUser: userReducer,
     currentUserId: userIdReducer,
+    recipes: recipesReducer,
   },
 });
 
