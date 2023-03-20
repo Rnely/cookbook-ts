@@ -43,7 +43,7 @@ const RegisterForm = () => {
         <label>Password:</label>
         <input
           className="inp"
-          type="text"
+          type="password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}

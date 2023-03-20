@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../redux/slices/recipeQuerySlice';
+import { setUser } from '../../redux/slices/userSlice';
 import './style.css';
 import { RootState } from '../../redux/store';
 
@@ -23,11 +24,23 @@ const Header: React.FC = () => {
       <div className="links">
         <Link to="/">Home</Link>
         <Link to="/create">New Recipe</Link>
-        <Link to="/auth">Auth</Link>
         {userName ? (
-          <Link to={`/user/${userId}`}>{userName}</Link>
+          <div>
+            <Link to={`/user/${userId}`}>{userName}</Link>
+            <Link
+              to="/"
+              onClick={() => {
+                dispatch(setUser(''));
+              }}
+            >
+              Logout
+            </Link>
+          </div>
         ) : (
-          <Link to="/login">Login</Link>
+          <div>
+            <Link to="/auth">Auth</Link>
+            <Link to="/login">Login</Link>
+          </div>
         )}
       </div>
     </nav>
