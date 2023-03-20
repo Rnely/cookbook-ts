@@ -19,15 +19,14 @@ const GetUserId = () => {
     const getUsers = async () => {
       const response = await axios.get('http://localhost:5000/cookbook/users');
       setUsers(response.data);
+      const userData = users.find(({ name }) => name === userName);
+      if (userData) {
+        dispatch(setUserId(userData._id));
+      }
     };
 
     getUsers();
-  }, []);
-
-  const userData = users.find(({ name }) => name === userName);
-  if (userData) {
-    dispatch(setUserId(userData._id));
-  }
+  }, [userName]);
 };
 
 export default GetUserId;
