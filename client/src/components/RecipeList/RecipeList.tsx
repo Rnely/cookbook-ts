@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { RootState } from '../../redux/store';
 import './style.css';
+import GetRecipes from '../GetRecipes';
 
 interface Recipe {
   _id: string;
@@ -14,21 +13,16 @@ interface Recipe {
 }
 
 const RecipeList: React.FC = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  GetRecipes();
 
   const query = useSelector((state: RootState) => state.recipeFilter.query);
+  const recipe: Recipe[] = useSelector(
+    (state: RootState) => state.recipes.recipes,
+  );
 
-  useEffect(() => {
-    getRecipes();
-  }, []);
-
-  const getRecipes = async () => {
-    const response = await axios.get('http://localhost:5000/cookbook/recipes');
-    setRecipes(response.data);
-  };
   return (
     <div className="recipe-list">
-      {recipes
+      {recipe
         .filter((recipes) => {
           if (query === '') {
             return recipes;
