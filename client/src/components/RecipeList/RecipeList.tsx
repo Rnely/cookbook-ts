@@ -13,12 +13,14 @@ interface Recipe {
 }
 
 const RecipeList: React.FC = () => {
-  GetRecipes();
-
   const query = useSelector((state: RootState) => state.recipeFilter.query);
   const recipe: Recipe[] = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
+
+  if (recipe) {
+    GetRecipes();
+  }
 
   return (
     <div className="recipe-list">
