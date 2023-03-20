@@ -9,6 +9,7 @@ updates:
   - package-ecosystem: 'npm'
     # Look for `package.json` and `lock` files in the `root` directory
     directory: '/server'
+    directory: '/'
     # Check for updates
     schedule:
       interval: 'monthly'
@@ -19,3 +20,12 @@ updates:
     # Check for updates
     schedule:
       interval: 'monthly'
+      interval: 'daily'
+    # Dependencies to ignore
+    ignore:
+      - dependency-name: 'react'
+      - dependency-name: 'react-dom'
+      - dependency-name: '@types/react-dom'
+      - dependency-name: '@types/react'
+    # Maximum allowed open pull requests
+    open-pull-requests-limit: 10
