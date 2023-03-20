@@ -10,6 +10,7 @@ import { UserModel as User } from '../models/userModel/UserModel';
 const registerSchema = Joi.object({
   name: Joi.string().min(6).required(),
   password: Joi.string().min(6).required(),
+  regDate: Joi.string().min(6).required(),
 });
 const loginSchema = Joi.object({
   name: Joi.string().min(6).required(),
@@ -32,6 +33,7 @@ router.post('/cookbook/register', async (req: Request, res: Response) => {
   const user = new User({
     name: req.body.name,
     password: hashPassword,
+    regDate: req.body.regDate,
   });
 
   try {

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 interface User {
   _id: string;
   name: String;
+  regDate: String;
 }
 
 const RecipeDetails: React.FC = () => {
@@ -34,6 +35,7 @@ const RecipeDetails: React.FC = () => {
         return (
           <article key={user._id}>
             <h2>{user.name}</h2>
+            <p>Member since: {user.regDate}</p>
           </article>
         );
       })}

@@ -12,12 +12,15 @@ const RegisterForm = () => {
 
   const nav = useNavigate();
 
+  const regDate = new Date().toLocaleDateString('es');
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/cookbook/register', {
         name,
         password,
+        regDate,
       });
       nav('/');
     } catch (error) {
