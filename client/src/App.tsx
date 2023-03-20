@@ -8,7 +8,7 @@ import { store } from './redux/store';
 import RecipeDetails from './pages/RecipeDetails';
 import Auth from './pages/Auth';
 import Login from './pages/Login';
-import UserDetails from './components/UserDetails';
+import UserDetails from './pages/UserDetails';
 
 function App() {
   return (
