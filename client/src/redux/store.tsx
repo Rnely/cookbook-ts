@@ -6,7 +6,7 @@ import userNameReducer from './slices/userNameSlice';
 import userIdReducer from './slices/userIdSlice';
 import recipesReducer from './slices/recipeSlice';
 import followReducer from './slices/followSlice';
-import userFollowingReducer from './slices/userFollowingSlice';
+import followingReducer from './slices/followingSlice';
 import userReducer from './slices/userSlice';
 
 export const store = configureStore({
@@ -18,7 +18,7 @@ export const store = configureStore({
     currentUserId: userIdReducer,
     recipes: recipesReducer,
     follow: followReducer,
-    userFollowing: userFollowingReducer,
+    following: followingReducer,
     user: userReducer,
   },
 });

@@ -13,7 +13,7 @@ const UserCheckFollowing = () => {
   );
   const users: User[] = useSelector((state: RootState) => state.user.user);
   const following: string[] = useSelector(
-    (state: RootState) => state.userFollowing.userFollowing,
+    (state: RootState) => state.following.following,
   );
 
   //Getting array of followers

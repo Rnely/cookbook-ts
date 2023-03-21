@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setUserId } from '../../redux/slices/userIdSlice';
-import { setUserFollowing } from '../../redux/slices/userFollowingSlice';
+import { setFollowing } from '../../redux/slices/followingSlice';
 
 interface User {
   _id: string;
@@ -24,7 +24,7 @@ const GetUserId = () => {
       const response = await axios.get('http://localhost:5000/cookbook/users');
       setUsers(response.data);
       const userIds = users.map((user) => user._id);
-      dispatch(setUserFollowing(userIds));
+      dispatch(setFollowing(userIds));
       const userData = users.find(({ name }) => name === userName);
       if (userData) {
         dispatch(setUserId(userData._id));

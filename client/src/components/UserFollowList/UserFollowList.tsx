@@ -23,7 +23,7 @@ const UserFollowList: React.FC = () => {
   const query = useSelector((state: RootState) => state.recipeFilter.query);
   const users: User[] = useSelector((state: RootState) => state.user.user);
   const following: string[] = useSelector(
-    (state: RootState) => state.userFollowing.userFollowing,
+    (state: RootState) => state.following.following,
   );
 
   GetUsers();

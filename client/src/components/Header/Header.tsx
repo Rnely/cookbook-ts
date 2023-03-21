@@ -5,7 +5,7 @@ import { setUserName } from '../../redux/slices/userNameSlice';
 import './style.css';
 import { RootState } from '../../redux/store';
 import { setUserId } from '../../redux/slices/userIdSlice';
-import { setUserFollowing } from '../../redux/slices/userFollowingSlice';
+import { setFollowing } from '../../redux/slices/followingSlice';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   const handleClick = () => {
     dispatch(setUserName(''));
     dispatch(setUserId(''));
-    dispatch(setUserFollowing([]));
+    dispatch(setFollowing([]));
   };
 
   return (
