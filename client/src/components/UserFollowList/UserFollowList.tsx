@@ -62,9 +62,8 @@ const UserFollowList: React.FC = () => {
             .map((user) => {
               return (
                 <div className="user-preview" key={user._id}>
-                  <h2>{user.name}</h2>
-                  <Link to={`/recipe/${user._id}`}>
-                    <button>Cook this</button>
+                  <Link to={`/user/${user._id}`}>
+                    <h2>{user.name}</h2>
                   </Link>
                 </div>
               );
