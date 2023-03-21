@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import './style.css';
-import GetRecipes from '../GetRecipes';
+import GetRecipes from '../useGetRecipes';
 
 interface Recipe {
   _id: string;

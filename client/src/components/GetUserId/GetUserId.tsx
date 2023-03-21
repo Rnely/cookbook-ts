@@ -21,20 +21,20 @@ const GetUserId = () => {
   );
 
   useEffect(() => {
-    const getUsers = async () => {
-      const response = await axios.get('http://localhost:5000/cookbook/users');
-      setUsers(response.data);
-      const userIds = users.map((user) => user._id);
-      dispatch(setFollowing(userIds));
-      const userData = users.find(({ name }) => name === userName);
-      if (userData) {
-        dispatch(setUserId(userData._id));
-        dispatch(setUserFollowing(userData.following));
-      }
-    };
-
     getUsers();
   }, [userName]);
+
+  const getUsers = async () => {
+    const response = await axios.get('http://localhost:5000/cookbook/users');
+    setUsers(response.data);
+    const userIds = users.map((user) => user._id);
+    dispatch(setFollowing(userIds));
+    const userData = users.find(({ name }) => name === userName);
+    if (userData) {
+      dispatch(setUserId(userData._id));
+      dispatch(setUserFollowing(userData.following));
+    }
+  };
 };
 
 export default GetUserId;

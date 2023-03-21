@@ -5,7 +5,7 @@ import queryReducer from './slices/recipeQuerySlice';
 import userNameReducer from './slices/userNameSlice';
 import userIdReducer from './slices/userIdSlice';
 import recipesReducer from './slices/recipeSlice';
-import followReducer from './slices/followSlice';
+import followingArrayReducer from './slices/followingArraySlice';
 import followingReducer from './slices/followingSlice';
 import userReducer from './slices/userSlice';
 import userFollowingReducer from './slices/userFollowingslice';
@@ -18,7 +18,7 @@ export const store = configureStore({
     currentUser: userNameReducer,
     currentUserId: userIdReducer,
     recipes: recipesReducer,
-    follow: followReducer,
+    followingArray: followingArrayReducer,
     following: followingReducer,
     user: userReducer,
     userFollowing: userFollowingReducer,

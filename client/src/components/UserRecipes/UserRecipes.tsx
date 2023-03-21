@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { RootState } from '../../redux/store';
-import GetRecipes from '../GetRecipes';
+import GetRecipes from '../useGetRecipes';
 import './style.css';
 
 interface Recipe {

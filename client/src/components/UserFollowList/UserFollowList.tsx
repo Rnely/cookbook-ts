@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Link, useParams } from 'react-router-dom';
-import GetUsers from '../GetUsers';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useGetUsers } from '../useGetUsers';
 
 interface User {
   _id: string;
@@ -13,37 +13,42 @@ interface User {
 
 const UserFollowList: React.FC = () => {
   const [followState, setFollowState] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [followingArray, setFollowingArray] = useState<User[]>([]);
 
+  const query = useSelector((state: RootState) => state.recipeFilter.query);
+
+  const dispatch = useDispatch();
   const { id } = useParams();
-
   const currentUser = useSelector(
     (state: RootState) => state.currentUser.userName,
   );
-
-  const query = useSelector((state: RootState) => state.recipeFilter.query);
-  const users: User[] = useSelector((state: RootState) => state.user.user);
   const following: string[] = useSelector(
     (state: RootState) => state.following.following,
   );
+  const users: User[] = useSelector((state: RootState) => state.user.user);
+  useGetUsers();
 
-  GetUsers();
+  useEffect(() => {
+    const getFollowingArray = async (): Promise<User[]> => {
+      const userRecipes: User[] = users.filter((user: User) => user._id === id);
+      const currentUserFollowing: string[] | undefined =
+        userRecipes[0]?.following;
 
-  //Getting array of followers
-  const userRecipes = users.filter((user) => user._id === id);
+      const followingSet: Set<string> = new Set(currentUserFollowing);
 
-  const userFollowing = users.filter((User) => {
-    if (currentUser) {
-      return following.some((id) => User.following.includes(id));
-    } else {
-      return following.every((id) => User.following.includes(id));
-    }
-  });
+      const userFollowing: User[] = users.reduce((acc: User[], user: User) => {
+        if (followingSet.has(user._id) && user._id !== id) {
+          acc.push(user);
+        }
+        return acc;
+      }, []);
+      setFollowingArray(userFollowing);
+      return userFollowing;
+    };
 
-  const currentUserFollowing = userRecipes[0]?.following;
-
-  const filteredUserFollowing = userFollowing.filter((user) =>
-    currentUserFollowing?.includes(user._id),
-  );
+    getFollowingArray();
+  }, [followingArray]);
 
   const handleFollowState = () => {
     setFollowState(!followState);
@@ -51,11 +56,12 @@ const UserFollowList: React.FC = () => {
 
   return (
     <div className="user-list">
+      <p>Following {followingArray.length} users</p>
       <button onClick={handleFollowState}>
         {followState ? 'Hide' : 'Show'} Following
       </button>
       {followState
-        ? filteredUserFollowing
+        ? followingArray
             .filter((user) => {
               if (query === '') {
                 return true;
