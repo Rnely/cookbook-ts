@@ -34,14 +34,14 @@ const HandleUserFollow = () => {
   };
 
   useEffect(() => {
-    const huin = async () => {
+    const getUserFollowing = async () => {
       const response = await axios.get('http://localhost:5000/cookbook/users');
       setUsers(response.data);
       const userData = users.find(({ name }) => name === userName);
       if (userData) {
         dispatch(setUserFollowing(userData.following));
       }
-      huin();
+      getUserFollowing();
     };
   }, []);
 
