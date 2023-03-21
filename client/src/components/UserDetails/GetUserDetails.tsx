@@ -28,7 +28,7 @@ const RecipeDetails: React.FC = () => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [userName]);
 
   const getUser = async () => {
     const response = await axios.get(

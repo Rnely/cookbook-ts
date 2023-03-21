@@ -6,6 +6,7 @@ import { RootState } from '../../redux/store';
 import { setUserId } from '../../redux/slices/userIdSlice';
 import { setFollowing } from '../../redux/slices/followingSlice';
 import { setCurrentUserName } from '../../redux/slices/currentUserSlice';
+import { setUserName } from '../../redux/slices/userNameSlice';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,12 @@ const Header: React.FC = () => {
         <Link to="/create">New Recipe</Link>
         {userName ? (
           <div>
-            <Link to={`/user/${userId}`}>{userName}</Link>
+            <Link
+              to={`/user/${userId}`}
+              onClick={() => dispatch(setUserName(userName))}
+            >
+              {userName}
+            </Link>
             <Link
               to="/"
               onClick={() => {

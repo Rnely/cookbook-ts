@@ -19,6 +19,9 @@ const HandleUserFollow = () => {
   const userName = useSelector(
     (state: RootState) => state.currentUser.userName,
   );
+  const userFollowing: string[] = useSelector(
+    (state: RootState) => state.userFollowing.userFollowing,
+  );
   const [users, setUsers] = useState<User[]>([]);
 
   const { id } = useParams();
@@ -28,6 +31,7 @@ const HandleUserFollow = () => {
       await axios.post(`http://localhost:5000/cookbook/users/${currentUser}`, {
         following: id,
       });
+      dispatch(setUserFollowing([...userFollowing, id]));
     } catch (error) {
       console.log(error);
     }
