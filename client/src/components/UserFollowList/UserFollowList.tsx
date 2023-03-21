@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -13,21 +13,11 @@ interface User {
 
 const UserFollowList: React.FC = () => {
   const [followState, setFollowState] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [followingArray, setFollowingArray] = useState<User[]>([]);
-
   const query = useSelector((state: RootState) => state.recipeFilter.query);
-
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const currentUser = useSelector(
-    (state: RootState) => state.currentUser.userName,
-  );
-  const following: string[] = useSelector(
-    (state: RootState) => state.following.following,
-  );
   const users: User[] = useSelector((state: RootState) => state.user.user);
   useGetUsers();
+  const { id } = useParams();
 
   useEffect(() => {
     const getFollowingArray = async (): Promise<User[]> => {
