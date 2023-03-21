@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setUserId } from '../../redux/slices/userIdSlice';
 import { setFollowing } from '../../redux/slices/followingSlice';
+import { setUserFollowing } from '../../redux/slices/userFollowingslice';
 
 interface User {
   _id: string;
@@ -28,6 +29,7 @@ const GetUserId = () => {
       const userData = users.find(({ name }) => name === userName);
       if (userData) {
         dispatch(setUserId(userData._id));
+        dispatch(setUserFollowing(userData.following));
       }
     };
 

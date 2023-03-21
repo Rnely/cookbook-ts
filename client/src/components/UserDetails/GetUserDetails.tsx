@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import UserFollow from '../UserFollow';
 import UserFollowList from '../UserFollowList';
-import UserCheckFollowing from '../UserCheckFollowing';
 
 interface User {
   _id: string;
@@ -51,7 +50,6 @@ const RecipeDetails: React.FC = () => {
               </Link>
             )}
             <p>Member since: {user.regDate}</p>
-            <UserCheckFollowing />
             <UserFollowList />
           </article>
         );

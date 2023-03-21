@@ -33,10 +33,8 @@ const UserFollowList: React.FC = () => {
 
   const userFollowing = users.filter((User) => {
     if (currentUser) {
-      console.log('1');
       return following.some((id) => User.following.includes(id));
     } else {
-      console.log('2');
       return following.every((id) => User.following.includes(id));
     }
   });

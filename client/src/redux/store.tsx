@@ -8,6 +8,7 @@ import recipesReducer from './slices/recipeSlice';
 import followReducer from './slices/followSlice';
 import followingReducer from './slices/followingSlice';
 import userReducer from './slices/userSlice';
+import userFollowingReducer from './slices/userFollowingslice';
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     follow: followReducer,
     following: followingReducer,
     user: userReducer,
+    userFollowing: userFollowingReducer,
   },
 });
 
