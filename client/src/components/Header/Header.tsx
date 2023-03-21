@@ -37,14 +37,13 @@ const Header: React.FC = () => {
         {userName ? (
           <div>
             <Link to={`/user/${userId}`}>{userName}</Link>
-            <Link to="/">
-              <button
-                onClick={() => {
-                  handleClick();
-                }}
-              >
-                LogOut
-              </button>
+            <Link
+              to="/"
+              onClick={() => {
+                handleClick();
+              }}
+            >
+              Logout
             </Link>
           </div>
         ) : (
