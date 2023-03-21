@@ -16,20 +16,23 @@ const GetUserId = () => {
   const [users, setUsers] = useState<User[]>([]);
   const dispatch = useDispatch();
 
-  const userName = useSelector(
-    (state: RootState) => state.currentUser.userName,
+  const currentUserName = useSelector(
+    (state: RootState) => state.currentUserName.userName,
+  );
+  const userFollowing = useSelector(
+    (state: RootState) => state.userFollowing.userFollowing,
   );
 
   useEffect(() => {
     getUsers();
-  }, [userName]);
+  }, [currentUserName, userFollowing]);
 
   const getUsers = async () => {
     const response = await axios.get('http://localhost:5000/cookbook/users');
     setUsers(response.data);
     const userIds = users.map((user) => user._id);
     dispatch(setFollowing(userIds));
-    const userData = users.find(({ name }) => name === userName);
+    const userData = users.find(({ name }) => name === currentUserName);
     if (userData) {
       dispatch(setUserId(userData._id));
       dispatch(setUserFollowing(userData.following));

@@ -1,10 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import UserFollow from '../UserFollow';
 import UserFollowList from '../UserFollowList';
+import { setUserName } from '../../redux/slices/userNameSlice';
 
 interface User {
   _id: string;
@@ -14,6 +15,10 @@ interface User {
 
 const RecipeDetails: React.FC = () => {
   const [user, setUser] = useState<User[] | null>(null);
+  const dispatch = useDispatch();
+  const userName = useSelector(
+    (state: RootState) => state.currentUser.userName,
+  );
 
   const currentUser = useSelector(
     (state: RootState) => state.currentUserId.userId,
@@ -30,6 +35,7 @@ const RecipeDetails: React.FC = () => {
       `http://localhost:5000/cookbook/users/${id}`,
     );
     setUser([response.data]);
+    dispatch(setUserName(response.data.name));
   };
 
   if (!user) {
@@ -41,7 +47,7 @@ const RecipeDetails: React.FC = () => {
       {user.map((user) => {
         return (
           <article key={user._id}>
-            <h2>{user.name}</h2>
+            <h2>{userName}</h2>
             {currentUser ? (
               <UserFollow />
             ) : (

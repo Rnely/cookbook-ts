@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
 
   const userName = useSelector(
-    (state: RootState) => state.currentUser.userName,
+    (state: RootState) => state.currentUserName.userName,
   );
   const userId = useSelector((state: RootState) => state.currentUserId.userId);
 

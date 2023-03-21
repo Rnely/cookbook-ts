@@ -1,9 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useGetUsers } from '../useGetUsers';
+import { setUserName } from '../../redux/slices/userNameSlice';
 
 interface User {
   _id: string;
@@ -18,6 +19,7 @@ const UserFollowList: React.FC = () => {
   const users: User[] = useSelector((state: RootState) => state.user.user);
   useGetUsers();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getFollowingArray = async (): Promise<User[]> => {
@@ -62,7 +64,10 @@ const UserFollowList: React.FC = () => {
             .map((user) => {
               return (
                 <div className="user-preview" key={user._id}>
-                  <Link to={`/user/${user._id}`}>
+                  <Link
+                    to={`/user/${user._id}`}
+                    onClick={() => dispatch(setUserName(user.name))}
+                  >
                     <h2>{user.name}</h2>
                   </Link>
                 </div>

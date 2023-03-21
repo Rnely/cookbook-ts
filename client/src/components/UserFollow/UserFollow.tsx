@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '../../redux/store';
