@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { RootState } from '../../redux/store';
-import { setUser } from '../../redux/slices/userSlice';
+import { setUserName } from '../../redux/slices/userNameSlice';
 
 const LoginForm = () => {
   const [name, setName] = useState('');
@@ -22,7 +22,7 @@ const LoginForm = () => {
         name,
         password,
       });
-      dispatch(setUser(name));
+      dispatch(setUserName(name));
       nav('/');
     } catch (error) {
       console.log(error);

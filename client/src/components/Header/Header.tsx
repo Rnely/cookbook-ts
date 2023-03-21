@@ -1,15 +1,25 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../redux/slices/recipeQuerySlice';
-import { setUser } from '../../redux/slices/userSlice';
+import { setUserName } from '../../redux/slices/userNameSlice';
 import './style.css';
 import { RootState } from '../../redux/store';
+import { setUserId } from '../../redux/slices/userIdSlice';
+import { setUserFollowing } from '../../redux/slices/userFollowingSlice';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
 
-  const userName = useSelector((state: RootState) => state.currentUser.user);
+  const userName = useSelector(
+    (state: RootState) => state.currentUser.userName,
+  );
   const userId = useSelector((state: RootState) => state.currentUserId.userId);
+
+  const handleClick = () => {
+    dispatch(setUserName(''));
+    dispatch(setUserId(''));
+    dispatch(setUserFollowing([]));
+  };
 
   return (
     <nav className="navbar">
@@ -27,13 +37,14 @@ const Header: React.FC = () => {
         {userName ? (
           <div>
             <Link to={`/user/${userId}`}>{userName}</Link>
-            <Link
-              to="/"
-              onClick={() => {
-                dispatch(setUser(''));
-              }}
-            >
-              Logout
+            <Link to="/">
+              <button
+                onClick={() => {
+                  handleClick();
+                }}
+              >
+                LogOut
+              </button>
             </Link>
           </div>
         ) : (
