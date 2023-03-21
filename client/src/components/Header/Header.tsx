@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../redux/slices/recipeQuerySlice';
-import { setUserName } from '../../redux/slices/userNameSlice';
 import './style.css';
 import { RootState } from '../../redux/store';
 import { setUserId } from '../../redux/slices/userIdSlice';
