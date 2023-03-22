@@ -8,6 +8,7 @@ interface ITextProps {
   fontWeight?: number;
   fontSize?: number;
   px?: number;
+  py?: number;
 }
 
 const Text: React.FC<ITextProps> = ({
@@ -17,9 +18,10 @@ const Text: React.FC<ITextProps> = ({
   fontWeight,
   fontSize,
   px,
+  py,
 }) => {
   return (
-    <Typography variant={variant} sx={{ color, fontSize, fontWeight, px }}>
+    <Typography variant={variant} sx={{ color, fontSize, fontWeight, px, py }}>
       {text}
     </Typography>
   );

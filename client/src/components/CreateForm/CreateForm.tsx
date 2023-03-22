@@ -13,7 +13,9 @@ const CreateForm = () => {
   const [listIngredients, setListIngredients] = useState(Array);
 
   const isPending = useSelector((state: RootState) => state.pending);
-  const user = useSelector((state: RootState) => state.currentUser.userName);
+  const user = useSelector(
+    (state: RootState) => state.currentUserName.userName,
+  );
   const userId = useSelector((state: RootState) => state.currentUserId.userId);
 
   const nav = useNavigate();
