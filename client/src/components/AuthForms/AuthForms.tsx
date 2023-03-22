@@ -15,10 +15,10 @@ const AuthForms = () => {
         id="container"
       >
         <div className="form-container sign-up-container">
-          <LoginForm />
+          <RegisterForm />
         </div>
         <div className="form-container sign-in-container">
-          <RegisterForm />
+          <LoginForm />
         </div>
         <div className="overlay-container">
           <div className="overlay">
