@@ -51,7 +51,7 @@ const RecipeDetails: React.FC = () => {
             {currentUser ? (
               <UserFollow />
             ) : (
-              <Link to="/login">
+              <Link to="/authentication">
                 <button type="button">Follow</button>
               </Link>
             )}

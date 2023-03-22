@@ -6,7 +6,7 @@ import Create from './pages/Create';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import RecipeDetails from './pages/RecipeDetails';
-import Auth from './pages/Auth';
+import Auth from './pages/AuthPage/Auth';
 import UserDetails from './pages/UserDetails';
 
 function App() {

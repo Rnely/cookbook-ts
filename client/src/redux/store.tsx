@@ -9,6 +9,7 @@ import followingArrayReducer from './slices/followingArraySlice';
 import followingReducer from './slices/followingSlice';
 import userReducer from './slices/userSlice';
 import userFollowingReducer from './slices/userFollowingslice';
+import loginReducer from './slices/loginSlice';
 import currentUserNameReducer from './slices/currentUserSlice';
 
 export const store = configureStore({
@@ -24,6 +25,7 @@ export const store = configureStore({
     user: userReducer,
     userFollowing: userFollowingReducer,
     currentUserName: currentUserNameReducer,
+    loginState: loginReducer,
   },
 });
 

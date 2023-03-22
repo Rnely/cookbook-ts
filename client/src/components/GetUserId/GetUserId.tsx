@@ -22,11 +22,7 @@ const GetUserId = () => {
   const userFollowing = useSelector(
     (state: RootState) => state.userFollowing.userFollowing,
   );
-
-  useEffect(() => {
-    getUsers();
-  }, [currentUserName, userFollowing]);
-
+  const loginState = useSelector((state: RootState) => state.loginState.login);
   const getUsers = async () => {
     const response = await axios.get('http://localhost:5000/cookbook/users');
     setUsers(response.data);
@@ -38,6 +34,8 @@ const GetUserId = () => {
       dispatch(setUserFollowing(userData.following));
     }
   };
+  getUsers();
+  console.log('gejs', loginState);
 };
 
 export default GetUserId;

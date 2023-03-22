@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../../redux/store';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -29,29 +29,25 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="create">
+    <form onSubmit={handleSubmit}>
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Username:</label>
-        <input
-          className="inp"
-          type="text"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label>Password:</label>
-        <input
-          className="inp"
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {isPending && <button type="submit">Submit</button>}
-        {!isPending && <button disabled>Submiting...</button>}
-      </form>
-    </div>
+      <input
+        type="text"
+        placeholder="Username"
+        required
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="password"
+        required
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      {isPending && <button type="submit">Submit</button>}
+      {!isPending && <button disabled>Submiting...</button>}
+    </form>
   );
 };
 
