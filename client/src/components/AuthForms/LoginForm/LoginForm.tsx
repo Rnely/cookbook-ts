@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { RootState } from '../../../redux/store';
 import { setCurrentUserName } from '../../../redux/slices/currentUserSlice';
-import { setUserId } from '../../../redux/slices/userIdSlice';
-import { setLogin } from '../../../redux/slices/loginSlice';
-import GetUserId from '../../GetUserId';
 
 const LoginForm = () => {
   const [name, setName] = useState('');
@@ -15,9 +12,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const isPending = useSelector((state: RootState) => state.pending);
-  const currentUserName = useSelector(
-    (state: RootState) => state.currentUserName.userName,
-  );
 
   const nav = useNavigate();
 
@@ -29,8 +23,7 @@ const LoginForm = () => {
         password,
       });
       dispatch(setCurrentUserName(name));
-      dispatch(setLogin(true));
-      GetUserId();
+      nav('/');
     } catch (error) {
       console.log(error);
     }

@@ -12,14 +12,12 @@ import {
 import Text from '../../../TextComponent/TextComponent';
 import { StyledBox, StyledButton } from './style';
 import { setUserName } from '../../../../redux/slices/userNameSlice';
-import { setLogin } from '../../../../redux/slices/loginSlice';
 
 const UserBox = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   const userId = useSelector((state: RootState) => state.currentUserId.userId);
-  const loginState = useSelector((state: RootState) => state.loginState.login);
   const currentUserName = useSelector(
     (state: RootState) => state.currentUserName.userName,
   );
@@ -28,13 +26,12 @@ const UserBox = () => {
     dispatch(setCurrentUserName(''));
     dispatch(setUserId(''));
     dispatch(setFollowing([]));
-    dispatch(setLogin(false));
     nav('/');
   };
 
   return (
     <div>
-      {loginState ? (
+      {currentUserName ? (
         <StyledBox>
           <StyledButton
             title="Profile"
