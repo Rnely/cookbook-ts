@@ -3,6 +3,8 @@ import {
   PersonRemove,
   ArrowDownward,
   ArrowForward,
+  Add,
+  Publish,
 } from '@mui/icons-material';
 
 interface ITextProps {
@@ -48,6 +50,28 @@ export const FollowListButton: React.FC<ITextProps> = ({ text }) => {
       {text}
       <div className="icon">
         <ArrowDownward />
+      </div>
+    </button>
+  );
+};
+
+export const AddButton: React.FC<ITextProps> = ({ text }) => {
+  return (
+    <button type="button" className="cssbuttons-io-button">
+      {text}
+      <div className="icon">
+        <Add />
+      </div>
+    </button>
+  );
+};
+
+export const PublishButton: React.FC<ITextProps> = ({ text }) => {
+  return (
+    <button type="submit" className="cssbuttons-io-button">
+      {text}
+      <div className="icon">
+        <Publish />
       </div>
     </button>
   );

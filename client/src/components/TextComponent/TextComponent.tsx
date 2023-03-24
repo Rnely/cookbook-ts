@@ -9,6 +9,8 @@ interface ITextProps {
   fontSize?: number;
   px?: number;
   py?: number;
+  my?: number;
+  display?: string;
 }
 
 const Text: React.FC<ITextProps> = ({
@@ -19,9 +21,14 @@ const Text: React.FC<ITextProps> = ({
   fontSize,
   px,
   py,
+  my,
+  display,
 }) => {
   return (
-    <Typography variant={variant} sx={{ color, fontSize, fontWeight, px, py }}>
+    <Typography
+      variant={variant}
+      sx={{ color, fontSize, fontWeight, px, py, my, display }}
+    >
       {text}
     </Typography>
   );

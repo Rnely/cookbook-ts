@@ -4,6 +4,16 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { RootState } from '../../redux/store';
 import './style.css';
+import {
+  CreateCard,
+  CreateTextField,
+  CreateIngTextField,
+  StyledCardActions,
+  IngBox,
+  IngListBox,
+} from './style';
+import Text from '../TextComponent/TextComponent';
+import { AddButton, PublishButton } from '../StyledButtons/StyledButtons';
 
 const CreateForm = () => {
   const [title, setTitle] = useState('');
@@ -22,8 +32,10 @@ const CreateForm = () => {
 
   const handleIngredients = (e: any) => {
     e.preventDefault();
-    setListIngredients([...listIngredients, ingredients]);
-    setIngredients('');
+    if (ingredients) {
+      setListIngredients([...listIngredients, ingredients]);
+      setIngredients('');
+    }
   };
 
   const handleSubmit2 = async (e: any) => {
@@ -44,47 +56,63 @@ const CreateForm = () => {
   };
 
   return (
-    <div className="create">
-      <h2>Add a new recipe</h2>
+    <CreateCard>
+      <Text text={'Add a new recipe'} variant="h5" fontWeight={600} my={3} />
       <form onSubmit={handleSubmit2}>
-        <label>Recipe title:</label>
-        <input
+        <CreateTextField
           className="inp"
+          variant="standard"
+          label="Recipe title"
           type="text"
           required
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label>Recipe ingredients:</label>
-        <input
-          type="text"
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-        />
-        <button type="button" onClick={handleIngredients}>
-          Add
-        </button>
-        <p>Current ingredients: {listIngredients.toString()}</p>
-        <label>Recipe method:</label>
-        <textarea
+        <IngBox>
+          <CreateIngTextField
+            type="text"
+            variant="standard"
+            label="Recipe ingredients"
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+          />
+          <StyledCardActions onClick={handleIngredients}>
+            <AddButton text="Add" />
+          </StyledCardActions>
+        </IngBox>
+        <IngListBox>
+          <Text
+            text={'Current ingredients: ' + listIngredients.join(', ')}
+            variant="caption"
+            display="flex"
+          />
+        </IngListBox>
+        <CreateTextField
           className="inp"
+          variant="standard"
+          label="Recipe method"
           required
           value={method}
           onChange={(e) => setMethod(e.target.value)}
         />
-        <label>Cooking time (in minutes):</label>
-        <input
+        <CreateTextField
           className="inp"
+          variant="standard"
+          label="Cooking time"
           type="number"
-          min="0"
+          inputProps={{
+            min: '0',
+          }}
           required
           value={time}
           onChange={(e) => setTime(e.target.value)}
         />
-        {isPending && <button type="submit">Submit</button>}
-        {!isPending && <button disabled>Submiting...</button>}
+        <StyledCardActions>
+          {isPending && <PublishButton text="Submit" />}
+          {!isPending && <PublishButton text="Submit..." />}
+        </StyledCardActions>
       </form>
-    </div>
+    </CreateCard>
   );
 };
 
