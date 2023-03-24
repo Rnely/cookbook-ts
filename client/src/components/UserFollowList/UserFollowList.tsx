@@ -1,14 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useGetUsers } from '../useGetUsers';
 import { setUserName } from '../../redux/slices/userNameSlice';
-import { ListBox, ListMenu, ListMenuItem } from './style';
+import {
+  MarginBox,
+  ListBox,
+  ListMenu,
+  ListMenuItem,
+  StyledDivider,
+} from './style';
 import { Box } from '@mui/system';
 import { FollowListButton } from '../StyledButtons/StyledButtons';
 import { StyledCardActions } from '../RecipeDetails/style';
+import Text from '../TextComponent/TextComponent';
 
 interface User {
   _id: string;
@@ -27,6 +34,7 @@ const UserFollowList: React.FC = () => {
 
   const { id } = useParams();
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   useEffect(() => {
     const getFollowingArray = async (): Promise<User[]> => {
@@ -78,7 +86,21 @@ const UserFollowList: React.FC = () => {
           setFollowState(!followState);
         }}
       >
-        <p>Following {followingArray.length} users</p>
+        {followingArray.length === 1 ? (
+          <Text
+            text={'Following ' + followingArray.length + ' user'}
+            px={2}
+            fontWeight={550}
+          />
+        ) : (
+          <Text
+            text={'Following ' + followingArray.length + ' users'}
+            px={2}
+            fontWeight={550}
+          />
+        )}
+        <StyledDivider />
+
         {followState ? (
           <Box>
             {followingArray
@@ -91,20 +113,22 @@ const UserFollowList: React.FC = () => {
               })
               .map((user) => {
                 return (
-                  <ListMenuItem
-                    onClick={() => {
-                      setAnchorElList(null);
-                      setFollowState(!followState);
-                    }}
-                    key={user._id}
-                  >
-                    <Link
-                      to={`/user/${user._id}`}
-                      onClick={() => dispatch(setUserName(user.name))}
+                  <>
+                    <ListMenuItem
+                      onClick={() => {
+                        setAnchorElList(null);
+                        setFollowState(!followState);
+                        dispatch(setUserName(user.name));
+                        nav(`/user/${user._id}`);
+                      }}
+                      key={user._id}
                     >
-                      <h2>{user.name}</h2>
-                    </Link>
-                  </ListMenuItem>
+                      <Text text={user.name} px={3} />
+                    </ListMenuItem>
+                    <MarginBox>
+                      <StyledDivider />
+                    </MarginBox>
+                  </>
                 );
               })}
           </Box>

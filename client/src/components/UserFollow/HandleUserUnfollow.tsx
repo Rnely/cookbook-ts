@@ -27,7 +27,6 @@ const HandleUserUnfollow = () => {
   const { id } = useParams();
 
   const handleUserUnfollow = async () => {
-    console.log('start', userFollowing);
     if (id) {
       const index = following.indexOf(id);
       dispatch(setUserFollowing(following.splice(index, 1)));
@@ -39,7 +38,6 @@ const HandleUserUnfollow = () => {
           },
         );
         dispatch(setUserFollowing([...following]));
-        console.log('after', userFollowing);
       } catch (error) {
         console.log(error);
       }

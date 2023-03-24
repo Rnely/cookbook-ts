@@ -12,5 +12,5 @@ export const useGetUsers = () => {
       dispatch(setUser(response.data));
     };
     findUsers();
-  });
+  }, []);
 };
