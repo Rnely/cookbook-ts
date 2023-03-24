@@ -57,7 +57,7 @@ const RecipeList: React.FC = () => {
                   </TextBox>
                 </StyledCardContent>
                 <StyledCardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
-                  <RecipeListButton />
+                  <RecipeListButton text={'Cook This'} />
                 </StyledCardActions>
               </StyledCard>
             );

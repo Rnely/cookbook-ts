@@ -48,7 +48,7 @@ const UserRecipes = () => {
               </TextBox>
             </StyledCardContent>
             <CardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
-              <RecipeListButton />
+              <RecipeListButton text={'Cook This'} />
             </CardActions>
           </StyledCard>
         );
