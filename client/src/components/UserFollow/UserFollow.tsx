@@ -4,6 +4,7 @@ import { RootState } from '../../redux/store';
 import HandleUserFollow from './HandleUserFollow';
 import { useState, useEffect } from 'react';
 import HandleUserUnfollow from './HandleUserUnfollow';
+import { StyledCardActions } from '../RecipeDetails/style';
 
 const UserFollow = () => {
   const currentUserId = useSelector(
@@ -27,7 +28,11 @@ const UserFollow = () => {
   if (currentUserId === id) {
     return null;
   } else {
-    return <>{isFollowing ? <HandleUserUnfollow /> : <HandleUserFollow />}</>;
+    return (
+      <StyledCardActions>
+        {isFollowing ? <HandleUserUnfollow /> : <HandleUserFollow />}
+      </StyledCardActions>
+    );
   }
 };
 export default UserFollow;

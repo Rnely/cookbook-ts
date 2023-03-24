@@ -17,7 +17,7 @@ export const store = configureStore({
     url: urlReducer,
     pending: pendingReducer,
     recipeFilter: queryReducer,
-    currentUser: userNameReducer,
+    userName: userNameReducer,
     currentUserId: userIdReducer,
     recipes: recipesReducer,
     followingArray: followingArrayReducer,

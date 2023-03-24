@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,29 +6,29 @@ import { RootState } from '../../redux/store';
 import UserFollow from '../UserFollow';
 import UserFollowList from '../UserFollowList';
 import { setUserName } from '../../redux/slices/userNameSlice';
+import { StyledCard, StyledCardActions } from './style';
+import Text from '../TextComponent/TextComponent';
+import { UserFollowButton } from '../StyledButtons';
 
 interface User {
   _id: string;
-  name: String;
-  regDate: String;
+  name: string;
+  regDate: string;
 }
 
 const RecipeDetails: React.FC = () => {
   const [user, setUser] = useState<User[] | null>(null);
   const dispatch = useDispatch();
-  const userName = useSelector(
-    (state: RootState) => state.currentUser.userName,
-  );
-
   const currentUser = useSelector(
     (state: RootState) => state.currentUserId.userId,
   );
 
+  const nav = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
     getUser();
-  }, [userName]);
+  }, [id]);
 
   const getUser = async () => {
     const response = await axios.get(
@@ -43,24 +43,25 @@ const RecipeDetails: React.FC = () => {
   }
 
   return (
-    <div className="recipe-details">
+    <>
       {user.map((user) => {
         return (
-          <article key={user._id}>
-            <h2>{userName}</h2>
+          <StyledCard key={user._id}>
+            <Text text={user.name} variant="h5" fontWeight={600} />
+
+            <p>Member since: {user.regDate}</p>
             {currentUser ? (
               <UserFollow />
             ) : (
-              <Link to="/authentication">
-                <button type="button">Follow</button>
-              </Link>
+              <StyledCardActions onClick={() => nav('/authentication')}>
+                <UserFollowButton />
+              </StyledCardActions>
             )}
-            <p>Member since: {user.regDate}</p>
             <UserFollowList />
-          </article>
+          </StyledCard>
         );
       })}
-    </div>
+    </>
   );
 };
 

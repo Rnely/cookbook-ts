@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { setUserFollowing } from '../../redux/slices/userFollowingslice';
 import { RootState } from '../../redux/store';
 import { useEffect, useState } from 'react';
+import { UserUnfollowButton } from '../StyledButtons';
 
 interface User {
   _id: string;
@@ -16,9 +17,7 @@ const HandleUserUnfollow = () => {
   const currentUser = useSelector(
     (state: RootState) => state.currentUserId.userId,
   );
-  const userName = useSelector(
-    (state: RootState) => state.currentUser.userName,
-  );
+  const userName = useSelector((state: RootState) => state.userName.userName);
   const userFollowing: string[] = useSelector(
     (state: RootState) => state.userFollowing.userFollowing,
   );
@@ -57,12 +56,12 @@ const HandleUserUnfollow = () => {
       }
       getUserFollowing();
     };
-  }, []);
+  }, [id]);
 
   return (
-    <button type="button" onClick={() => handleUserUnfollow()}>
-      Unfollow
-    </button>
+    <div onClick={() => handleUserUnfollow()}>
+      <UserUnfollowButton />
+    </div>
   );
 };
 export default HandleUserUnfollow;

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { setUserFollowing } from '../../redux/slices/userFollowingslice';
 import { RootState } from '../../redux/store';
 import { useEffect, useState } from 'react';
+import { UserFollowButton } from '../StyledButtons';
 
 interface User {
   _id: string;
@@ -16,9 +17,7 @@ const HandleUserFollow = () => {
   const currentUser = useSelector(
     (state: RootState) => state.currentUserId.userId,
   );
-  const userName = useSelector(
-    (state: RootState) => state.currentUser.userName,
-  );
+  const userName = useSelector((state: RootState) => state.userName.userName);
   const userFollowing: string[] = useSelector(
     (state: RootState) => state.userFollowing.userFollowing,
   );
@@ -47,12 +46,12 @@ const HandleUserFollow = () => {
       }
       getUserFollowing();
     };
-  }, []);
+  }, [id]);
 
   return (
-    <button type="button" onClick={() => handleUserFollow()}>
-      Follow
-    </button>
+    <div onClick={() => handleUserFollow()}>
+      <UserFollowButton />
+    </div>
   );
 };
 export default HandleUserFollow;

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, Card, CardActions } from '@mui/material';
+import { Card, CardActions } from '@mui/material';
 import { Box } from '@mui/system';
 
 export const StyledCard = styled(Card)`
