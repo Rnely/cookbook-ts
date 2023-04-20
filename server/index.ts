@@ -4,11 +4,9 @@ import cors from 'cors';
 import RecipeRoutes from './routes/RecipeRoutes';
 import AuthRoutes from './routes/AuthRoutes';
 import UserRoutes from './routes/UserRoutes';
-require('dotenv').config();
-const mongoUri = process.env.VITE_MONGO_URI;
 
 const app = express();
-mongoose.connect(mongoUri.toString(), {});
+mongoose.connect('mongodb://localhost:27017/cookbook', {});
 const db = mongoose.connection;
 db.on('error', (error) => console.log(error));
 db.once('open', () => console.log('Database Connected...'));
