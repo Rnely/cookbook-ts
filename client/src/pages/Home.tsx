@@ -7,7 +7,11 @@ const Home = () => {
   return (
     <div className="home">
       <RecipeFilter />
-      <RecipeList />
+      <div className='homeCenter'>
+        <div className='homeContent'>
+          <RecipeList />
+        </div> 
+      </div>
     </div>
   );
 };

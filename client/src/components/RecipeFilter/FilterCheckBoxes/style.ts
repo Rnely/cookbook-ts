@@ -5,7 +5,7 @@ export const CheckBoxItem = styled(FormControlLabel)`
   width: 100%;
   margin: 0;
   justify-content: space-between;
-  padding: 4px 16px;
+  padding: 4px 7px;
 `;
 export const ColoredCheckBox = styled(Checkbox)`
   color: white;

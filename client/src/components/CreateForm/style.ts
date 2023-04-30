@@ -14,6 +14,7 @@ export const CreateTextField = styled(TextField)`
   margin: 10px auto;
   border: 1px solid #ddd;
   box-sizing: border-box;
+  border: none;
 `;
 
 export const StyledCardActions = styled(CardActions)`
@@ -27,6 +28,7 @@ export const IngBox = styled(Box)`
 
 export const IngListBox = styled(Box)`
   overflow: hidden;
+  padding: 0 20px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -39,4 +41,5 @@ export const CreateIngTextField = styled(TextField)`
   margin-left: 20px;
   border: 1px solid #ddd;
   box-sizing: border-box;
+  border: none
 `;

@@ -9,7 +9,7 @@ import FilterCheckBoxes from './FilterCheckBoxes';
 import FilterRadio from './FilterRadio';
 
 const RecipeFilter = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleFilterButton = () => {
     setOpen(!open);
@@ -20,7 +20,7 @@ const RecipeFilter = () => {
       {open ? (
         <FilterCard>
           <FilterTopBox>
-            <Text text="Filter" color="#a6a4a4" fontWeight={600} />
+            <Text text="Filter" fontWeight={600} />
             <FilterCloseBox>
               <Button onClick={handleFilterButton}>
                 <CloseIcon />

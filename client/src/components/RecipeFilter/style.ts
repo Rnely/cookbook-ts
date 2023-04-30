@@ -32,6 +32,7 @@ export const FilterCard = styled(Card)(({ theme }) => ({
   left: 10,
   height: '80%',
   backgroundColor: 'rgba(48, 47, 47, 0.8)',
+  zIndex: 1,
 }));
 
 export const FilterTopBox = styled(Box)`
