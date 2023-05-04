@@ -7,6 +7,7 @@ export interface IRecipe {
   listIngredients: Array<String>;
   method: String;
   time: Number;
+  diet: String;
 }
 
 export interface IRecipeDocument extends IRecipe, Document {}

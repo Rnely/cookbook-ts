@@ -25,6 +25,10 @@ const RecipeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  diet: {
+    type: String,
+    required: true,
+  },
 });
 
 export default RecipeSchema;
