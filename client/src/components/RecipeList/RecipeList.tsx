@@ -13,6 +13,7 @@ import {
   StyledCardActions,
 } from './style';
 import { RecipeListButton } from '../StyledButtons';
+import { Rating } from '@mui/material';
 
 interface Recipe {
   _id: string;
@@ -21,6 +22,7 @@ interface Recipe {
   time: number;
   method: string;
   diet: string;
+  avgRating: number;
 }
 
 const RecipeList: React.FC = () => {
@@ -60,6 +62,11 @@ const RecipeList: React.FC = () => {
               <StyledCard key={recipe._id}>
                 <StyledCardContent>
                   <Text text={recipe.title} variant="h5" fontWeight={550} />
+                  <Rating
+                    value={recipe.avgRating}
+                    precision={0.5}
+                    disabled={true}
+                  />
                   <Text text={recipe.user} variant="body1" />
                   <Text
                     text={recipe.time + 'minutes to cook'}
