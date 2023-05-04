@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, Card, CardContent, Paper } from '@mui/material';
+import { Button, Card, CardActions, CardContent, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 
 export const StyledCard = styled(Card)`
@@ -41,3 +41,11 @@ export const CardBox = styled(Box)`
 `;
 
 export const SearchBox = styled(Box)``;
+
+export const StyledCardActions = styled(CardActions)`
+  display: inline-flex;
+  justify-content: center;
+  padding: 0px;
+  margin: 0 8px;
+  margin-bottom: 8px;
+`;

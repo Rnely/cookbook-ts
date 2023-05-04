@@ -5,9 +5,8 @@ import GetRecipes from '../useGetRecipes';
 import './style.css';
 import './style';
 import Text from '../TextComponent/TextComponent';
-import { CardBox, StyledCard, StyledCardContent, TextBox } from './style';
+import { CardBox, StyledCard, StyledCardContent, TextBox, StyledCardActions} from './style';
 import { RecipeListButton } from '../StyledButtons';
-import { StyledCardActions } from '../RecipeDetails/style';
 
 interface Recipe {
   _id: string;
