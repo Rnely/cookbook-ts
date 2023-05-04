@@ -8,6 +8,8 @@ import { store } from './redux/store';
 import RecipeDetails from './pages/RecipeDetails';
 import Auth from './pages/AuthPage/Auth';
 import UserDetails from './pages/UserDetails';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
               <Route path="/authentication" element={<Auth />} />
               <Route path="/user/:id" element={<UserDetails />} />
             </Routes>
+            <ToastContainer />
           </div>
         </div>
       </Router>
