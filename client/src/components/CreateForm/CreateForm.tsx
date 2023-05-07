@@ -56,7 +56,6 @@ const CreateForm = () => {
         time,
         diet,
         avgRating: 0,
-        userRating: { user, rating: 2 },
       });
       nav('/');
     } catch (error) {

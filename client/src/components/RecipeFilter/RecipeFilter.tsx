@@ -2,11 +2,16 @@ import { Button, Divider } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
-import { FilterButtonBox, FilterCard, FilterTopBox, FilterCloseBox } from './style';
+import {
+  FilterButtonBox,
+  FilterCard,
+  FilterTopBox,
+  FilterCloseBox,
+} from './style';
 import Text from '../TextComponent/TextComponent';
-import FilterSlider from './FilterSlider';
 import FilterCheckBoxes from './FilterCheckBoxes';
 import FilterRadio from './FilterRadio';
+import FilterRating from './FilterRating/FilterRating';
 
 const RecipeFilter = () => {
   const [open, setOpen] = useState(false);
@@ -28,7 +33,7 @@ const RecipeFilter = () => {
             </FilterCloseBox>
           </FilterTopBox>
           <Divider />
-          <FilterSlider />
+          <FilterRating />
           <FilterCheckBoxes />
           <FilterRadio />
         </FilterCard>

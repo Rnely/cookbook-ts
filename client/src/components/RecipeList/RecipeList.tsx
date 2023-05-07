@@ -32,6 +32,9 @@ const RecipeList: React.FC = () => {
   );
   const query = useSelector((state: RootState) => state.recipeFilter.query);
   const recipeDiet = useSelector((state: RootState) => state.recipeDiet.value);
+  const filterRating = useSelector(
+    (state: RootState) => state.filterRating.value,
+  );
 
   if (recipe) {
     GetRecipes();
@@ -41,6 +44,7 @@ const RecipeList: React.FC = () => {
     <>
       <CardBox>
         {recipe
+          .filter((recipes) => recipes.avgRating >= filterRating)
           .filter((recipes) => {
             if (recipeDiet === 'all') {
               return recipes;
