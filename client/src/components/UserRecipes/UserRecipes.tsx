@@ -1,46 +1,59 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../redux/store';
-import GetRecipes from '../GetRecipes';
-import { useState } from 'react';
+import Text from '../TextComponent/TextComponent';
+import GetRecipes from '../useGetRecipes';
 import './style.css';
+import { RecipeListButton } from '../StyledButtons';
+import { CardBox, StyledCard, StyledCardContent, TextBox } from './style';
+import { CardActions } from '@mui/material';
 
 interface Recipe {
   _id: string;
   user: string;
+  userId: string;
   title: string;
   time: number;
   method: string;
 }
 
 const UserRecipes = () => {
-  const userName = useSelector((state: RootState) => state.currentUser.user);
   const recipe: Recipe[] = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
+  const { id } = useParams();
+  const nav = useNavigate();
 
   if (recipe) {
     GetRecipes();
   }
 
-  const userRecipes = recipe.filter((recipe) => recipe.user === userName);
+  const userRecipes = recipe.filter((recipe) => recipe.userId === id);
 
   return (
-    <div className="recipe-list">
+    <CardBox>
       {userRecipes.map((recipe) => {
         return (
-          <div className="recipe-preview" key={recipe._id}>
-            <h2>{recipe.title}</h2>
-            <p>{recipe.user}</p>
-            <article>{recipe.time} minutes to cook</article>
-            <footer>{recipe.method}</footer>
-            <Link to={`/recipe/${recipe._id}`}>
-              <button>Cook this</button>
-            </Link>
-          </div>
+          <StyledCard key={recipe._id}>
+            <StyledCardContent>
+              <Text text={recipe.title} variant="h5" fontWeight={550} />
+              <Text text={recipe.user} variant="body1" />
+              <Text
+                text={recipe.time + 'minutes to cook'}
+                color="text.secondary"
+                py={1}
+              />
+              <TextBox>
+                <Text text={recipe.method} />
+              </TextBox>
+            </StyledCardContent>
+            <CardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
+              <RecipeListButton text={'Cook This'} />
+            </CardActions>
+          </StyledCard>
         );
       })}
-    </div>
+    </CardBox>
   );
 };
 export default UserRecipes;

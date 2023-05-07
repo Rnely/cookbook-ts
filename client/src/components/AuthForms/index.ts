@@ -1,2 +1,1 @@
-export { default } from './RegisterForm';
-('./LoginForm');
+export { default } from './AuthForms';

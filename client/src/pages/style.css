@@ -1,4 +1,7 @@
-.home {
-  padding-left: 300px;
-  padding-right: 300px;
+.homeCenter {
+  display: flex;
+  justify-content: center;
+}
+.homeContent {
+  width: 70%;
 }

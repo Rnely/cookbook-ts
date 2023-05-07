@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import GetRecipes from '../useGetRecipes';
 import './style.css';
-import GetRecipes from '../GetRecipes';
+import './style';
+import Text from '../TextComponent/TextComponent';
+import { CardBox, StyledCard, StyledCardContent, TextBox, StyledCardActions} from './style';
+import { RecipeListButton } from '../StyledButtons';
 
 interface Recipe {
   _id: string;
@@ -13,41 +17,52 @@ interface Recipe {
 }
 
 const RecipeList: React.FC = () => {
-  const query = useSelector((state: RootState) => state.recipeFilter.query);
+  const nav = useNavigate();
   const recipe: Recipe[] = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
+  const query = useSelector((state: RootState) => state.recipeFilter.query);
 
   if (recipe) {
     GetRecipes();
   }
 
   return (
-    <div className="recipe-list">
-      {recipe
-        .filter((recipes) => {
-          if (query === '') {
-            return recipes;
-          } else if (
-            recipes.title.toLowerCase().includes(query.toLowerCase())
-          ) {
-            return recipes;
-          }
-        })
-        .map((recipe) => {
-          return (
-            <div className="recipe-preview" key={recipe._id}>
-              <h2>{recipe.title}</h2>
-              <p>{recipe.user}</p>
-              <article>{recipe.time} minutes to cook</article>
-              <footer>{recipe.method}</footer>
-              <Link to={`/recipe/${recipe._id}`}>
-                <button>Cook this</button>
-              </Link>
-            </div>
-          );
-        })}
-    </div>
+    <>
+      <CardBox>
+        {recipe
+          .filter((recipes) => {
+            if (query === '') {
+              return recipes;
+            } else if (
+              recipes.title.toLowerCase().includes(query.toLowerCase())
+            ) {
+              return recipes;
+            }
+          })
+          .map((recipe) => {
+            return (
+              <StyledCard key={recipe._id}>
+                <StyledCardContent>
+                  <Text text={recipe.title} variant="h5" fontWeight={550} />
+                  <Text text={recipe.user} variant="body1" />
+                  <Text
+                    text={recipe.time + 'minutes to cook'}
+                    color="text.secondary"
+                    py={1}
+                  />
+                  <TextBox>
+                    <Text text={recipe.method} />
+                  </TextBox>
+                </StyledCardContent>
+                <StyledCardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
+                  <RecipeListButton text={'Cook This'} />
+                </StyledCardActions>
+              </StyledCard>
+            );
+          })}
+      </CardBox>
+    </>
   );
 };
 

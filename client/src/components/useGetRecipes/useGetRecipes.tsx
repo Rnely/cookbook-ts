@@ -3,7 +3,7 @@ import { setRecipes } from '../../redux/slices/recipeSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-const GetRecipes = () => {
+export const useGetRecipes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     findRecipes();
@@ -13,4 +13,4 @@ const GetRecipes = () => {
     dispatch(setRecipes(response.data));
   };
 };
-export default GetRecipes;
+export default useGetRecipes;
