@@ -25,7 +25,8 @@ router.post('/cookbook/register', async (req: Request, res: Response) => {
 
   const userExists = await User.findOne({ name: req.body.name });
 
-  if (userExists) return res.status(400).send('User already exists');
+  if (userExists)
+    return res.status(400).json({ message: 'User already exists' });
 
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -50,13 +51,14 @@ router.post('/cookbook/login', async (req: Request, res: Response) => {
 
   const user = await User.findOne({ name: req.body.name });
 
-  if (!user) return res.status(400).send('Name or password is wrong');
+  if (!user)
+    return res.status(400).json({ message: 'Password or username is wrong' });
 
   const validPass = await bcrypt.compare(
     req.body.password,
     user.password.toString(),
   );
-  if (!validPass) return res.status(400).send('Name or password is wrong');
+  if (!validPass) return res.status(400).json({ message: 'Password is wrong' });
 
   if (!process.env.TOKEN_SECRET) {
     throw new Error('JWT_KEY must be defined');

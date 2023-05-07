@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { RootState } from '../../../redux/store';
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -22,9 +23,25 @@ const RegisterForm = () => {
         password,
         regDate,
       });
-      nav('/');
-    } catch (error) {
-      console.log(error);
+      toast.success('Successfully registered', {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error: any) {
+      toast.error(error.response.data.message, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
