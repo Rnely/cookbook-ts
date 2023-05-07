@@ -5,6 +5,10 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -20,6 +24,18 @@ const RecipeSchema = new mongoose.Schema({
   time: {
     type: Number,
     required: true,
+  },
+  diet: {
+    type: String,
+    required: true,
+  },
+  avgRating: {
+    type: Number,
+    required: false,
+  },
+  userRating: {
+    type: Array,
+    required: false,
   },
 });
 

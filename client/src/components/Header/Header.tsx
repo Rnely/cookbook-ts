@@ -1,31 +1,23 @@
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setQuery } from '../../redux/slices/recipeQuerySlice';
-import './style.css';
-import { RootState } from '../../redux/store';
+import { AppBar } from '@mui/material';
+import { Container } from '@mui/system';
+import { StyledToolBar } from './style';
+import Text from '../TextComponent/TextComponent';
+import PageBox from './headerComps/PageBox';
+import UserBox from './headerComps/UserBox';
 
-const Header = () => {
-  const dispatch = useDispatch();
-
-  const user = useSelector((state: RootState) => state.currentUser.user);
-
+const Header: React.FC = () => {
   return (
-    <nav className="navbar">
-      <h1>Cook Book</h1>
-      <div className="search">
-        <label>Search: </label>
-        <input
-          placeholder="Enter Recipe Title"
-          onChange={(e) => dispatch(setQuery(e.target.value))}
-        />
-      </div>
-      <div className="links">
-        <Link to="/">Home</Link>
-        <Link to="/create">New Recipe</Link>
-        <Link to="/auth">Auth</Link>
-        {user ? <Link to="/user">{user}</Link> : <Link to="/login">Login</Link>}
-      </div>
-    </nav>
+    <div>
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <StyledToolBar>
+            <Text text="CookBook" fontSize={28} px={2} />
+            <PageBox />
+            <UserBox />
+          </StyledToolBar>
+        </Container>
+      </AppBar>
+    </div>
   );
 };
 

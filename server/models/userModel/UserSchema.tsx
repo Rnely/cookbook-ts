@@ -13,6 +13,15 @@ const UserSchema = new mongoose.Schema({
     max: 2048,
     min: 6,
   },
+  regDate: {
+    type: String,
+    required: true,
+    max: 2048,
+    min: 6,
+  },
+  following: {
+    type: Array,
+  },
 });
 
 export default UserSchema;
