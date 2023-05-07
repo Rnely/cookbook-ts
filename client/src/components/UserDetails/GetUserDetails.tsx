@@ -9,6 +9,7 @@ import { setUserName } from '../../redux/slices/userNameSlice';
 import { StyledCard, StyledCardActions } from './style';
 import Text from '../TextComponent/TextComponent';
 import { UserFollowButton } from '../StyledButtons';
+import LoadingComponent from '../LoadingComponent/LoadingComponent';
 
 interface User {
   _id: string;
@@ -39,7 +40,7 @@ const RecipeDetails: React.FC = () => {
   };
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <LoadingComponent />;
   }
 
   return (
