@@ -68,11 +68,12 @@ export const updateRecipeRating = async (req: Request, res: Response) => {
     );
     const avgRating =
       recipe.userRating.length > 0 ? totalRating / recipe.userRating.length : 0;
+    const roundedAvgRating = Math.round(avgRating * 2) / 2; // round to nearest .5 or whole number
 
     // Update the recipe in the database
     const updatedRecipe = await Recipe.updateOne(
       { _id: req.params.id },
-      { $set: { userRating: recipe.userRating, avgRating } },
+      { $set: { userRating: recipe.userRating, avgRating: roundedAvgRating } },
     );
 
     res.status(200).json(updatedRecipe);

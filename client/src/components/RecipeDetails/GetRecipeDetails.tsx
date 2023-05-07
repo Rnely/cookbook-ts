@@ -20,6 +20,7 @@ interface Recipe {
   diet: string;
   avgRating: number;
   userRating: Array<UserRate>;
+  listIngredients: Array<String>;
 }
 
 interface UserRate {
@@ -29,12 +30,15 @@ interface UserRate {
 
 const RecipeDetails: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe[] | null>(null);
-  const [listIng, setListIng] = useState([]);
+  const [listIng, setListIng] = useState<String[]>([]);
   const currentUserName = useSelector(
     (state: RootState) => state.currentUserName.userName,
   );
   const currentUserId = useSelector(
     (state: RootState) => state.currentUserId.userId,
+  );
+  const recipes: Recipe[] = useSelector(
+    (state: RootState) => state.recipes.recipes,
   );
 
   const nav = useNavigate();
@@ -44,12 +48,12 @@ const RecipeDetails: React.FC = () => {
     getRecipe();
   }, []);
 
-  const getRecipe = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/cookbook/recipes/${id}`,
-    );
-    setRecipe([response.data]);
-    setListIng(response.data.listIngredients);
+  const getRecipe = () => {
+    const selectedRecipe = recipes.find((r) => r._id === id);
+    if (selectedRecipe) {
+      setRecipe([selectedRecipe]);
+      setListIng(selectedRecipe.listIngredients);
+    }
   };
 
   const handleClick = async () => {
@@ -114,7 +118,7 @@ const RecipeDetails: React.FC = () => {
               </button>
             </h4>
             <p> Takes {recipe.time} minutes to cook</p>
-            <Text text={recipe.diet} />{' '}
+            <Text text={recipe.diet} />
             <p className="ing">{listIng.join(', ')}</p>
             <div>{recipe.method}</div>
             {currentUserName === recipe.user ? (
