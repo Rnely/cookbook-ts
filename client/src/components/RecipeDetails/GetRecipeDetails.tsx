@@ -7,6 +7,8 @@ import { StyledCard, StyledCardActions } from './style';
 import Text from '../TextComponent/TextComponent';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { Rating } from '@mui/material';
+import { toast } from 'react-toastify';
 
 interface Recipe {
   _id: string;
@@ -16,13 +18,23 @@ interface Recipe {
   time: number;
   method: string;
   diet: string;
+  avgRating: number;
+  userRating: Array<UserRate>;
+}
+
+interface UserRate {
+  user: string;
+  rating: number | null;
 }
 
 const RecipeDetails: React.FC = () => {
-  const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+  const [recipe, setRecipe] = useState<Recipe[] | null>(null);
   const [listIng, setListIng] = useState([]);
   const currentUserName = useSelector(
     (state: RootState) => state.currentUserName.userName,
+  );
+  const currentUserId = useSelector(
+    (state: RootState) => state.currentUserId.userId,
   );
 
   const nav = useNavigate();
@@ -36,7 +48,7 @@ const RecipeDetails: React.FC = () => {
     const response = await axios.get(
       `http://localhost:5000/cookbook/recipes/${id}`,
     );
-    setRecipes([response.data]);
+    setRecipe([response.data]);
     setListIng(response.data.listIngredients);
   };
 
@@ -49,16 +61,49 @@ const RecipeDetails: React.FC = () => {
     }
   };
 
-  if (!recipes) {
+  if (!recipe) {
     return <div>Loading...</div>;
   }
 
+  const handleRatingChange = async (newValue: number | null) => {
+    try {
+      await axios.patch(`http://localhost:5000/cookbook/recipes/${id}/rating`, {
+        userId: currentUserId,
+        rating: newValue,
+      });
+      getRecipe();
+    } catch (error: any) {
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <>
-      {recipes.map((recipe) => {
+      {recipe.map((recipe) => {
         return (
           <StyledCard key={recipe._id}>
             <Text text={recipe.title} variant="h5" fontWeight={600} />
+            <Rating
+              value={recipe.avgRating}
+              disabled={currentUserName === recipe.user ? true : false}
+              precision={0.5}
+              onChange={(event, newValue) => {
+                if (currentUserName) {
+                  handleRatingChange(newValue);
+                } else {
+                  nav('/authentication');
+                }
+              }}
+            />
             <h4>
               Author:
               <button

@@ -41,6 +41,46 @@ export const updateRecipe = async (req: Request, res: Response) => {
   }
 };
 
+export const updateRecipeRating = async (req: Request, res: Response) => {
+  try {
+    const { userId, rating } = req.body;
+
+    const recipe = await Recipe.findById(req.params.id);
+    if (!recipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    // Check if the user has already rated the recipe
+    const userRating = recipe.userRating.find((r) => r.user === userId);
+    if (userRating) {
+      return res
+        .status(400)
+        .json({ message: 'User has already rated this recipe' });
+    }
+
+    // Add the user's new rating to the userRating array
+    recipe.userRating.push({ user: userId, rating });
+
+    // Calculate the new average rating for the recipe
+    const totalRating = recipe.userRating.reduce(
+      (acc, cur) => acc + cur.rating,
+      0,
+    );
+    const avgRating =
+      recipe.userRating.length > 0 ? totalRating / recipe.userRating.length : 0;
+
+    // Update the recipe in the database
+    const updatedRecipe = await Recipe.updateOne(
+      { _id: req.params.id },
+      { $set: { userRating: recipe.userRating, avgRating } },
+    );
+
+    res.status(200).json(updatedRecipe);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export const deleteRecipe = async (req: Request, res: Response) => {
   try {
     const deletedRecipe = await Recipe.deleteOne({ _id: req.params.id });

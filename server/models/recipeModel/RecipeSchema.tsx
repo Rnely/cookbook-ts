@@ -29,6 +29,14 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avgRating: {
+    type: Number,
+    required: false,
+  },
+  userRating: {
+    type: Array,
+    required: false,
+  },
 });
 
 export default RecipeSchema;
