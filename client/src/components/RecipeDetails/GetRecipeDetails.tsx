@@ -15,6 +15,7 @@ interface Recipe {
   title: string;
   time: number;
   method: string;
+  diet: string;
 }
 
 const RecipeDetails: React.FC = () => {
@@ -68,6 +69,7 @@ const RecipeDetails: React.FC = () => {
               </button>
             </h4>
             <p> Takes {recipe.time} minutes to cook</p>
+            <Text text={recipe.diet} />{' '}
             <p className="ing">{listIng.join(', ')}</p>
             <div>{recipe.method}</div>
             {currentUserName === recipe.user ? (

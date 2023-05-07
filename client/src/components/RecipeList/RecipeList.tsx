@@ -5,7 +5,13 @@ import GetRecipes from '../useGetRecipes';
 import './style.css';
 import './style';
 import Text from '../TextComponent/TextComponent';
-import { CardBox, StyledCard, StyledCardContent, TextBox, StyledCardActions} from './style';
+import {
+  CardBox,
+  StyledCard,
+  StyledCardContent,
+  TextBox,
+  StyledCardActions,
+} from './style';
 import { RecipeListButton } from '../StyledButtons';
 
 interface Recipe {
@@ -14,6 +20,7 @@ interface Recipe {
   title: string;
   time: number;
   method: string;
+  diet: string;
 }
 
 const RecipeList: React.FC = () => {
@@ -22,6 +29,7 @@ const RecipeList: React.FC = () => {
     (state: RootState) => state.recipes.recipes,
   );
   const query = useSelector((state: RootState) => state.recipeFilter.query);
+  const recipeDiet = useSelector((state: RootState) => state.recipeDiet.value);
 
   if (recipe) {
     GetRecipes();
@@ -31,6 +39,13 @@ const RecipeList: React.FC = () => {
     <>
       <CardBox>
         {recipe
+          .filter((recipes) => {
+            if (recipeDiet === 'all') {
+              return recipes;
+            } else if (recipes.diet.includes(recipeDiet)) {
+              return recipes;
+            }
+          })
           .filter((recipes) => {
             if (query === '') {
               return recipes;
@@ -51,6 +66,7 @@ const RecipeList: React.FC = () => {
                     color="text.secondary"
                     py={1}
                   />
+                  <Text text={recipe.diet} />
                   <TextBox>
                     <Text text={recipe.method} />
                   </TextBox>

@@ -1,9 +1,15 @@
 import styled from '@emotion/styled';
-import { Card, CardActions, TextField } from '@mui/material';
+import {
+  Card,
+  CardActions,
+  FormControl,
+  FormControlLabel,
+  TextField,
+} from '@mui/material';
 import { Box } from '@mui/system';
 
 export const CreateCard = styled(Card)`
-  max-width: 400px;
+  max-width: 550px;
   margin: 80px auto;
   text-align: center;
 `;
@@ -41,5 +47,28 @@ export const CreateIngTextField = styled(TextField)`
   margin-left: 20px;
   border: 1px solid #ddd;
   box-sizing: border-box;
-  border: none
+  border: none;
+`;
+
+export const CreateRowBox = styled(Box)`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const RadioItem = styled(FormControlLabel)`
+  width: 100%;
+  margin: 0;
+  padding: 4px 16px;
+`;
+export const FilterRadioBox = styled(FormControl)`
+  display: flex;
+  justify-content: center;
+  padding: 8px 16px;
+  align-items: center;
+  width: 200px;
+`;
+
+export const CreateFormBox = styled(Box)`
+  display: flex;
+  flex-direction: column;
 `;

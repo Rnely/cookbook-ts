@@ -11,6 +11,7 @@ import userReducer from './slices/userSlice';
 import userFollowingReducer from './slices/userFollowingslice';
 import loginReducer from './slices/loginSlice';
 import currentUserNameReducer from './slices/currentUserSlice';
+import recipeDietReducer from './slices/recipeDietSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     userFollowing: userFollowingReducer,
     currentUserName: currentUserNameReducer,
     loginState: loginReducer,
+    recipeDiet: recipeDietReducer,
   },
 });
 
