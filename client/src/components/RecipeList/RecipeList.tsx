@@ -14,6 +14,7 @@ import {
 } from './style';
 import { RecipeListButton } from '../StyledButtons';
 import { Rating } from '@mui/material';
+import LoadingComponent from '../LoadingComponent';
 
 interface Recipe {
   _id: string;
@@ -27,7 +28,7 @@ interface Recipe {
 
 const RecipeList: React.FC = () => {
   const nav = useNavigate();
-  const recipe: Recipe[] = useSelector(
+  const recipes: Recipe[] | null = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
   const query = useSelector((state: RootState) => state.recipeFilter.query);
@@ -36,59 +37,65 @@ const RecipeList: React.FC = () => {
     (state: RootState) => state.filterRating.value,
   );
 
-  if (recipe) {
+  if (recipes) {
     GetRecipes();
   }
 
   return (
     <>
-      <CardBox>
-        {recipe
-          .filter((recipes) => recipes.avgRating >= filterRating)
-          .filter((recipes) => {
-            if (recipeDiet === 'all') {
-              return recipes;
-            } else if (recipes.diet.includes(recipeDiet)) {
-              return recipes;
-            }
-          })
-          .filter((recipes) => {
-            if (query === '') {
-              return recipes;
-            } else if (
-              recipes.title.toLowerCase().includes(query.toLowerCase())
-            ) {
-              return recipes;
-            }
-          })
-          .map((recipe) => {
-            return (
-              <StyledCard key={recipe._id}>
-                <StyledCardContent>
-                  <Text text={recipe.title} variant="h5" fontWeight={550} />
-                  <Rating
-                    value={recipe.avgRating}
-                    precision={0.5}
-                    disabled={true}
-                  />
-                  <Text text={recipe.user} variant="body1" />
-                  <Text
-                    text={recipe.time + 'minutes to cook'}
-                    color="text.secondary"
-                    py={1}
-                  />
-                  <Text text={recipe.diet} />
-                  <TextBox>
-                    <Text text={recipe.method} />
-                  </TextBox>
-                </StyledCardContent>
-                <StyledCardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
-                  <RecipeListButton text={'Cook This'} />
-                </StyledCardActions>
-              </StyledCard>
-            );
-          })}
-      </CardBox>
+      {recipes.length !== 0 ? (
+        <CardBox>
+          {recipes
+            .filter((recipes) => recipes.avgRating >= filterRating)
+            .filter((recipes) => {
+              if (recipeDiet === 'all') {
+                return recipes;
+              } else if (recipes.diet.includes(recipeDiet)) {
+                return recipes;
+              }
+            })
+            .filter((recipes) => {
+              if (query === '') {
+                return recipes;
+              } else if (
+                recipes.title.toLowerCase().includes(query.toLowerCase())
+              ) {
+                return recipes;
+              }
+            })
+            .map((recipe) => {
+              return (
+                <StyledCard key={recipe._id}>
+                  <StyledCardContent>
+                    <Text text={recipe.title} variant="h5" fontWeight={550} />
+                    <Rating
+                      value={recipe.avgRating}
+                      precision={0.5}
+                      disabled={true}
+                    />
+                    <Text text={recipe.user} variant="body1" />
+                    <Text
+                      text={recipe.time + 'minutes to cook'}
+                      color="text.secondary"
+                      py={1}
+                    />
+                    <Text text={recipe.diet} />
+                    <TextBox>
+                      <Text text={recipe.method} />
+                    </TextBox>
+                  </StyledCardContent>
+                  <StyledCardActions
+                    onClick={() => nav(`/recipe/${recipe._id}`)}
+                  >
+                    <RecipeListButton text={'Cook This'} />
+                  </StyledCardActions>
+                </StyledCard>
+              );
+            })}
+        </CardBox>
+      ) : (
+        <LoadingComponent />
+      )}
     </>
   );
 };

@@ -111,9 +111,9 @@ const UserFollowList: React.FC = () => {
                   return user.name.toLowerCase().includes(query.toLowerCase());
                 }
               })
-              .map((user) => {
+              .map((user, index) => {
                 return (
-                  <>
+                  <div key={index}>
                     <ListMenuItem
                       onClick={() => {
                         setAnchorElList(null);
@@ -128,7 +128,7 @@ const UserFollowList: React.FC = () => {
                     <MarginBox>
                       <StyledDivider />
                     </MarginBox>
-                  </>
+                  </div>
                 );
               })}
           </Box>

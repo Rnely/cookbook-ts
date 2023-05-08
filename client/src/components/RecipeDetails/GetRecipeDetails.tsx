@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Rating } from '@mui/material';
 import { toast } from 'react-toastify';
+import LoadingComponent from '../LoadingComponent/LoadingComponent';
 
 interface Recipe {
   _id: string;
@@ -65,10 +66,6 @@ const RecipeDetails: React.FC = () => {
     }
   };
 
-  if (!recipe) {
-    return <div>Loading...</div>;
-  }
-
   const handleRatingChange = async (newValue: number | null) => {
     try {
       await axios.patch(`http://localhost:5000/cookbook/recipes/${id}/rating`, {
@@ -89,6 +86,10 @@ const RecipeDetails: React.FC = () => {
       });
     }
   };
+
+  if (!recipe) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>
