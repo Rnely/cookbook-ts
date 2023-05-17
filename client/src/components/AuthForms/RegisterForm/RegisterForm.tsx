@@ -23,7 +23,8 @@ const RegisterForm = () => {
         password,
         regDate,
       });
-      toast.success('Successfully registered', {
+      nav('/');
+      toast.success(`Successfully registered. Click here to login`, {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: false,
@@ -31,6 +32,7 @@ const RegisterForm = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+        onClick: () => nav('/authentication'),
       });
     } catch (error: any) {
       toast.error(error.response.data.message, {

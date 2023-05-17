@@ -17,7 +17,7 @@ interface User {
   regDate: string;
 }
 
-const RecipeDetails: React.FC = () => {
+const GetUserDetails: React.FC = () => {
   const [user, setUser] = useState<User[] | null>(null);
   const dispatch = useDispatch();
   const currentUser = useSelector(
@@ -66,4 +66,4 @@ const RecipeDetails: React.FC = () => {
   );
 };
 
-export default RecipeDetails;
+export default GetUserDetails;

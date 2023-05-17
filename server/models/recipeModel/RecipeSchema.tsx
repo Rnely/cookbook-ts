@@ -37,6 +37,10 @@ const RecipeSchema = new mongoose.Schema({
     type: Array,
     required: false,
   },
+  image: {
+    type: String,
+    required: false,
+  },
 });
 
 export default RecipeSchema;

@@ -21,6 +21,10 @@ export const getRecipeById = async (req: Request, res: Response) => {
 
 export const saveRecipe = async (req: Request, res: Response) => {
   const recipe = new Recipe(req.body);
+  if (req.file) {
+    recipe.image = req.file.path;
+    recipe.listIngredients = JSON.parse(req.body.listIngredients);
+  }
   try {
     const insertedRecipe = await recipe.save();
     res.status(201).json(insertedRecipe);

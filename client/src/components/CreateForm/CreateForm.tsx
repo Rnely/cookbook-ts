@@ -27,6 +27,7 @@ const CreateForm = () => {
   const [time, setTime] = useState('');
   const [listIngredients, setListIngredients] = useState(Array);
   const [diet, setDiet] = useState('');
+  const [image, setImage] = useState<File | undefined>(undefined);
 
   const isPending = useSelector((state: RootState) => state.pending);
   const user = useSelector(
@@ -44,18 +45,30 @@ const CreateForm = () => {
     }
   };
 
+  const handleImage = (e: any) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit2 = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/cookbook/recipes', {
-        user,
-        userId,
-        title,
-        listIngredients,
-        method,
-        time,
-        diet,
-        avgRating: 0,
+      const formData = new FormData();
+      formData.append('user', user);
+      formData.append('userId', userId);
+      formData.append('title', title);
+      formData.append('listIngredients', JSON.stringify(listIngredients));
+      formData.append('method', method);
+      formData.append('time', time);
+      formData.append('diet', diet);
+      formData.append('avgRating', '0');
+      if (image) {
+        formData.append('image', image);
+      }
+
+      await axios.post('http://localhost:5000/cookbook/recipes', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       nav('/');
     } catch (error) {
@@ -66,7 +79,7 @@ const CreateForm = () => {
   return (
     <CreateCard>
       <Text text={'Add a new recipe'} variant="h5" fontWeight={600} my={3} />
-      <form onSubmit={handleSubmit2}>
+      <form onSubmit={handleSubmit2} encType="multipart/form-data">
         <CreateRowBox>
           <CreateFormBox>
             <CreateTextField
@@ -117,6 +130,13 @@ const CreateForm = () => {
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
+            <input
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              onChange={handleImage}
+              name="image"
+            />
+            <button type="button" onClick={() => console.log(image)} />
           </CreateFormBox>
 
           <>
