@@ -14,7 +14,7 @@ interface Recipe {
   userId: string;
   title: string;
   time: number;
-  method: string;
+  image: string;
 }
 
 const UserRecipes = () => {
@@ -35,6 +35,11 @@ const UserRecipes = () => {
       {userRecipes.map((recipe) => {
         return (
           <StyledCard key={recipe._id}>
+            <img
+              src={`http://localhost:5000/api/images/${recipe.image}`}
+              width={'100%'}
+              height={245}
+            />
             <StyledCardContent>
               <Text text={recipe.title} variant="h5" fontWeight={550} />
               <Text text={recipe.user} variant="body1" />
@@ -43,9 +48,6 @@ const UserRecipes = () => {
                 color="text.secondary"
                 py={1}
               />
-              <TextBox>
-                <Text text={recipe.method} />
-              </TextBox>
             </StyledCardContent>
             <CardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
               <RecipeListButton text={'Cook This'} />

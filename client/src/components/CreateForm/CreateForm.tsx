@@ -136,7 +136,6 @@ const CreateForm = () => {
               onChange={handleImage}
               name="image"
             />
-            <button type="button" onClick={() => console.log(image)} />
           </CreateFormBox>
 
           <>
@@ -147,13 +146,13 @@ const CreateForm = () => {
                 defaultValue=""
                 onChange={(e) => setDiet(e.target.value)}
               >
-                <RadioItem value="meat" control={<Radio />} label="Meat" />
+                <RadioItem value="Meat" control={<Radio />} label="Meat" />
                 <RadioItem
-                  value="vegetarian"
+                  value="Vegetarian"
                   control={<Radio />}
                   label="Vegetarian"
                 />
-                <RadioItem value="vegan" control={<Radio />} label="Vegan" />
+                <RadioItem value="Vegan" control={<Radio />} label="Vegan" />
               </RadioGroup>
             </FilterRadioBox>
           </>

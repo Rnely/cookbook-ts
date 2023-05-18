@@ -55,7 +55,6 @@ const RecipeDetails: React.FC = () => {
     const selectedRecipe = recipes.find((r) => r._id === id);
     if (selectedRecipe) {
       setRecipe([selectedRecipe]);
-      console.log(selectedRecipe);
       setListIng(selectedRecipe.listIngredients);
       setImgUrl(`http://localhost:5000/api/images/${selectedRecipe.image}`);
     }
