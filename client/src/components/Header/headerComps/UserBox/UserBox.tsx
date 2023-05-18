@@ -22,7 +22,7 @@ const UserBox = () => {
     (state: RootState) => state.currentUserName.userName,
   );
 
-  const handleClick = () => {
+  const handleLogout = () => {
     dispatch(setCurrentUserName(''));
     dispatch(setUserId(''));
     dispatch(setFollowing([]));
@@ -46,7 +46,7 @@ const UserBox = () => {
           <StyledButton
             title="Logout"
             onClick={() => {
-              handleClick();
+              handleLogout();
             }}
           >
             <LogoutIcon />

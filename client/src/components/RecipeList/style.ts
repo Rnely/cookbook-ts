@@ -4,7 +4,6 @@ import { Box } from '@mui/system';
 
 export const StyledCard = styled(Card)`
     width: 330px;
-    padding: 10px 16px;
     margin: 20px 0;
     background-color: rgb(255, 255, 255);
     border: 1px solid #fafafa;

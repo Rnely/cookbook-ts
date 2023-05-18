@@ -17,14 +17,14 @@ const FilterRadio = () => {
         defaultValue={recipeDiet}
         onChange={(e) => dispatch(setRecipeDiet(e.target.value))}
       >
-        <RadioItem value="all" control={<ColoredRadio />} label="All" />
-        <RadioItem value="meat" control={<ColoredRadio />} label="Meat" />
+        <RadioItem value="All" control={<ColoredRadio />} label="All" />
+        <RadioItem value="Meat" control={<ColoredRadio />} label="Meat" />
         <RadioItem
-          value="vegetarian"
+          value="Vegetarian"
           control={<ColoredRadio />}
           label="Vegetarian"
         />
-        <RadioItem value="vegan" control={<ColoredRadio />} label="Vegan" />
+        <RadioItem value="Vegan" control={<ColoredRadio />} label="Vegan" />
       </RadioGroup>
     </FilterRadioBox>
   );

@@ -24,6 +24,7 @@ interface Recipe {
   method: string;
   diet: string;
   avgRating: number;
+  image: string;
 }
 
 const RecipeList: React.FC = () => {
@@ -48,7 +49,7 @@ const RecipeList: React.FC = () => {
           {recipes
             .filter((recipes) => recipes.avgRating >= filterRating)
             .filter((recipes) => {
-              if (recipeDiet === 'all') {
+              if (recipeDiet === 'All') {
                 return recipes;
               } else if (recipes.diet.includes(recipeDiet)) {
                 return recipes;
@@ -66,6 +67,11 @@ const RecipeList: React.FC = () => {
             .map((recipe) => {
               return (
                 <StyledCard key={recipe._id}>
+                  <img
+                    src={`http://localhost:5000/api/images/${recipe.image}`}
+                    width={'100%'}
+                    height={245}
+                  />
                   <StyledCardContent>
                     <Text text={recipe.title} variant="h5" fontWeight={550} />
                     <Rating
@@ -75,14 +81,11 @@ const RecipeList: React.FC = () => {
                     />
                     <Text text={recipe.user} variant="body1" />
                     <Text
-                      text={recipe.time + 'minutes to cook'}
+                      text={recipe.time + ' minutes to cook'}
                       color="text.secondary"
                       py={1}
                     />
                     <Text text={recipe.diet} />
-                    <TextBox>
-                      <Text text={recipe.method} />
-                    </TextBox>
                   </StyledCardContent>
                   <StyledCardActions
                     onClick={() => nav(`/recipe/${recipe._id}`)}

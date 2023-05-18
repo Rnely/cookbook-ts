@@ -13,6 +13,7 @@ export interface IRecipe {
     user: string;
     rating: number;
   }[];
+  image: string;
 }
 
 export interface IRecipeDocument extends IRecipe, Document {}

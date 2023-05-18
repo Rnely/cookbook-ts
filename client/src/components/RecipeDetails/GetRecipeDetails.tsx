@@ -22,6 +22,7 @@ interface Recipe {
   avgRating: number;
   userRating: Array<UserRate>;
   listIngredients: Array<String>;
+  image: string; // Add the imageFilename property
 }
 
 interface UserRate {
@@ -32,6 +33,7 @@ interface UserRate {
 const RecipeDetails: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe[] | null>(null);
   const [listIng, setListIng] = useState<String[]>([]);
+  const [imgUrl, setImgUrl] = useState('');
   const currentUserName = useSelector(
     (state: RootState) => state.currentUserName.userName,
   );
@@ -54,6 +56,7 @@ const RecipeDetails: React.FC = () => {
     if (selectedRecipe) {
       setRecipe([selectedRecipe]);
       setListIng(selectedRecipe.listIngredients);
+      setImgUrl(`http://localhost:5000/api/images/${selectedRecipe.image}`);
     }
   };
 
@@ -122,6 +125,7 @@ const RecipeDetails: React.FC = () => {
             <Text text={recipe.diet} />
             <p className="ing">{listIng.join(', ')}</p>
             <div>{recipe.method}</div>
+            <img src={imgUrl} alt={recipe.title} height={500} width={500} />
             {currentUserName === recipe.user ? (
               <StyledCardActions>
                 <button className="cssbuttons-io-button" onClick={handleClick}>
