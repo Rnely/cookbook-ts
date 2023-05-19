@@ -1,7 +1,4 @@
-.homeCenter {
+.center {
   display: flex;
   justify-content: center;
-}
-.homeContent {
-  width: 70%;
 }

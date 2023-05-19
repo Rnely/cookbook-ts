@@ -4,11 +4,9 @@ import { Box } from '@mui/system';
 
 export const StyledCard = styled(Card)`
     width: 330px;
-    margin: 20px 0;
     background-color: rgb(255, 255, 255);
     border: 1px solid #fafafa;
     float: left;
-    margin-left: 30px;
     &:hover {
         box-shadow: 4px 8px 12px #878787;
         transform: scale(1.03);
@@ -34,9 +32,25 @@ export const TextBox = styled(Box)`
 `;
 
 export const CardBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 340px);
+  grid-template-rows: repeat(2, 530px);
+
+  @media screen and (max-width: 1380px) {
+    grid-template-columns: repeat(3, 340px);
+    grid-template-rows: repeat(3, 530px);
+  }
+
+  @media screen and (max-width: 1050px) {
+    grid-template-columns: repeat(2, 340px);
+    grid-template-rows: repeat(4, 530px);
+  }
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 340px;
+    grid-template-rows: repeat(6, 530px);
+  }
 `;
 
 export const SearchBox = styled(Box)``;

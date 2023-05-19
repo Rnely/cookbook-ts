@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import GetRecipes from '../useGetRecipes';
+import useGetRecipes from '../useGetRecipes';
 import './style.css';
 import './style';
 import Text from '../TextComponent/TextComponent';
@@ -15,6 +15,7 @@ import {
 import { RecipeListButton } from '../StyledButtons';
 import { Rating } from '@mui/material';
 import LoadingComponent from '../LoadingComponent';
+import { useState } from 'react';
 
 interface Recipe {
   _id: string;
@@ -38,9 +39,7 @@ const RecipeList: React.FC = () => {
     (state: RootState) => state.filterRating.value,
   );
 
-  if (recipes) {
-    GetRecipes();
-  }
+  useGetRecipes();
 
   return (
     <>
