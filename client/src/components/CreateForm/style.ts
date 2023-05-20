@@ -54,6 +54,10 @@ export const CreateIngTextField = styled(TextField)`
 export const CreateRowBox = styled(Box)`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 `;
 
 export const RadioItem = styled(FormControlLabel)`
