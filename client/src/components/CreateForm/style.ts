@@ -10,7 +10,7 @@ import { Box } from '@mui/system';
 import { MuiFileInput } from 'mui-file-input';
 
 export const CreateCard = styled(Card)`
-  max-width: 550px;
+  max-width: 700px;
   margin: 80px auto;
   text-align: center;
 `;
@@ -52,8 +52,8 @@ export const CreateIngTextField = styled(TextField)`
 `;
 
 export const CreateRowBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
 
 export const RadioItem = styled(FormControlLabel)`
@@ -81,4 +81,12 @@ export const CreateFileInput = styled(MuiFileInput)`
   border: 1px solid #ddd;
   box-sizing: border-box;
   border: none;
+`;
+export const StepBox = styled(Box)`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: start;
+  overflow: auto;
+  max-height: 200px;
 `;

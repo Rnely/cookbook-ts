@@ -30,6 +30,11 @@ interface UserRate {
   rating: number | null;
 }
 
+interface Steps {
+  step: number;
+  desc: string;
+}
+
 const RecipeDetails: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe[] | null>(null);
   const [listIng, setListIng] = useState<String[]>([]);
@@ -40,9 +45,7 @@ const RecipeDetails: React.FC = () => {
   const currentUserId = useSelector(
     (state: RootState) => state.currentUserId.userId,
   );
-  const recipes: Recipe[] = useSelector(
-    (state: RootState) => state.recipes.recipes,
-  );
+  const [steps, setSteps] = useState<Steps[]>([]);
 
   const nav = useNavigate();
   const { id } = useParams();
@@ -57,6 +60,7 @@ const RecipeDetails: React.FC = () => {
     );
     setRecipe([response.data]);
     setListIng(response.data.listIngredients);
+    setSteps(response.data.method);
     setImgUrl(`http://localhost:5000/api/images/${response.data.image}`);
   };
 
@@ -124,7 +128,14 @@ const RecipeDetails: React.FC = () => {
             <p> Takes {recipe.time} minutes to cook</p>
             <Text text={recipe.diet} />
             <p className="ing">{listIng.join(', ')}</p>
-            <div>{recipe.method}</div>
+            {steps.map((step, index) => {
+              return (
+                <div key={index}>
+                  <Text text={`${step.step}.step`} />
+                  <Text text={step.desc} />
+                </div>
+              );
+            })}
             <img src={imgUrl} alt={recipe.title} height={500} width={500} />
             {currentUserName === recipe.user ? (
               <StyledCardActions>

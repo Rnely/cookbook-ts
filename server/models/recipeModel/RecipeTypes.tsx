@@ -5,7 +5,7 @@ export interface IRecipe {
   userId: String;
   title: String;
   listIngredients: Array<String>;
-  method: String;
+  method: Array<String>;
   time: Number;
   diet: String;
   avgRating: Number;
