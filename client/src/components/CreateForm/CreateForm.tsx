@@ -15,10 +15,11 @@ import {
   FilterRadioBox,
   RadioItem,
   CreateFormBox,
+  CreateFileInput,
 } from './style';
 import Text from '../TextComponent/TextComponent';
 import { AddButton, PublishButton } from '../StyledButtons/StyledButtons';
-import { MenuItem, Radio, RadioGroup, Select } from '@mui/material';
+import { MenuItem, Select } from '@mui/material';
 
 const CreateForm = () => {
   const [title, setTitle] = useState('');
@@ -45,8 +46,8 @@ const CreateForm = () => {
     }
   };
 
-  const handleImage = (e: any) => {
-    setImage(e.target.files[0]);
+  const handleImage = (newFile: any) => {
+    setImage(newFile);
   };
 
   const handleSubmit2 = async (e: any) => {
@@ -130,11 +131,15 @@ const CreateForm = () => {
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
-            <input
-              type="file"
-              accept=".jpg, .jpeg, .png"
+            <CreateFileInput
+              value={image}
               onChange={handleImage}
-              name="image"
+              size="small"
+              placeholder="Add a image"
+              variant="standard"
+              inputProps={{
+                accept: 'image/jpeg, image/jpg, image/png',
+              }}
             />
           </CreateFormBox>
 

@@ -7,6 +7,7 @@ import {
   TextField,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import { MuiFileInput } from 'mui-file-input';
 
 export const CreateCard = styled(Card)`
   max-width: 550px;
@@ -71,4 +72,13 @@ export const FilterRadioBox = styled(FormControl)`
 export const CreateFormBox = styled(Box)`
   display: flex;
   flex-direction: column;
+`;
+
+export const CreateFileInput = styled(MuiFileInput)`
+  width: 90%;
+  padding: 6px 10px;
+  margin: 10px auto;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  border: none;
 `;
