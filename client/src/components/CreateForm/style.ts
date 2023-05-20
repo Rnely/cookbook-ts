@@ -13,6 +13,9 @@ export const CreateCard = styled(Card)`
   max-width: 700px;
   margin: 80px auto;
   text-align: center;
+  @media screen and (max-width: 700px) {
+    margin: 0;
+  }
 `;
 
 export const CreateTextField = styled(TextField)`
