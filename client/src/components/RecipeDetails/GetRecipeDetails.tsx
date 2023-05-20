@@ -3,11 +3,23 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './style.css';
 import './style';
-import { StyledCard, StyledCardActions } from './style';
+import {
+  HeaderBox,
+  ImageBox,
+  IngBox,
+  RatingBox,
+  SaveBox,
+  StyledCard,
+  StyledCard2,
+  StyledCardActions,
+  TimeBox,
+  StepsBox,
+  DietBox,
+} from './style';
 import Text from '../TextComponent/TextComponent';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { Rating } from '@mui/material';
+import { Divider, Rating, useMediaQuery } from '@mui/material';
 import { toast } from 'react-toastify';
 import LoadingComponent from '../LoadingComponent/LoadingComponent';
 
@@ -94,6 +106,8 @@ const RecipeDetails: React.FC = () => {
     getRecipe();
   };
 
+  const isMobile = useMediaQuery('(max-width: 700px)');
+
   if (!recipe) {
     return <LoadingComponent />;
   }
@@ -102,64 +116,63 @@ const RecipeDetails: React.FC = () => {
     <>
       {recipe.map((recipe) => {
         return (
-          <StyledCard key={recipe._id}>
-            <Text text={recipe.title} variant="h5" fontWeight={600} />
-            <Rating
-              value={recipe.avgRating}
-              disabled={currentUserName === recipe.user ? true : false}
-              precision={0.5}
-              onChange={(event, newValue) => {
-                if (currentUserName) {
-                  handleRatingChange(newValue);
-                } else {
-                  nav('/authentication');
-                }
-              }}
-            />
-            <h4>
-              Author:
-              <button
-                className="btn"
-                onClick={() => nav(`/user/${recipe.userId}`)}
-              >
-                <Text text={recipe.user} fontWeight={600} />
-              </button>
-            </h4>
-            <p> Takes {recipe.time} minutes to cook</p>
-            <Text text={recipe.diet} />
-            <p className="ing">{listIng.join(', ')}</p>
-            {steps.map((step, index) => {
-              return (
-                <div key={index}>
-                  <Text text={`${step.step}.step`} />
-                  <Text text={step.desc} />
-                </div>
-              );
-            })}
-            <img src={imgUrl} alt={recipe.title} height={500} width={500} />
-            {currentUserName === recipe.user ? (
-              <StyledCardActions>
-                <button className="cssbuttons-io-button" onClick={handleClick}>
-                  Delete
-                  <div className="icon">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074z"
-                      />
-                    </svg>
+          <StyledCard2 key={recipe._id}>
+            <HeaderBox>
+              <Text text={recipe.title} variant="h5" fontWeight={600} />
+            </HeaderBox>
+            <TimeBox>
+              <Text text={`${recipe.time} minutes to cook`} />
+            </TimeBox>
+            <DietBox>
+              <Text text={`${recipe.diet} diet`} />
+            </DietBox>
+            <ImageBox>
+              <img
+                src={imgUrl}
+                alt={recipe.title}
+                height={isMobile ? 250 : 350}
+                width={isMobile ? 380 : 500}
+              />
+            </ImageBox>
+            <RatingBox>
+              <Rating
+                value={recipe.avgRating}
+                disabled={currentUserName === recipe.user ? true : false}
+                precision={0.5}
+                onChange={(event, newValue) => {
+                  if (currentUserName) {
+                    handleRatingChange(newValue);
+                  } else {
+                    nav('/authentication');
+                  }
+                }}
+              />
+            </RatingBox>
+            <SaveBox></SaveBox>
+            <IngBox>
+              <Text text={'Ingredients'} fontWeight={600} />
+              {listIng.map((ing, index) => {
+                return (
+                  <div key={index}>
+                    <Text text={ing} />
                   </div>
-                </button>
-              </StyledCardActions>
-            ) : (
-              ''
-            )}
-          </StyledCard>
+                );
+              })}
+            </IngBox>
+            <StepsBox>
+              <Text text={'Cooking steps'} fontWeight={600} />
+              {steps.map((step, index) => {
+                const lastIndex = steps.length - 1;
+                return (
+                  <div key={index}>
+                    <Text text={`${step.step}.step`} />
+                    <Text text={step.desc} />
+                    {lastIndex ? <Divider /> : ''}
+                  </div>
+                );
+              })}
+            </StepsBox>
+          </StyledCard2>
         );
       })}
     </>
