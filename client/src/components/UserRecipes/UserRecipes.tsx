@@ -4,7 +4,7 @@ import { RootState } from '../../redux/store';
 import Text from '../TextComponent/TextComponent';
 import GetRecipes from '../useGetRecipes';
 import './style.css';
-import { RecipeListButton } from '../StyledButtons';
+import { ArrowForwardButton } from '../StyledButtons';
 import { CardBox, StyledCard, StyledCardContent, TextBox } from './style';
 import { CardActions } from '@mui/material';
 
@@ -24,9 +24,9 @@ const UserRecipes = () => {
   const { id } = useParams();
   const nav = useNavigate();
 
-  if (recipe) {
-    GetRecipes();
-  }
+  //if (recipe) {
+  //  GetRecipes();
+  //}
 
   const userRecipes = recipe.filter((recipe) => recipe.userId === id);
 
@@ -50,7 +50,7 @@ const UserRecipes = () => {
               />
             </StyledCardContent>
             <CardActions onClick={() => nav(`/recipe/${recipe._id}`)}>
-              <RecipeListButton text={'Cook This'} />
+              <ArrowForwardButton text={'Cook This'} />
             </CardActions>
           </StyledCard>
         );

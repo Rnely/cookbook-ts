@@ -3,7 +3,6 @@ import { Button, Card, CardActions, CardContent, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 
 export const StyledCard = styled(Card)`
-    width: 330px;
     background-color: rgb(255, 255, 255);
     border: 1px solid #fafafa;
     float: left;
@@ -35,21 +34,25 @@ export const CardBox = styled(Box)`
   margin: 10px;
   display: grid;
   grid-template-columns: repeat(4, 340px);
-  grid-template-rows: repeat(2, 530px);
-
+  grid-template-rows: 500px;
+  grid-auto-rows: 500px;
+  grid-gap: 10px;
   @media screen and (max-width: 1380px) {
     grid-template-columns: repeat(3, 340px);
-    grid-template-rows: repeat(3, 530px);
+    grid-template-rows: 500px;
+    grid-auto-rows: 500px;
   }
 
   @media screen and (max-width: 1050px) {
     grid-template-columns: repeat(2, 340px);
-    grid-template-rows: repeat(4, 530px);
+    grid-template-rows: 500px;
+    grid-auto-rows: 500px;
   }
 
   @media screen and (max-width: 700px) {
     grid-template-columns: 340px;
-    grid-template-rows: repeat(6, 530px);
+    grid-template-rows: 500px;
+    grid-auto-rows: 500px;
   }
 `;
 
@@ -61,4 +64,9 @@ export const StyledCardActions = styled(CardActions)`
   padding: 0px;
   margin: 0 8px;
   margin-bottom: 8px;
+`;
+
+export const PageBtnBox = styled(Box)`
+  display: flex;
+  flex-direction: row;
 `;

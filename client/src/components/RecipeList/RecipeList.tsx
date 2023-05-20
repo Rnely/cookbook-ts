@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import useGetRecipes from '../useGetRecipes';
 import './style.css';
@@ -9,13 +9,13 @@ import {
   CardBox,
   StyledCard,
   StyledCardContent,
-  TextBox,
   StyledCardActions,
+  PageBtnBox,
 } from './style';
-import { RecipeListButton } from '../StyledButtons';
+import { ArrowForwardButton, ArrowBackButton } from '../StyledButtons';
 import { Rating } from '@mui/material';
 import LoadingComponent from '../LoadingComponent';
-import { useState } from 'react';
+import { setPage } from '../../redux/slices/paginationSlice';
 
 interface Recipe {
   _id: string;
@@ -39,31 +39,46 @@ const RecipeList: React.FC = () => {
     (state: RootState) => state.filterRating.value,
   );
 
-  useGetRecipes();
+  const dispatch = useDispatch();
+
+  const page = useSelector((state: RootState) => state.pagination.page);
+  const pageSize = useSelector((state: RootState) => state.pagination.pageSize);
+  const totalPages = useSelector(
+    (state: RootState) => state.pagination.totalPages,
+  );
+
+  useGetRecipes({ page, pageSize, query, recipeDiet, filterRating });
+
+  const handlePageChange = (newPage: number) => {
+    dispatch(setPage(newPage));
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      handlePageChange(page + 1);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (page > 1) {
+      handlePageChange(page - 1);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <>
       {recipes.length !== 0 ? (
-        <CardBox>
-          {recipes
-            .filter((recipes) => recipes.avgRating >= filterRating)
-            .filter((recipes) => {
-              if (recipeDiet === 'All') {
-                return recipes;
-              } else if (recipes.diet.includes(recipeDiet)) {
-                return recipes;
-              }
-            })
-            .filter((recipes) => {
-              if (query === '') {
-                return recipes;
-              } else if (
-                recipes.title.toLowerCase().includes(query.toLowerCase())
-              ) {
-                return recipes;
-              }
-            })
-            .map((recipe) => {
+        <>
+          <CardBox>
+            {recipes.map((recipe) => {
               return (
                 <StyledCard key={recipe._id}>
                   <img
@@ -89,12 +104,22 @@ const RecipeList: React.FC = () => {
                   <StyledCardActions
                     onClick={() => nav(`/recipe/${recipe._id}`)}
                   >
-                    <RecipeListButton text={'Cook This'} />
+                    <ArrowForwardButton text={'Cook This'} />
                   </StyledCardActions>
                 </StyledCard>
               );
             })}
-        </CardBox>
+          </CardBox>
+
+          <PageBtnBox>
+            <StyledCardActions onClick={handlePreviousPage}>
+              <ArrowBackButton text={'Prev page'} />
+            </StyledCardActions>
+            <StyledCardActions onClick={handleNextPage}>
+              <ArrowForwardButton text={'Next page'} />
+            </StyledCardActions>
+          </PageBtnBox>
+        </>
       ) : (
         <LoadingComponent />
       )}

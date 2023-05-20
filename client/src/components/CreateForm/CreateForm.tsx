@@ -18,7 +18,7 @@ import {
 } from './style';
 import Text from '../TextComponent/TextComponent';
 import { AddButton, PublishButton } from '../StyledButtons/StyledButtons';
-import { Radio, RadioGroup } from '@mui/material';
+import { MenuItem, Radio, RadioGroup, Select } from '@mui/material';
 
 const CreateForm = () => {
   const [title, setTitle] = useState('');
@@ -26,7 +26,7 @@ const CreateForm = () => {
   const [method, setMethod] = useState('');
   const [time, setTime] = useState('');
   const [listIngredients, setListIngredients] = useState(Array);
-  const [diet, setDiet] = useState('');
+  const [diet, setDiet] = useState('Any');
   const [image, setImage] = useState<File | undefined>(undefined);
 
   const isPending = useSelector((state: RootState) => state.pending);
@@ -141,19 +141,17 @@ const CreateForm = () => {
           <>
             <FilterRadioBox>
               <Text text="Dietary Preferences" />
-              <RadioGroup
-                aria-labelledby="recipe"
-                defaultValue=""
-                onChange={(e) => setDiet(e.target.value)}
-              >
-                <RadioItem value="Meat" control={<Radio />} label="Meat" />
-                <RadioItem
-                  value="Vegetarian"
-                  control={<Radio />}
-                  label="Vegetarian"
-                />
-                <RadioItem value="Vegan" control={<Radio />} label="Vegan" />
-              </RadioGroup>
+              <Select value={diet} onChange={(e) => setDiet(e.target.value)}>
+                <MenuItem value="Any">Any</MenuItem>
+                <MenuItem value="Meat">Meat</MenuItem>
+                <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                <MenuItem value="Vegan">Vegan</MenuItem>
+                <MenuItem value="Keto">Keto</MenuItem>
+                <MenuItem value="Paleo">Paleo</MenuItem>
+                <MenuItem value="Low-carb">Low-carb</MenuItem>
+                <MenuItem value="Low-fat">Low-fat</MenuItem>
+                <MenuItem value="Gluten-free">Gluten-free</MenuItem>
+              </Select>
             </FilterRadioBox>
           </>
         </CreateRowBox>

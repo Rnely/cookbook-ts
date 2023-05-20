@@ -3,8 +3,33 @@ import { RecipeModel as Recipe } from '../models/recipeModel/RecipeModel';
 
 export const getRecipes = async (req: Request, res: Response) => {
   try {
-    const recipes = await Recipe.find();
-    res.json(recipes);
+    const { page, pageSize, filterRating, recipeDiet, query } = req.query;
+    const skipAmount =
+      (parseInt(page as string) - 1) * parseInt(pageSize as string);
+    const limitAmount = parseInt(pageSize as string);
+
+    const filterCriteria: any = {};
+
+    if (filterRating) {
+      filterCriteria.avgRating = { $gte: parseInt(filterRating as string) };
+    }
+
+    if (recipeDiet && recipeDiet !== 'Any') {
+      filterCriteria.diet = { $in: [recipeDiet as string] };
+    }
+
+    if (query) {
+      filterCriteria.title = { $regex: query as string, $options: 'i' };
+    }
+
+    const totalRecipes = await Recipe.countDocuments(filterCriteria);
+    const totalPages = Math.ceil(totalRecipes / limitAmount);
+
+    const recipes = await Recipe.find(filterCriteria)
+      .skip(skipAmount)
+      .limit(limitAmount);
+
+    res.json({ recipes, totalPages });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -13,6 +13,7 @@ import loginReducer from './slices/loginSlice';
 import currentUserNameReducer from './slices/currentUserSlice';
 import recipeDietReducer from './slices/recipeDietSlice';
 import filterRatingReducer from './slices/filterRatingSlice';
+import paginationReducer from './slices/paginationSlice';
 
 export const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ export const store = configureStore({
     loginState: loginReducer,
     recipeDiet: recipeDietReducer,
     filterRating: filterRatingReducer,
+    pagination: paginationReducer,
   },
 });
 

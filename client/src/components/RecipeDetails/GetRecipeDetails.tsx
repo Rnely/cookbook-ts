@@ -22,7 +22,7 @@ interface Recipe {
   avgRating: number;
   userRating: Array<UserRate>;
   listIngredients: Array<String>;
-  image: string; // Add the imageFilename property
+  image: string;
 }
 
 interface UserRate {
@@ -51,13 +51,13 @@ const RecipeDetails: React.FC = () => {
     getRecipe();
   }, []);
 
-  const getRecipe = () => {
-    const selectedRecipe = recipes.find((r) => r._id === id);
-    if (selectedRecipe) {
-      setRecipe([selectedRecipe]);
-      setListIng(selectedRecipe.listIngredients);
-      setImgUrl(`http://localhost:5000/api/images/${selectedRecipe.image}`);
-    }
+  const getRecipe = async () => {
+    const response = await axios.get(
+      `http://localhost:5000/cookbook/recipes/${id}`,
+    );
+    setRecipe([response.data]);
+    setListIng(response.data.listIngredients);
+    setImgUrl(`http://localhost:5000/api/images/${response.data.image}`);
   };
 
   const handleClick = async () => {
@@ -75,7 +75,6 @@ const RecipeDetails: React.FC = () => {
         userId: currentUserId,
         rating: newValue,
       });
-      getRecipe();
     } catch (error: any) {
       console.log(error.response.data.message);
       toast.error(error.response.data.message, {
@@ -88,6 +87,7 @@ const RecipeDetails: React.FC = () => {
         progress: undefined,
       });
     }
+    getRecipe();
   };
 
   if (!recipe) {
