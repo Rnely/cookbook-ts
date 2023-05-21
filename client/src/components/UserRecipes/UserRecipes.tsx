@@ -7,6 +7,7 @@ import './style.css';
 import { ArrowForwardButton } from '../StyledButtons';
 import { CardBox, StyledCard, StyledCardContent, TextBox } from './style';
 import { CardActions } from '@mui/material';
+import useGetRecipes from '../useGetRecipes/useGetRecipes';
 
 interface Recipe {
   _id: string;
@@ -24,9 +25,14 @@ const UserRecipes = () => {
   const { id } = useParams();
   const nav = useNavigate();
 
-  //if (recipe) {
-  //  GetRecipes();
-  //}
+  useGetRecipes({
+    page: 0,
+    pageSize: 0,
+    query: '',
+    recipeDiet: '',
+    filterRating: 0,
+    pagination: false,
+  });
 
   const userRecipes = recipe.filter((recipe) => recipe.userId === id);
 

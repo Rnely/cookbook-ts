@@ -3,7 +3,8 @@ import { RecipeModel as Recipe } from '../models/recipeModel/RecipeModel';
 
 export const getRecipes = async (req: Request, res: Response) => {
   try {
-    const { page, pageSize, filterRating, recipeDiet, query } = req.query;
+    const { page, pageSize, filterRating, recipeDiet, query, pagination } =
+      req.query;
     const skipAmount =
       (parseInt(page as string) - 1) * parseInt(pageSize as string);
     const limitAmount = parseInt(pageSize as string);
@@ -25,9 +26,12 @@ export const getRecipes = async (req: Request, res: Response) => {
     const totalRecipes = await Recipe.countDocuments(filterCriteria);
     const totalPages = Math.ceil(totalRecipes / limitAmount);
 
-    const recipes = await Recipe.find(filterCriteria)
-      .skip(skipAmount)
-      .limit(limitAmount);
+    const recipesQuery = Recipe.find(filterCriteria);
+
+    if (pagination) {
+      recipesQuery.skip(skipAmount).limit(limitAmount);
+    }
+    const recipes = await recipesQuery;
 
     res.json({ recipes, totalPages });
   } catch (error) {

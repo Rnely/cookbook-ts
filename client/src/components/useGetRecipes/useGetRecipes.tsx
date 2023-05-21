@@ -10,6 +10,7 @@ interface GetRecipesParams {
   filterRating: number;
   recipeDiet: string;
   query: string;
+  pagination: boolean;
 }
 
 export const useGetRecipes = (params: GetRecipesParams) => {
@@ -27,7 +28,8 @@ export const useGetRecipes = (params: GetRecipesParams) => {
 
   const findRecipes = async () => {
     try {
-      const { page, pageSize, filterRating, recipeDiet, query } = params;
+      const { page, pageSize, filterRating, recipeDiet, query, pagination } =
+        params;
       const response = await axios.get(
         'http://localhost:5000/cookbook/recipes',
         {
@@ -37,6 +39,7 @@ export const useGetRecipes = (params: GetRecipesParams) => {
             filterRating,
             recipeDiet,
             query,
+            pagination,
           },
         },
       );

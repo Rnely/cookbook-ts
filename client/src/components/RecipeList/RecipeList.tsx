@@ -47,7 +47,14 @@ const RecipeList: React.FC = () => {
     (state: RootState) => state.pagination.totalPages,
   );
 
-  useGetRecipes({ page, pageSize, query, recipeDiet, filterRating });
+  useGetRecipes({
+    page,
+    pageSize,
+    query,
+    recipeDiet,
+    filterRating,
+    pagination: true,
+  });
 
   const handlePageChange = (newPage: number) => {
     dispatch(setPage(newPage));
