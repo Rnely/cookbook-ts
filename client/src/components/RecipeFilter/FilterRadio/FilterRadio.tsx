@@ -17,6 +17,13 @@ const FilterRadio = () => {
   const recipeDiet = useSelector((state: RootState) => state.recipeDiet.value);
 
   const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(recipeDiet);
+
+  const handleRadioChange = (event: any) => {
+    const value = event.target.value;
+    setSelectedValue(value);
+    dispatch(setRecipeDiet(value));
+  };
 
   return (
     <FilterRadioBox>
@@ -27,8 +34,8 @@ const FilterRadio = () => {
       {open ? (
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue={recipeDiet}
-          onChange={(e) => dispatch(setRecipeDiet(e.target.value))}
+          value={selectedValue}
+          onChange={handleRadioChange}
         >
           <RadioItem value="Any" control={<ColoredRadio />} label="Any" />
           <RadioItem value="Meat" control={<ColoredRadio />} label="Meat" />
@@ -62,4 +69,5 @@ const FilterRadio = () => {
     </FilterRadioBox>
   );
 };
+
 export default FilterRadio;
