@@ -64,8 +64,10 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {isPending && <button type="submit">Submit</button>}
-      {!isPending && <button disabled>Submiting...</button>}
+      <div className="btnMarg">
+        {isPending && <button type="submit">Submit</button>}
+        {!isPending && <button disabled>Submiting...</button>}
+      </div>
     </form>
   );
 };

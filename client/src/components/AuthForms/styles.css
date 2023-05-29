@@ -4,6 +4,9 @@
   justify-content: center;
   height: 100%;
   padding-top: 200px;
+  @media screen and (max-width: 700px) {
+    padding-top: 100px;
+  }
 }
 
 .sigin * {
@@ -93,6 +96,10 @@
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+}
+
+.sigin .btnMarg {
+  margin-bottom: 20px;
 }
 
 .container {
