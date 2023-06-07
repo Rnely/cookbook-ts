@@ -3,11 +3,7 @@ import { RecipeModel as Recipe } from '../models/recipeModel/RecipeModel';
 
 export const getRecipes = async (req: Request, res: Response) => {
   try {
-    const { page, pageSize, filterRating, recipeDiet, query, pagination } =
-      req.query;
-    const skipAmount =
-      (parseInt(page as string) - 1) * parseInt(pageSize as string);
-    const limitAmount = parseInt(pageSize as string);
+    const { page, pageSize, filterRating, recipeDiet, query } = req.query;
 
     const filterCriteria: any = {};
 
@@ -23,17 +19,11 @@ export const getRecipes = async (req: Request, res: Response) => {
       filterCriteria.title = { $regex: query as string, $options: 'i' };
     }
 
-    const totalRecipes = await Recipe.countDocuments(filterCriteria);
-    const totalPages = Math.ceil(totalRecipes / limitAmount);
-
     const recipesQuery = Recipe.find(filterCriteria);
 
-    if (pagination) {
-      recipesQuery.skip(skipAmount).limit(limitAmount);
-    }
     const recipes = await recipesQuery;
 
-    res.json({ recipes, totalPages });
+    res.json({ recipes });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

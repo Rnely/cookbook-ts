@@ -65,8 +65,3 @@ export const StyledCardActions = styled(CardActions)`
   margin: 0 8px;
   margin-bottom: 8px;
 `;
-
-export const PageBtnBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
-`;

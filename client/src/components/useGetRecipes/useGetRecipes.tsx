@@ -5,12 +5,9 @@ import { setTotalPages } from '../../redux/slices/paginationSlice';
 import { setRecipes } from '../../redux/slices/recipeSlice';
 
 interface GetRecipesParams {
-  page: number;
-  pageSize: number;
   filterRating: number;
   recipeDiet: string;
   query: string;
-  pagination: boolean;
 }
 
 export const useGetRecipes = (params: GetRecipesParams) => {
@@ -18,28 +15,18 @@ export const useGetRecipes = (params: GetRecipesParams) => {
 
   useEffect(() => {
     findRecipes();
-  }, [
-    params.page,
-    params.pageSize,
-    params.filterRating,
-    params.recipeDiet,
-    params.query,
-  ]);
+  }, [params.filterRating, params.recipeDiet, params.query]);
 
   const findRecipes = async () => {
     try {
-      const { page, pageSize, filterRating, recipeDiet, query, pagination } =
-        params;
+      const { filterRating, recipeDiet, query } = params;
       const response = await axios.get(
         'http://localhost:5000/cookbook/recipes',
         {
           params: {
-            page,
-            pageSize,
             filterRating,
             recipeDiet,
             query,
-            pagination,
           },
         },
       );

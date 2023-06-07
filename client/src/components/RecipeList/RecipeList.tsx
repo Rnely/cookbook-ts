@@ -41,43 +41,14 @@ const RecipeList: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const page = useSelector((state: RootState) => state.pagination.page);
-  const pageSize = useSelector((state: RootState) => state.pagination.pageSize);
-  const totalPages = useSelector(
-    (state: RootState) => state.pagination.totalPages,
-  );
-
   useGetRecipes({
-    page,
-    pageSize,
     query,
     recipeDiet,
     filterRating,
-    pagination: true,
   });
 
   const handlePageChange = (newPage: number) => {
     dispatch(setPage(newPage));
-  };
-
-  const handleNextPage = () => {
-    if (page < totalPages) {
-      handlePageChange(page + 1);
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      handlePageChange(page - 1);
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
   };
 
   return (
@@ -117,15 +88,6 @@ const RecipeList: React.FC = () => {
               );
             })}
           </CardBox>
-
-          <PageBtnBox>
-            <StyledCardActions onClick={handlePreviousPage}>
-              <ArrowBackButton text={'Prev page'} />
-            </StyledCardActions>
-            <StyledCardActions onClick={handleNextPage}>
-              <ArrowForwardButton text={'Next page'} />
-            </StyledCardActions>
-          </PageBtnBox>
         </>
       ) : (
         <LoadingComponent />
