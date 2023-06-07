@@ -10,12 +10,10 @@ import {
   StyledCard,
   StyledCardContent,
   StyledCardActions,
-  PageBtnBox,
 } from './style';
-import { ArrowForwardButton, ArrowBackButton } from '../StyledButtons';
+import { ArrowForwardButton } from '../StyledButtons';
 import { Rating } from '@mui/material';
 import LoadingComponent from '../LoadingComponent';
-import { setPage } from '../../redux/slices/paginationSlice';
 
 interface Recipe {
   _id: string;
@@ -46,10 +44,6 @@ const RecipeList: React.FC = () => {
     recipeDiet,
     filterRating,
   });
-
-  const handlePageChange = (newPage: number) => {
-    dispatch(setPage(newPage));
-  };
 
   return (
     <>
