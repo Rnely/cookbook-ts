@@ -12,7 +12,6 @@ import Text from '../TextComponent';
 import FilterCheckBoxes from './FilterCheckBoxes';
 import FilterRadio from './FilterRadio';
 import FilterRating from './FilterRating';
-import FilterSelect from './FilterSelect';
 
 const RecipeFilter = () => {
   const [open, setOpen] = useState(false);
@@ -35,7 +34,6 @@ const RecipeFilter = () => {
           </FilterTopBox>
           <Divider />
           <FilterRating />
-          <FilterSelect />
           <FilterCheckBoxes />
           <FilterRadio />
         </FilterCard>
