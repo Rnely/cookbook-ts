@@ -3,27 +3,8 @@ import { RecipeModel as Recipe } from '../models/recipeModel/RecipeModel';
 
 export const getRecipes = async (req: Request, res: Response) => {
   try {
-    const { page, pageSize, filterRating, recipeDiet, query } = req.query;
-
-    const filterCriteria: any = {};
-
-    if (filterRating) {
-      filterCriteria.avgRating = { $gte: parseInt(filterRating as string) };
-    }
-
-    if (recipeDiet && recipeDiet !== 'Any') {
-      filterCriteria.diet = { $in: [recipeDiet as string] };
-    }
-
-    if (query) {
-      filterCriteria.title = { $regex: query as string, $options: 'i' };
-    }
-
-    const recipesQuery = Recipe.find(filterCriteria);
-
-    const recipes = await recipesQuery;
-
-    res.json({ recipes });
+    const recipes = await Recipe.find();
+    res.json(recipes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

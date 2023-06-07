@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import useGetRecipes from '../useGetRecipes';
 import './style.css';
@@ -31,26 +31,37 @@ const RecipeList: React.FC = () => {
   const recipes: Recipe[] | null = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
-  const query = useSelector((state: RootState) => state.recipeFilter.query);
+  const query = useSelector((state: RootState) => state.query.query);
   const recipeDiet = useSelector((state: RootState) => state.recipeDiet.value);
   const filterRating = useSelector(
     (state: RootState) => state.filterRating.value,
   );
 
-  const dispatch = useDispatch();
-
-  useGetRecipes({
-    query,
-    recipeDiet,
-    filterRating,
-  });
+  useGetRecipes();
 
   return (
     <>
-      {recipes.length !== 0 ? (
-        <>
-          <CardBox>
-            {recipes.map((recipe) => {
+      {recipes ? (
+        <CardBox>
+          {recipes
+            .filter((recipes) => recipes.avgRating >= filterRating)
+            .filter((recipes) => {
+              if (recipeDiet === 'Any') {
+                return recipes;
+              } else if (recipes.diet.includes(recipeDiet)) {
+                return recipes;
+              }
+            })
+            .filter((recipes) => {
+              if (query === '') {
+                return recipes;
+              } else if (
+                recipes.title.toLowerCase().includes(query.toLowerCase())
+              ) {
+                return recipes;
+              }
+            })
+            .map((recipe) => {
               return (
                 <StyledCard key={recipe._id}>
                   <img
@@ -81,8 +92,7 @@ const RecipeList: React.FC = () => {
                 </StyledCard>
               );
             })}
-          </CardBox>
-        </>
+        </CardBox>
       ) : (
         <LoadingComponent />
       )}
