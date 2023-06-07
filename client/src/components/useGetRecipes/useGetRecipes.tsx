@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setTotalPages } from '../../redux/slices/paginationSlice';
 import { setRecipes } from '../../redux/slices/recipeSlice';
 
 interface GetRecipesParams {
@@ -31,11 +30,10 @@ export const useGetRecipes = (params: GetRecipesParams) => {
         },
       );
 
-      const { recipes, totalPages } = response.data;
+      const { recipes } = response.data;
       const parsedRecipes = recipes;
 
       dispatch(setRecipes(parsedRecipes));
-      dispatch(setTotalPages(totalPages));
     } catch (error) {
       console.log('Error fetching recipes:', error);
     }
