@@ -9,17 +9,23 @@ import {
   IngBox,
   RatingBox,
   SaveBox,
-  StyledCard,
   StyledCard2,
-  StyledCardActions,
   TimeBox,
   StepsBox,
   DietBox,
+  TextBox,
 } from './style';
 import Text from '../TextComponent/TextComponent';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { Divider, Rating, useMediaQuery } from '@mui/material';
+import {
+  Divider,
+  Menu,
+  MenuItem,
+  Rating,
+  TextField,
+  useMediaQuery,
+} from '@mui/material';
 import { toast } from 'react-toastify';
 import LoadingComponent from '../LoadingComponent/LoadingComponent';
 
@@ -58,6 +64,8 @@ const RecipeDetails: React.FC = () => {
     (state: RootState) => state.currentUserId.userId,
   );
   const [steps, setSteps] = useState<Steps[]>([]);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [newCollName, setNewCollName] = useState('');
 
   const nav = useNavigate();
   const { id } = useParams();
@@ -76,7 +84,7 @@ const RecipeDetails: React.FC = () => {
     setImgUrl(`http://localhost:5000/api/images/${response.data.image}`);
   };
 
-  const handleClick = async () => {
+  const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:5000/cookbook/recipes/${id}`);
       nav('/');
@@ -104,6 +112,24 @@ const RecipeDetails: React.FC = () => {
       });
     }
     getRecipe();
+  };
+
+  const handleCreateCollection = async () => {
+    if (currentUserId) {
+      try {
+        await axios.post(
+          `http://localhost:5000/cookbook/users/${currentUserId}`,
+          {
+            collections: { name: newCollName },
+          },
+        );
+        setNewCollName('');
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      nav('/authentication');
+    }
   };
 
   const isMobile = useMediaQuery('(max-width: 700px)');
@@ -148,7 +174,36 @@ const RecipeDetails: React.FC = () => {
                 }}
               />
             </RatingBox>
-            <SaveBox></SaveBox>
+            <SaveBox>
+              <button onClick={(e) => setAnchorEl(e.currentTarget)}>
+                save
+              </button>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+                <MenuItem onClick={() => setAnchorEl(null)}>
+                  My account
+                </MenuItem>
+                <Divider />
+                <TextBox>
+                  <TextField
+                    variant="standard"
+                    label="New collection"
+                    type="text"
+                    value={newCollName}
+                    onChange={(e) => setNewCollName(e.target.value)}
+                  />
+                  <button onClick={handleCreateCollection}>create</button>
+                </TextBox>
+              </Menu>
+            </SaveBox>
             <IngBox>
               <Text text={'Ingredients'} fontWeight={600} />
               {listIng.map((ing, index) => {

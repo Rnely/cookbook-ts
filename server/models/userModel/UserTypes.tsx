@@ -5,6 +5,10 @@ export interface IUser {
   password: String;
   regDate: String;
   following: Array<String>;
+  collections: {
+    name: string;
+    recipes: Array<String>;
+  }[];
 }
 
 export interface IUserDocument extends IUser, Document {}

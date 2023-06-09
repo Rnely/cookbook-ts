@@ -22,6 +22,9 @@ const UserSchema = new mongoose.Schema({
   following: {
     type: Array,
   },
+  collections: {
+    type: Array,
+  },
 });
 
 export default UserSchema;
