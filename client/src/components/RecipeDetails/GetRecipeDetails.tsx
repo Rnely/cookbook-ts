@@ -16,7 +16,7 @@ import {
   TextBox,
 } from './style';
 import Text from '../TextComponent/TextComponent';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import {
   Divider,
@@ -28,6 +28,7 @@ import {
 } from '@mui/material';
 import { toast } from 'react-toastify';
 import LoadingComponent from '../LoadingComponent/LoadingComponent';
+import { setUserCollections } from '../../redux/slices/userCollections';
 
 interface Recipe {
   _id: string;
@@ -66,9 +67,13 @@ const RecipeDetails: React.FC = () => {
   const [steps, setSteps] = useState<Steps[]>([]);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [newCollName, setNewCollName] = useState('');
+  const userCollections = useSelector(
+    (state: RootState) => state.userCollections.userCollections,
+  );
 
   const nav = useNavigate();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getRecipe();
@@ -120,15 +125,73 @@ const RecipeDetails: React.FC = () => {
         await axios.post(
           `http://localhost:5000/cookbook/users/${currentUserId}`,
           {
-            collections: { name: newCollName },
+            collections: { name: newCollName, recipes: [] },
           },
         );
         setNewCollName('');
-      } catch (error) {
-        console.log(error);
+        if (id) {
+          dispatch(
+            setUserCollections([
+              ...userCollections,
+              { name: newCollName, recipes: [id] },
+            ]),
+          );
+        }
+        toast.success('Successfully created collection', {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } catch (error: any) {
+        toast.error(error.response.data.message, {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } else {
       nav('/authentication');
+    }
+  };
+
+  const handleRecipeSave = async (coll: string) => {
+    try {
+      await axios.patch(
+        `http://localhost:5000/cookbook/users/${currentUserId}/collections`,
+        {
+          userId: currentUserId,
+          collectionName: coll,
+          recipeId: id,
+        },
+      );
+      setAnchorEl(null);
+      toast.success(`Successfully saved recipe to ${coll}`, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error: any) {
+      toast.error(error.response.data.message, {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -187,10 +250,15 @@ const RecipeDetails: React.FC = () => {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-                <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
-                <MenuItem onClick={() => setAnchorEl(null)}>
-                  My account
-                </MenuItem>
+                {userCollections.map((coll, index) => {
+                  return (
+                    <div key={index}>
+                      <MenuItem onClick={() => handleRecipeSave(coll.name)}>
+                        {coll.name}
+                      </MenuItem>
+                    </div>
+                  );
+                })}
                 <Divider />
                 <TextBox>
                   <TextField
