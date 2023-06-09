@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import Text from '../TextComponent';
 import './style.css';
 import { ArrowForwardButton } from '../StyledButtons';
 import { CardBox, StyledCard, StyledCardContent } from './style';
-import { CardActions, Rating } from '@mui/material';
+import { Rating } from '@mui/material';
 import useGetRecipes from '../useGetRecipes';
-import LoadingComponent from '../LoadingComponent/LoadingComponent';
+import LoadingComponent from '../LoadingComponent';
 import { StyledCardActions } from '../RecipeList/style';
 
 interface Recipe {
@@ -23,22 +23,19 @@ interface Recipe {
 }
 
 const UserRecipes = () => {
-  const recipe: Recipe[] = useSelector(
-    (state: RootState) => state.recipes.recipes,
+  const recipes: Recipe[] = useSelector(
+    (state: RootState) => state.userCollRecipes.recipes,
   );
 
-  const { id } = useParams();
   const nav = useNavigate();
 
   useGetRecipes();
 
-  const userRecipes = recipe.filter((recipe) => recipe.userId === id);
-
   return (
     <>
-      {userRecipes ? (
+      {recipes ? (
         <CardBox>
-          {userRecipes.map((recipe) => {
+          {recipes.map((recipe) => {
             return (
               <StyledCard key={recipe._id}>
                 <img

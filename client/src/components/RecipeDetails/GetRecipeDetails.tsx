@@ -67,6 +67,7 @@ const RecipeDetails: React.FC = () => {
   const [steps, setSteps] = useState<Steps[]>([]);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [newCollName, setNewCollName] = useState('');
+  const [privColl, setPrivColl] = useState(false);
   const userCollections = useSelector(
     (state: RootState) => state.userCollections.userCollections,
   );
@@ -125,7 +126,7 @@ const RecipeDetails: React.FC = () => {
         await axios.post(
           `http://localhost:5000/cookbook/users/${currentUserId}`,
           {
-            collections: { name: newCollName, recipes: [] },
+            collections: { name: newCollName, private: privColl, recipes: [] },
           },
         );
         setNewCollName('');
@@ -133,7 +134,7 @@ const RecipeDetails: React.FC = () => {
           dispatch(
             setUserCollections([
               ...userCollections,
-              { name: newCollName, recipes: [id] },
+              { name: newCollName, private: privColl, recipes: [id] },
             ]),
           );
         }
@@ -268,6 +269,15 @@ const RecipeDetails: React.FC = () => {
                     value={newCollName}
                     onChange={(e) => setNewCollName(e.target.value)}
                   />
+                  {privColl ? (
+                    <button onClick={() => setPrivColl(!privColl)}>
+                      Private
+                    </button>
+                  ) : (
+                    <button onClick={() => setPrivColl(!privColl)}>
+                      Public
+                    </button>
+                  )}
                   <button onClick={handleCreateCollection}>create</button>
                 </TextBox>
               </Menu>

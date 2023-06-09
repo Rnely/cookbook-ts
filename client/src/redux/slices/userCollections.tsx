@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserCollections {
   name: string;
+  private: boolean;
   recipes: string[];
 }
 

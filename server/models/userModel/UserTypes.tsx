@@ -7,6 +7,7 @@ export interface IUser {
   following: Array<String>;
   collections: {
     name: string;
+    private: boolean;
     recipes: Array<String>;
   }[];
 }

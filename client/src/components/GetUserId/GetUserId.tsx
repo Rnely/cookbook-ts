@@ -9,6 +9,7 @@ import { setUserCollections } from '../../redux/slices/userCollections';
 
 interface UserCollections {
   name: string;
+  private: boolean;
   recipes: string[];
 }
 

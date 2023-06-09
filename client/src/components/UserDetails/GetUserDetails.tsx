@@ -9,7 +9,8 @@ import { setUserName } from '../../redux/slices/userNameSlice';
 import { StyledCard, StyledCardActions } from './style';
 import Text from '../TextComponent/TextComponent';
 import { UserFollowButton } from '../StyledButtons';
-import LoadingComponent from '../LoadingComponent/LoadingComponent';
+import LoadingComponent from '../LoadingComponent';
+import UserCollections from '../UserCollections';
 
 interface User {
   _id: string;
@@ -59,6 +60,7 @@ const GetUserDetails: React.FC = () => {
               </StyledCardActions>
             )}
             <UserFollowList />
+            <UserCollections />
           </StyledCard>
         );
       })}
