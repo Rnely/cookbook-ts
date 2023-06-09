@@ -30,7 +30,6 @@ const UserFollowList: React.FC = () => {
   const [followingArray, setFollowingArray] = useState<User[]>([]);
   const users: User[] = useSelector((state: RootState) => state.user.user);
   useGetUsers();
-  const query = useSelector((state: RootState) => state.recipeFilter.query);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -103,34 +102,26 @@ const UserFollowList: React.FC = () => {
 
         {followState ? (
           <Box>
-            {followingArray
-              .filter((user) => {
-                if (query === '') {
-                  return true;
-                } else {
-                  return user.name.toLowerCase().includes(query.toLowerCase());
-                }
-              })
-              .map((user, index) => {
-                return (
-                  <div key={index}>
-                    <ListMenuItem
-                      onClick={() => {
-                        setAnchorElList(null);
-                        setFollowState(!followState);
-                        dispatch(setUserName(user.name));
-                        nav(`/user/${user._id}`);
-                      }}
-                      key={user._id}
-                    >
-                      <Text text={user.name} px={3} />
-                    </ListMenuItem>
-                    <MarginBox>
-                      <StyledDivider />
-                    </MarginBox>
-                  </div>
-                );
-              })}
+            {followingArray.map((user, index) => {
+              return (
+                <div key={index}>
+                  <ListMenuItem
+                    onClick={() => {
+                      setAnchorElList(null);
+                      setFollowState(!followState);
+                      dispatch(setUserName(user.name));
+                      nav(`/user/${user._id}`);
+                    }}
+                    key={user._id}
+                  >
+                    <Text text={user.name} px={3} />
+                  </ListMenuItem>
+                  <MarginBox>
+                    <StyledDivider />
+                  </MarginBox>
+                </div>
+              );
+            })}
           </Box>
         ) : (
           ''

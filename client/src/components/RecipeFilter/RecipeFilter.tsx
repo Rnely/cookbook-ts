@@ -9,7 +9,6 @@ import {
   FilterCloseBox,
 } from './style';
 import Text from '../TextComponent';
-import FilterCheckBoxes from './FilterCheckBoxes';
 import FilterRadio from './FilterRadio';
 import FilterRating from './FilterRating';
 import FilterSearch from './FilterSearch/FilterSearch';
@@ -36,7 +35,6 @@ const RecipeFilter = () => {
           <Divider />
           <FilterRating />
           <FilterSearch />
-          <FilterCheckBoxes />
           <FilterRadio />
         </FilterCard>
       ) : (
