@@ -41,6 +41,10 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  comments: {
+    type: Array,
+    required: false,
+  },
 });
 
 export default RecipeSchema;

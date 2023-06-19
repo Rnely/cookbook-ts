@@ -86,6 +86,30 @@ export const updateRecipeRating = async (req: Request, res: Response) => {
   }
 };
 
+export const updateRecipeComments = async (req: Request, res: Response) => {
+  try {
+    const { userName, userId, comment } = req.body;
+
+    const recipe = await Recipe.findById(req.params.id);
+    if (!recipe) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    // Add the user's new comment to the comments array
+    recipe.comments.push({ userName, userId, comment });
+
+    // Update the recipe in the database
+    const updatedRecipe = await Recipe.updateOne(
+      { _id: req.params.id },
+      { $set: { comments: recipe.comments } },
+    );
+
+    res.status(200).json(updatedRecipe);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export const deleteRecipe = async (req: Request, res: Response) => {
   try {
     const deletedRecipe = await Recipe.deleteOne({ _id: req.params.id });
