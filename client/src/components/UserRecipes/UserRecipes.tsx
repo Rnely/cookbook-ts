@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import Text from '../TextComponent';
-import './style.css';
 import { ArrowForwardButton } from '../StyledButtons';
 import { CardBox, StyledCard, StyledCardContent } from './style';
 import { Rating } from '@mui/material';
