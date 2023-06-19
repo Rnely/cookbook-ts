@@ -14,6 +14,16 @@ export interface IRecipe {
     rating: number;
   }[];
   image: string;
+  comments: {
+    commentId: string;
+    userName: string;
+    userId: string;
+    comment: string;
+    likes: number;
+    likedBy: {
+      userId: String;
+    }[];
+  }[];
 }
 
 export interface IRecipeDocument extends IRecipe, Document {}

@@ -68,6 +68,7 @@ const RecipeDetails: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [newCollName, setNewCollName] = useState('');
   const [privColl, setPrivColl] = useState(false);
+  const [avgRating, setAvgRating] = useState(0);
   const userCollections = useSelector(
     (state: RootState) => state.userCollections.userCollections,
   );
@@ -88,6 +89,7 @@ const RecipeDetails: React.FC = () => {
     setListIng(response.data.listIngredients);
     setSteps(response.data.method);
     setImgUrl(`http://localhost:5000/api/images/${response.data.image}`);
+    setAvgRating(response.data.avgRating);
   };
 
   const handleDelete = async () => {
@@ -226,7 +228,7 @@ const RecipeDetails: React.FC = () => {
             </ImageBox>
             <RatingBox>
               <Rating
-                value={recipe.avgRating}
+                value={avgRating}
                 disabled={currentUserName === recipe.user ? true : false}
                 precision={0.5}
                 onChange={(event, newValue) => {
