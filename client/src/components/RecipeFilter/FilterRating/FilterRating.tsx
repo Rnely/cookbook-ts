@@ -1,9 +1,10 @@
 import { Rating } from '@mui/material';
-import { FilterRatingBox } from './style';
+import { FilterRatingBox, RowBox, StyledCardActions } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterRating } from '../../../redux/slices/filterRatingSlice';
 import { RootState } from '../../../redux/store';
 import Text from '../../TextComponent/TextComponent';
+import { Close } from '@mui/icons-material';
 
 const FilterRating = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,17 @@ const FilterRating = () => {
   return (
     <FilterRatingBox>
       <Text text="Rating" />
-      <Rating
-        value={filterRating}
-        precision={0.5}
-        size="large"
-        onChange={(event, newValue) => dispatch(setFilterRating(newValue))}
-      />
+      <RowBox>
+        <Rating
+          value={filterRating}
+          precision={0.5}
+          size="large"
+          onChange={(event, newValue) => dispatch(setFilterRating(newValue))}
+        />
+        <StyledCardActions onClick={() => dispatch(setFilterRating(0))}>
+          <Close />
+        </StyledCardActions>
+      </RowBox>
     </FilterRatingBox>
   );
 };

@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 
 interface ITextProps {
-  text: string;
+  text: String;
   variant?: Variant;
   color?: string;
   fontWeight?: number;

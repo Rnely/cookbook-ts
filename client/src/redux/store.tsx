@@ -13,12 +13,14 @@ import loginReducer from './slices/loginSlice';
 import currentUserNameReducer from './slices/currentUserSlice';
 import recipeDietReducer from './slices/recipeDietSlice';
 import filterRatingReducer from './slices/filterRatingSlice';
+import userCollectionsReducer from './slices/userCollections';
+import userCollRecipes from './slices/userCollRecipesSlice';
 
 export const store = configureStore({
   reducer: {
     url: urlReducer,
     pending: pendingReducer,
-    recipeFilter: queryReducer,
+    query: queryReducer,
     userName: userNameReducer,
     currentUserId: userIdReducer,
     recipes: recipesReducer,
@@ -30,6 +32,8 @@ export const store = configureStore({
     loginState: loginReducer,
     recipeDiet: recipeDietReducer,
     filterRating: filterRatingReducer,
+    userCollections: userCollectionsReducer,
+    userCollRecipes: userCollRecipes,
   },
 });
 

@@ -5,11 +5,19 @@ import { RootState } from '../../redux/store';
 import { setUserId } from '../../redux/slices/userIdSlice';
 import { setFollowing } from '../../redux/slices/followingSlice';
 import { setUserFollowing } from '../../redux/slices/userFollowingslice';
+import { setUserCollections } from '../../redux/slices/userCollections';
+
+interface UserCollections {
+  name: string;
+  private: boolean;
+  recipes: string[];
+}
 
 interface User {
   _id: string;
   name: string;
   following: Array<string>;
+  collections: UserCollections[];
 }
 
 const GetUserId = () => {
@@ -22,10 +30,13 @@ const GetUserId = () => {
   const userFollowing = useSelector(
     (state: RootState) => state.userFollowing.userFollowing,
   );
+  const userCollections = useSelector(
+    (state: RootState) => state.userCollections.userCollections,
+  );
 
   useEffect(() => {
     getUsers();
-  }, [currentUserName, userFollowing]);
+  }, [currentUserName, userFollowing, userCollections]);
 
   const getUsers = async () => {
     const response = await axios.get('http://localhost:5000/cookbook/users');
@@ -36,6 +47,7 @@ const GetUserId = () => {
     if (userData) {
       dispatch(setUserId(userData._id));
       dispatch(setUserFollowing(userData.following));
+      dispatch(setUserCollections(userData.collections));
     }
   };
 };

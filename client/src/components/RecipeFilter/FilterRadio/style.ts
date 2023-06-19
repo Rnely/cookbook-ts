@@ -1,5 +1,10 @@
 import { styled } from '@mui/material/styles';
-import { FormControl, FormControlLabel, Radio } from '@mui/material';
+import {
+  CardActions,
+  FormControl,
+  FormControlLabel,
+  Radio,
+} from '@mui/material';
 
 export const RadioItem = styled(FormControlLabel)`
   width: 100%;
@@ -14,4 +19,7 @@ export const FilterRadioBox = styled(FormControl)`
 `;
 export const ColoredRadio = styled(Radio)`
   color: white;
+`;
+export const RadioCardActions = styled(CardActions)`
+  cursor: pointer;
 `;

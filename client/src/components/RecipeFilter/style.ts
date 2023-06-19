@@ -33,6 +33,19 @@ export const FilterCard = styled(Card)(({ theme }) => ({
   height: '80%',
   backgroundColor: 'rgba(48, 47, 47, 0.8)',
   zIndex: 1,
+  // Scrollbar styling
+  overflow: 'auto',
+  '&::-webkit-scrollbar': {
+    width: 12,
+  },
+  '&::-webkit-scrollbar-track': {
+    borderRadius: 8,
+    backgroundColor: 'transparent',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    borderRadius: 8,
+    backgroundColor: 'rgba(50, 50, 50)',
+  },
 }));
 
 export const FilterTopBox = styled(Box)`

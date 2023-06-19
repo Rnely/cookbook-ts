@@ -1,5 +1,6 @@
 export {
-  RecipeListButton,
+  ArrowForwardButton,
+  ArrowBackButton,
   UserFollowButton,
   UserUnfollowButton,
 } from './StyledButtons';

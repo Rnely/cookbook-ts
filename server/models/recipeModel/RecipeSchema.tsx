@@ -18,7 +18,7 @@ const RecipeSchema = new mongoose.Schema({
     required: true,
   },
   method: {
-    type: String,
+    type: Array,
     required: true,
   },
   time: {
