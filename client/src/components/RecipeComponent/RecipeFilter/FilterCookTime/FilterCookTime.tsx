@@ -23,7 +23,6 @@ const FilterDiet = () => {
     const value = event.target.value;
     setSelectedValue(value);
     dispatch(setCookTime(value));
-    console.log(value);
   };
 
   return (
@@ -49,13 +48,11 @@ const FilterDiet = () => {
             control={<ColoredRadio />}
             label="Under 20 minutes"
           />
-
           <RadioItem
             value={30}
             control={<ColoredRadio />}
             label="Under 30 minutes"
           />
-
           <RadioItem
             value={60}
             control={<ColoredRadio />}

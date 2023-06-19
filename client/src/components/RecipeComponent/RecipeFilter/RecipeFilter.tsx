@@ -13,6 +13,7 @@ import FilterDiet from './FilterDiet';
 import FilterRating from './FilterRating';
 import FilterSearch from './FilterSearch';
 import FilterCookTime from './FilterCookTime';
+import FilterSort from './FilterSort';
 
 const RecipeFilter = () => {
   const [open, setOpen] = useState(false);
@@ -36,6 +37,7 @@ const RecipeFilter = () => {
           <Divider />
           <FilterRating />
           <FilterSearch />
+          <FilterSort />
           <FilterDiet />
           <FilterCookTime />
         </FilterCard>

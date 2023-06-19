@@ -39,6 +39,12 @@ const RecipeList: React.FC = () => {
   const filterCookTime = useSelector(
     (state: RootState) => state.filterCookTime.time,
   );
+  const sortByRating = useSelector(
+    (state: RootState) => state.filterSortBy.sortByRating,
+  );
+  const sortByCookTime = useSelector(
+    (state: RootState) => state.filterSortBy.sortByCookTime,
+  );
 
   useGetRecipes();
 
@@ -71,6 +77,24 @@ const RecipeList: React.FC = () => {
                 return recipes.time > 60;
               } else {
                 return recipes.time <= parseInt(filterCookTime);
+              }
+            })
+            .sort((recipeA, recipeB) => {
+              if (sortByRating === 'high') {
+                return recipeB.avgRating - recipeA.avgRating;
+              } else if (sortByRating === 'low') {
+                return recipeA.avgRating - recipeB.avgRating;
+              } else {
+                return 0;
+              }
+            })
+            .sort((recipeA, recipeB) => {
+              if (sortByCookTime === 'quick') {
+                return recipeA.time - recipeB.time;
+              } else if (sortByCookTime === 'long') {
+                return recipeB.time - recipeA.time;
+              } else {
+                return 0;
               }
             })
             .map((recipe) => {
