@@ -1,6 +1,6 @@
-import GetUserDetails from '../components/UserDetails';
-import UserRecipes from '../components/UserRecipes';
-import { useGetUsers } from '../components/useGetUsers';
+import GetUserDetails from '../components/UserComponents/UserDetails';
+import UserRecipes from '../components/UserComponents/UserRecipes';
+import { useGetUsers } from '../components/UserComponents/useGetUsers';
 
 const UserDetails = () => {
   useGetUsers();

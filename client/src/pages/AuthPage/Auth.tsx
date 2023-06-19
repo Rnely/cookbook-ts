@@ -1,5 +1,5 @@
 import AuthForms from '../../components/AuthForms';
-import GetUserId from '../../components/GetUserId';
+import GetUserId from '../../components/UserComponents/GetUserId';
 import './style.css';
 
 const Auth = () => {
