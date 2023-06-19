@@ -4,8 +4,8 @@ import UserRecipes from '../components/UserRecipes';
 const UserDetails = () => {
   return (
     <div>
-      <GetUserDetails />
-      <div className="home">
+      <div className="center">
+        <GetUserDetails />
         <UserRecipes />
       </div>
     </div>

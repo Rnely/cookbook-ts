@@ -5,7 +5,7 @@ interface RecipeDietState {
 }
 
 const initialState: RecipeDietState = {
-  value: 'all',
+  value: 'Any',
 };
 
 export const recipeDietSlice = createSlice({

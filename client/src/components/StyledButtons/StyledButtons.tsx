@@ -5,18 +5,30 @@ import {
   ArrowForward,
   Add,
   Publish,
+  ArrowBack,
 } from '@mui/icons-material';
 
 interface ITextProps {
   text: string;
 }
 
-export const RecipeListButton: React.FC<ITextProps> = ({ text }) => {
+export const ArrowForwardButton: React.FC<ITextProps> = ({ text }) => {
   return (
     <button className="cssbuttons-io-button">
       {text}
       <div className="icon">
         <ArrowForward />
+      </div>
+    </button>
+  );
+};
+
+export const ArrowBackButton: React.FC<ITextProps> = ({ text }) => {
+  return (
+    <button className="cssbuttons-io-button">
+      {text}
+      <div className="icon">
+        <ArrowBack />
       </div>
     </button>
   );

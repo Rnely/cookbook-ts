@@ -15,19 +15,28 @@ import {
   FilterRadioBox,
   RadioItem,
   CreateFormBox,
+  CreateFileInput,
+  StepBox,
 } from './style';
 import Text from '../TextComponent/TextComponent';
 import { AddButton, PublishButton } from '../StyledButtons/StyledButtons';
-import { Radio, RadioGroup } from '@mui/material';
+import { MenuItem, Select } from '@mui/material';
+
+interface Steps {
+  step: number;
+  desc: string;
+}
 
 const CreateForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [method, setMethod] = useState('');
+  const [method, setMethod] = useState<Steps[]>([]);
   const [time, setTime] = useState('');
   const [listIngredients, setListIngredients] = useState(Array);
-  const [diet, setDiet] = useState('');
+  const [diet, setDiet] = useState('Any');
   const [image, setImage] = useState<File | undefined>(undefined);
+  const [step, setStep] = useState(1);
+  const [desc, setDesc] = useState('');
 
   const isPending = useSelector((state: RootState) => state.pending);
   const user = useSelector(
@@ -45,8 +54,8 @@ const CreateForm = () => {
     }
   };
 
-  const handleImage = (e: any) => {
-    setImage(e.target.files[0]);
+  const handleImage = (newFile: any) => {
+    setImage(newFile);
   };
 
   const handleSubmit2 = async (e: any) => {
@@ -57,7 +66,7 @@ const CreateForm = () => {
       formData.append('userId', userId);
       formData.append('title', title);
       formData.append('listIngredients', JSON.stringify(listIngredients));
-      formData.append('method', method);
+      formData.append('method', JSON.stringify(method));
       formData.append('time', time);
       formData.append('diet', diet);
       formData.append('avgRating', '0');
@@ -74,6 +83,12 @@ const CreateForm = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleSteps = (e: any) => {
+    setMethod([...method, { step, desc }]);
+    setStep(step + 1);
+    setDesc('');
   };
 
   return (
@@ -110,14 +125,7 @@ const CreateForm = () => {
                 display="flex"
               />
             </IngListBox>
-            <CreateTextField
-              className="inp"
-              variant="standard"
-              label="Recipe method"
-              required
-              value={method}
-              onChange={(e) => setMethod(e.target.value)}
-            />
+
             <CreateTextField
               className="inp"
               variant="standard"
@@ -130,30 +138,59 @@ const CreateForm = () => {
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
-            <input
-              type="file"
-              accept=".jpg, .jpeg, .png"
+            <CreateFileInput
+              value={image}
               onChange={handleImage}
-              name="image"
+              size="small"
+              placeholder="Add a image"
+              variant="standard"
+              inputProps={{
+                accept: 'image/jpeg, image/jpg, image/png',
+              }}
             />
           </CreateFormBox>
-
+          <div>
+            <CreateTextField
+              className="inp"
+              variant="standard"
+              label="Recipe steps"
+              multiline
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            />
+            <StyledCardActions onClick={handleSteps}>
+              <AddButton text="Add step" />
+            </StyledCardActions>
+            <StepBox>
+              {method.map((method, index) => {
+                return (
+                  <div key={index}>
+                    <Text
+                      text={`${method.step}.step`}
+                      variant="caption"
+                      fontWeight={600}
+                      display="flex"
+                    />
+                    <Text text={method.desc} variant="caption" display="flex" />
+                  </div>
+                );
+              })}
+            </StepBox>
+          </div>
           <>
             <FilterRadioBox>
               <Text text="Dietary Preferences" />
-              <RadioGroup
-                aria-labelledby="recipe"
-                defaultValue=""
-                onChange={(e) => setDiet(e.target.value)}
-              >
-                <RadioItem value="Meat" control={<Radio />} label="Meat" />
-                <RadioItem
-                  value="Vegetarian"
-                  control={<Radio />}
-                  label="Vegetarian"
-                />
-                <RadioItem value="Vegan" control={<Radio />} label="Vegan" />
-              </RadioGroup>
+              <Select value={diet} onChange={(e) => setDiet(e.target.value)}>
+                <MenuItem value="Any">Any</MenuItem>
+                <MenuItem value="Meat">Meat</MenuItem>
+                <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                <MenuItem value="Vegan">Vegan</MenuItem>
+                <MenuItem value="Keto">Keto</MenuItem>
+                <MenuItem value="Paleo">Paleo</MenuItem>
+                <MenuItem value="Low-carb">Low-carb</MenuItem>
+                <MenuItem value="Low-fat">Low-fat</MenuItem>
+                <MenuItem value="Gluten-free">Gluten-free</MenuItem>
+              </Select>
             </FilterRadioBox>
           </>
         </CreateRowBox>

@@ -24,6 +24,7 @@ export const saveRecipe = async (req: Request, res: Response) => {
   if (req.file) {
     recipe.image = req.file.path;
     recipe.listIngredients = JSON.parse(req.body.listIngredients);
+    recipe.method = JSON.parse(req.body.method);
   }
   try {
     const insertedRecipe = await recipe.save();

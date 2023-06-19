@@ -5,14 +5,12 @@ import './style.css';
 
 const Home = () => {
   return (
-    <div className="home">
+    <>
       <RecipeFilter />
-      <div className="homeCenter">
-        <div className="homeContent">
-          <RecipeList />
-        </div>
+      <div className="center">
+        <RecipeList />
       </div>
-    </div>
+    </>
   );
 };
 

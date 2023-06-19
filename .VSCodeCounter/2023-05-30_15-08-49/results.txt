@@ -1,0 +1,221 @@
+Date : 2023-05-30 15:08:49
+Directory : d:\Projects\cookbook
+Total : 134 files,  8851 codes, 16 comments, 554 blanks, all 9421 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          7 |      5,138 |          0 |          7 |      5,145 |
+| TypeScript JSX     |         63 |      2,464 |          4 |        351 |      2,819 |
+| TypeScript         |         43 |        616 |          3 |        104 |        723 |
+| CSS                |         11 |        486 |          2 |         67 |        555 |
+| JSON with Comments |          2 |         49 |          0 |          2 |         51 |
+| YAML               |          2 |         40 |          5 |          5 |         50 |
+| Markdown           |          1 |         39 |          0 |         15 |         54 |
+| HTML               |          1 |         13 |          0 |          1 |         14 |
+| Ignore             |          2 |          4 |          2 |          2 |          8 |
+| XML                |          2 |          2 |          0 |          0 |          2 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                          | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                             |        134 |      8,851 |         16 |        554 |      9,421 |
+| . (Files)                                                                                     |          1 |         39 |          0 |         15 |         54 |
+| .github                                                                                       |          2 |         40 |          5 |          5 |         50 |
+| .github (Files)                                                                               |          1 |         12 |          5 |          1 |         18 |
+| .github\workflows                                                                             |          1 |         28 |          0 |          4 |         32 |
+| client                                                                                        |        113 |      5,912 |          6 |        454 |      6,372 |
+| client (Files)                                                                                |          8 |      2,753 |          2 |          9 |      2,764 |
+| client\public                                                                                 |          1 |          1 |          0 |          0 |          1 |
+| client\src                                                                                    |        104 |      3,158 |          4 |        445 |      3,607 |
+| client\src (Files)                                                                            |          5 |         51 |          1 |          9 |         61 |
+| client\src\assets                                                                             |          1 |          1 |          0 |          0 |          1 |
+| client\src\components                                                                         |         74 |      2,757 |          3 |        336 |      3,096 |
+| client\src\components\AuthForms                                                               |         10 |        443 |          0 |         63 |        506 |
+| client\src\components\AuthForms (Files)                                                       |          3 |        268 |          0 |         37 |        305 |
+| client\src\components\AuthForms\LoginForm                                                     |          2 |         69 |          0 |          9 |         78 |
+| client\src\components\AuthForms\MobileAuth                                                    |          3 |         37 |          0 |          8 |         45 |
+| client\src\components\AuthForms\RegisterForm                                                  |          2 |         69 |          0 |          9 |         78 |
+| client\src\components\CreateForm                                                              |          4 |        289 |          0 |         26 |        315 |
+| client\src\components\GetUserId                                                               |          2 |         38 |          0 |          8 |         46 |
+| client\src\components\Header                                                                  |          9 |        231 |          0 |         31 |        262 |
+| client\src\components\Header (Files)                                                          |          3 |         48 |          0 |          9 |         57 |
+| client\src\components\Header\headerComps                                                      |          6 |        183 |          0 |         22 |        205 |
+| client\src\components\Header\headerComps\PageBox                                              |          3 |        105 |          0 |         13 |        118 |
+| client\src\components\Header\headerComps\UserBox                                              |          3 |         78 |          0 |          9 |         87 |
+| client\src\components\LoadingComponent                                                        |          3 |         78 |          0 |          9 |         87 |
+| client\src\components\RecipeDetails                                                           |          4 |        333 |          2 |         30 |        365 |
+| client\src\components\RecipeFilter                                                            |         15 |        306 |          1 |         32 |        339 |
+| client\src\components\RecipeFilter (Files)                                                    |          3 |        106 |          1 |          9 |        116 |
+| client\src\components\RecipeFilter\FilterCheckBoxes                                           |          3 |         22 |          0 |          2 |         24 |
+| client\src\components\RecipeFilter\FilterRadio                                                |          3 |         93 |          0 |          8 |        101 |
+| client\src\components\RecipeFilter\FilterRating                                               |          3 |         49 |          0 |          6 |         55 |
+| client\src\components\RecipeFilter\FilterSelect                                               |          3 |         36 |          0 |          7 |         43 |
+| client\src\components\RecipeList                                                              |          4 |        239 |          0 |         30 |        269 |
+| client\src\components\StyledButtons                                                           |          2 |         88 |          0 |         10 |         98 |
+| client\src\components\TextComponent                                                           |          2 |         42 |          0 |          6 |         48 |
+| client\src\components\UserDetails                                                             |          4 |        131 |          0 |         21 |        152 |
+| client\src\components\UserFollow                                                              |          4 |        145 |          0 |         20 |        165 |
+| client\src\components\UserFollowList                                                          |          3 |        171 |          0 |         20 |        191 |
+| client\src\components\UserRecipes                                                             |          4 |        155 |          0 |         18 |        173 |
+| client\src\components\useGetRecipes                                                           |          2 |         52 |          0 |          9 |         61 |
+| client\src\components\useGetUsers                                                             |          2 |         16 |          0 |          3 |         19 |
+| client\src\pages                                                                              |          8 |         73 |          0 |         21 |         94 |
+| client\src\pages (Files)                                                                      |          6 |         61 |          0 |         17 |         78 |
+| client\src\pages\AuthPage                                                                     |          2 |         12 |          0 |          4 |         16 |
+| client\src\redux                                                                              |         16 |        276 |          0 |         79 |        355 |
+| client\src\redux (Files)                                                                      |          1 |         37 |          0 |          3 |         40 |
+| client\src\redux\slices                                                                       |         15 |        239 |          0 |         76 |        315 |
+| server                                                                                        |         18 |      2,860 |          5 |         80 |      2,945 |
+| server (Files)                                                                                |          6 |      2,488 |          1 |          9 |      2,498 |
+| server\controllers                                                                            |          2 |        150 |          4 |         27 |        181 |
+| server\middleware                                                                             |          1 |         30 |          0 |          4 |         34 |
+| server\models                                                                                 |          6 |        104 |          0 |         16 |        120 |
+| server\models\recipeModel                                                                     |          3 |         66 |          0 |          8 |         74 |
+| server\models\userModel                                                                       |          3 |         38 |          0 |          8 |         46 |
+| server\routes                                                                                 |          3 |         88 |          0 |         24 |        112 |
++-----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                      | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\Projects\cookbook\.github\dependabot.yml                                                   | YAML               |         12 |          5 |          1 |         18 |
+| d:\Projects\cookbook\.github\workflows\dependabot-reviewer.yml                                | YAML               |         28 |          0 |          4 |         32 |
+| d:\Projects\cookbook\README.md                                                                | Markdown           |         39 |          0 |         15 |         54 |
+| d:\Projects\cookbook\client\.prettierignore                                                   | Ignore             |          2 |          1 |          1 |          4 |
+| d:\Projects\cookbook\client\.prettierrc                                                       | JSON               |         18 |          0 |          1 |         19 |
+| d:\Projects\cookbook\client\index.html                                                        | HTML               |         13 |          0 |          1 |         14 |
+| d:\Projects\cookbook\client\package-lock.json                                                 | JSON               |      2,637 |          0 |          1 |      2,638 |
+| d:\Projects\cookbook\client\package.json                                                      | JSON               |         35 |          0 |          1 |         36 |
+| d:\Projects\cookbook\client\public\vite.svg                                                   | XML                |          1 |          0 |          0 |          1 |
+| d:\Projects\cookbook\client\src\App.css                                                       | CSS                |          0 |          0 |          1 |          1 |
+| d:\Projects\cookbook\client\src\App.tsx                                                       | TypeScript JSX     |         33 |          0 |          4 |         37 |
+| d:\Projects\cookbook\client\src\assets\react.svg                                              | XML                |          1 |          0 |          0 |          1 |
+| d:\Projects\cookbook\client\src\components\AuthForms\AuthForms.tsx                            | TypeScript JSX     |         72 |          0 |          4 |         76 |
+| d:\Projects\cookbook\client\src\components\AuthForms\LoginForm\LoginForm.tsx                  | TypeScript JSX     |         68 |          0 |          8 |         76 |
+| d:\Projects\cookbook\client\src\components\AuthForms\LoginForm\index.ts                       | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\AuthForms\MobileAuth\MobileAuth.tsx                | TypeScript JSX     |         20 |          0 |          3 |         23 |
+| d:\Projects\cookbook\client\src\components\AuthForms\MobileAuth\index.ts                      | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\AuthForms\MobileAuth\style.ts                      | TypeScript         |         16 |          0 |          4 |         20 |
+| d:\Projects\cookbook\client\src\components\AuthForms\RegisterForm\RegisterForm.tsx            | TypeScript JSX     |         68 |          0 |          8 |         76 |
+| d:\Projects\cookbook\client\src\components\AuthForms\RegisterForm\index.ts                    | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\AuthForms\index.ts                                 | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\AuthForms\styles.css                               | CSS                |        195 |          0 |         32 |        227 |
+| d:\Projects\cookbook\client\src\components\CreateForm\CreateForm.tsx                          | TypeScript JSX     |        194 |          0 |         13 |        207 |
+| d:\Projects\cookbook\client\src\components\CreateForm\index.ts                                | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\CreateForm\style.css                               | CSS                |          5 |          0 |          1 |          6 |
+| d:\Projects\cookbook\client\src\components\CreateForm\style.ts                                | TypeScript         |         89 |          0 |         11 |        100 |
+| d:\Projects\cookbook\client\src\components\GetUserId\GetUserId.tsx                            | TypeScript JSX     |         37 |          0 |          7 |         44 |
+| d:\Projects\cookbook\client\src\components\GetUserId\index.ts                                 | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\Header\Header.tsx                                  | TypeScript JSX     |         33 |          0 |          4 |         37 |
+| d:\Projects\cookbook\client\src\components\Header\headerComps\PageBox\PageBox.tsx             | TypeScript JSX     |         65 |          0 |          5 |         70 |
+| d:\Projects\cookbook\client\src\components\Header\headerComps\PageBox\index.ts                | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\Header\headerComps\PageBox\style.ts                | TypeScript         |         39 |          0 |          7 |         46 |
+| d:\Projects\cookbook\client\src\components\Header\headerComps\UserBox\UserBox.tsx             | TypeScript JSX     |         61 |          0 |          5 |         66 |
+| d:\Projects\cookbook\client\src\components\Header\headerComps\UserBox\index.ts                | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\Header\headerComps\UserBox\style.ts                | TypeScript         |         16 |          0 |          3 |         19 |
+| d:\Projects\cookbook\client\src\components\Header\index.ts                                    | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\Header\style.ts                                    | TypeScript         |         14 |          0 |          4 |         18 |
+| d:\Projects\cookbook\client\src\components\LoadingComponent\LoadingComponent.tsx              | TypeScript JSX     |         25 |          0 |          2 |         27 |
+| d:\Projects\cookbook\client\src\components\LoadingComponent\index.ts                          | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\LoadingComponent\loading.css                       | CSS                |         52 |          0 |          6 |         58 |
+| d:\Projects\cookbook\client\src\components\RecipeDetails\GetRecipeDetails.tsx                 | TypeScript JSX     |        169 |          0 |         14 |        183 |
+| d:\Projects\cookbook\client\src\components\RecipeDetails\index.ts                             | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\RecipeDetails\style.css                            | CSS                |         75 |          2 |         10 |         87 |
+| d:\Projects\cookbook\client\src\components\RecipeDetails\style.ts                             | TypeScript         |         88 |          0 |          5 |         93 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterCheckBoxes\FilterCheckBoxes.tsx | TypeScript JSX     |         10 |          0 |          1 |         11 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterCheckBoxes\index.ts             | TypeScript         |          1 |          0 |          0 |          1 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterCheckBoxes\style.ts             | TypeScript         |         11 |          0 |          1 |         12 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterRadio\FilterRadio.tsx           | TypeScript JSX     |         68 |          0 |          6 |         74 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterRadio\index.ts                  | TypeScript         |          1 |          0 |          0 |          1 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterRadio\style.ts                  | TypeScript         |         24 |          0 |          2 |         26 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterRating\FilterRating.tsx         | TypeScript JSX     |         30 |          0 |          3 |         33 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterRating\index.ts                 | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterRating\style.ts                 | TypeScript         |         18 |          0 |          2 |         20 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterSelect\FilterSelect.tsx         | TypeScript JSX     |         25 |          0 |          4 |         29 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterSelect\index.ts                 | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\FilterSelect\style.ts                 | TypeScript         |         10 |          0 |          2 |         12 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\RecipeFilter.tsx                      | TypeScript JSX     |         49 |          0 |          5 |         54 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\index.ts                              | TypeScript         |          1 |          0 |          0 |          1 |
+| d:\Projects\cookbook\client\src\components\RecipeFilter\style.ts                              | TypeScript         |         56 |          1 |          4 |         61 |
+| d:\Projects\cookbook\client\src\components\RecipeList\RecipeList.tsx                          | TypeScript JSX     |        126 |          0 |         12 |        138 |
+| d:\Projects\cookbook\client\src\components\RecipeList\index.ts                                | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\RecipeList\style.css                               | CSS                |         50 |          0 |          6 |         56 |
+| d:\Projects\cookbook\client\src\components\RecipeList\style.ts                                | TypeScript         |         62 |          0 |         11 |         73 |
+| d:\Projects\cookbook\client\src\components\StyledButtons\StyledButtons.tsx                    | TypeScript JSX     |         82 |          0 |          9 |         91 |
+| d:\Projects\cookbook\client\src\components\StyledButtons\index.ts                             | TypeScript         |          6 |          0 |          1 |          7 |
+| d:\Projects\cookbook\client\src\components\TextComponent\TextComponent.tsx                    | TypeScript JSX     |         41 |          0 |          5 |         46 |
+| d:\Projects\cookbook\client\src\components\TextComponent\index.ts                             | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\UserDetails\GetUserDetails.tsx                     | TypeScript JSX     |         60 |          0 |         10 |         70 |
+| d:\Projects\cookbook\client\src\components\UserDetails\index.ts                               | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\UserDetails\style.css                              | CSS                |         49 |          0 |          6 |         55 |
+| d:\Projects\cookbook\client\src\components\UserDetails\style.ts                               | TypeScript         |         21 |          0 |          4 |         25 |
+| d:\Projects\cookbook\client\src\components\UserFollowList\UserFollowList.tsx                  | TypeScript JSX     |        131 |          0 |         13 |        144 |
+| d:\Projects\cookbook\client\src\components\UserFollowList\index.ts                            | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\UserFollowList\style.ts                            | TypeScript         |         39 |          0 |          6 |         45 |
+| d:\Projects\cookbook\client\src\components\UserFollow\HandleUserFollow.tsx                    | TypeScript JSX     |         51 |          0 |          7 |         58 |
+| d:\Projects\cookbook\client\src\components\UserFollow\HandleUserUnfollow.tsx                  | TypeScript JSX     |         59 |          0 |          7 |         66 |
+| d:\Projects\cookbook\client\src\components\UserFollow\UserFollow.tsx                          | TypeScript JSX     |         34 |          0 |          5 |         39 |
+| d:\Projects\cookbook\client\src\components\UserFollow\index.ts                                | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\UserRecipes\UserRecipes.tsx                        | TypeScript JSX     |         62 |          0 |          6 |         68 |
+| d:\Projects\cookbook\client\src\components\UserRecipes\index.ts                               | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\UserRecipes\style.css                              | CSS                |         46 |          0 |          2 |         48 |
+| d:\Projects\cookbook\client\src\components\UserRecipes\style.ts                               | TypeScript         |         46 |          0 |          9 |         55 |
+| d:\Projects\cookbook\client\src\components\useGetRecipes\index.ts                             | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\useGetRecipes\useGetRecipes.tsx                    | TypeScript JSX     |         51 |          0 |          8 |         59 |
+| d:\Projects\cookbook\client\src\components\useGetUsers\index.ts                               | TypeScript         |          1 |          0 |          1 |          2 |
+| d:\Projects\cookbook\client\src\components\useGetUsers\useGetUsers.tsx                        | TypeScript JSX     |         15 |          0 |          2 |         17 |
+| d:\Projects\cookbook\client\src\index.css                                                     | CSS                |          9 |          0 |          1 |         10 |
+| d:\Projects\cookbook\client\src\main.tsx                                                      | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| d:\Projects\cookbook\client\src\pages\AuthPage\Auth.tsx                                       | TypeScript JSX     |         12 |          0 |          3 |         15 |
+| d:\Projects\cookbook\client\src\pages\AuthPage\style.css                                      | CSS                |          0 |          0 |          1 |          1 |
+| d:\Projects\cookbook\client\src\pages\Create.tsx                                              | TypeScript JSX     |          9 |          0 |          3 |         12 |
+| d:\Projects\cookbook\client\src\pages\Home.tsx                                                | TypeScript JSX     |         14 |          0 |          4 |         18 |
+| d:\Projects\cookbook\client\src\pages\Login.tsx                                               | TypeScript JSX     |         11 |          0 |          3 |         14 |
+| d:\Projects\cookbook\client\src\pages\RecipeDetails.tsx                                       | TypeScript JSX     |          9 |          0 |          3 |         12 |
+| d:\Projects\cookbook\client\src\pages\UserDetails.tsx                                         | TypeScript JSX     |         13 |          0 |          3 |         16 |
+| d:\Projects\cookbook\client\src\pages\style.css                                               | CSS                |          5 |          0 |          1 |          6 |
+| d:\Projects\cookbook\client\src\redux\slices\currentUserSlice.tsx                             | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\filterRatingSlice.tsx                            | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\followingArraySlice.tsx                          | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\followingSlice.tsx                               | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\loginSlice.tsx                                   | TypeScript JSX     |         18 |          0 |          6 |         24 |
+| d:\Projects\cookbook\client\src\redux\slices\paginationSlice.tsx                              | TypeScript JSX     |         22 |          0 |          3 |         25 |
+| d:\Projects\cookbook\client\src\redux\slices\pendingSlice.tsx                                 | TypeScript JSX     |         18 |          0 |          6 |         24 |
+| d:\Projects\cookbook\client\src\redux\slices\recipeDietSlice.tsx                              | TypeScript JSX     |         18 |          0 |          6 |         24 |
+| d:\Projects\cookbook\client\src\redux\slices\recipeQuerySlice.tsx                             | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\recipeSlice.tsx                                  | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\urlSlice.tsx                                     | TypeScript JSX     |         13 |          0 |          5 |         18 |
+| d:\Projects\cookbook\client\src\redux\slices\userFollowingslice.tsx                           | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\userIdSlice.tsx                                  | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\userNameSlice.tsx                                | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\slices\userSlice.tsx                                    | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| d:\Projects\cookbook\client\src\redux\store.tsx                                               | TypeScript JSX     |         37 |          0 |          3 |         40 |
+| d:\Projects\cookbook\client\src\vite-env.d.ts                                                 | TypeScript         |          0 |          1 |          1 |          2 |
+| d:\Projects\cookbook\client\tsconfig.json                                                     | JSON with Comments |         21 |          0 |          1 |         22 |
+| d:\Projects\cookbook\client\tsconfig.node.json                                                | JSON               |          9 |          0 |          1 |         10 |
+| d:\Projects\cookbook\client\vite.config.ts                                                    | TypeScript         |         18 |          1 |          2 |         21 |
+| d:\Projects\cookbook\server\.prettierignore                                                   | Ignore             |          2 |          1 |          1 |          4 |
+| d:\Projects\cookbook\server\.prettierrc                                                       | JSON               |         18 |          0 |          1 |         19 |
+| d:\Projects\cookbook\server\controllers\RecipeController.tsx                                  | TypeScript JSX     |        102 |          4 |         21 |        127 |
+| d:\Projects\cookbook\server\controllers\UserController.tsx                                    | TypeScript JSX     |         48 |          0 |          6 |         54 |
+| d:\Projects\cookbook\server\index.ts                                                          | TypeScript         |         19 |          0 |          4 |         23 |
+| d:\Projects\cookbook\server\middleware\upload.tsx                                             | TypeScript JSX     |         30 |          0 |          4 |         34 |
+| d:\Projects\cookbook\server\models\recipeModel\RecipeModel.tsx                                | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| d:\Projects\cookbook\server\models\recipeModel\RecipeSchema.tsx                               | TypeScript JSX     |         44 |          0 |          3 |         47 |
+| d:\Projects\cookbook\server\models\recipeModel\RecipeTypes.tsx                                | TypeScript JSX     |         18 |          0 |          3 |         21 |
+| d:\Projects\cookbook\server\models\userModel\UserModel.tsx                                    | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| d:\Projects\cookbook\server\models\userModel\UserSchema.tsx                                   | TypeScript JSX     |         25 |          0 |          3 |         28 |
+| d:\Projects\cookbook\server\models\userModel\UserTypes.tsx                                    | TypeScript JSX     |          9 |          0 |          3 |         12 |
+| d:\Projects\cookbook\server\package-lock.json                                                 | JSON               |      2,382 |          0 |          1 |      2,383 |
+| d:\Projects\cookbook\server\package.json                                                      | JSON               |         39 |          0 |          1 |         40 |
+| d:\Projects\cookbook\server\routes\AuthRoutes.tsx                                             | TypeScript JSX     |         55 |          0 |         16 |         71 |
+| d:\Projects\cookbook\server\routes\RecipeRoutes.tsx                                           | TypeScript JSX     |         18 |          0 |          4 |         22 |
+| d:\Projects\cookbook\server\routes\UserRoutes.tsx                                             | TypeScript JSX     |         15 |          0 |          4 |         19 |
+| d:\Projects\cookbook\server\tsconfig.json                                                     | JSON with Comments |         28 |          0 |          1 |         29 |
+| Total                                                                                         |                    |      8,851 |         16 |        554 |      9,421 |
++-----------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

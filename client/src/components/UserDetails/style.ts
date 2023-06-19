@@ -5,8 +5,6 @@ import { Box } from '@mui/system';
 export const StyledCard = styled(Card)`
   padding: 10px 16px;
   margin: 20px 0;
-  margin-left: 300px;
-  margin-right: 300px;
   background-color: rgb(255, 255, 255);
   border: 1px solid #fafafa;
   text-align: center;

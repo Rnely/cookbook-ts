@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import GetRecipes from '../useGetRecipes';
+import useGetRecipes from '../useGetRecipes';
 import './style.css';
 import './style';
 import Text from '../TextComponent/TextComponent';
@@ -9,10 +9,9 @@ import {
   CardBox,
   StyledCard,
   StyledCardContent,
-  TextBox,
   StyledCardActions,
 } from './style';
-import { RecipeListButton } from '../StyledButtons';
+import { ArrowForwardButton } from '../StyledButtons';
 import { Rating } from '@mui/material';
 import LoadingComponent from '../LoadingComponent';
 
@@ -32,24 +31,22 @@ const RecipeList: React.FC = () => {
   const recipes: Recipe[] | null = useSelector(
     (state: RootState) => state.recipes.recipes,
   );
-  const query = useSelector((state: RootState) => state.recipeFilter.query);
+  const query = useSelector((state: RootState) => state.query.query);
   const recipeDiet = useSelector((state: RootState) => state.recipeDiet.value);
   const filterRating = useSelector(
     (state: RootState) => state.filterRating.value,
   );
 
-  if (recipes) {
-    GetRecipes();
-  }
+  useGetRecipes();
 
   return (
     <>
-      {recipes.length !== 0 ? (
+      {recipes ? (
         <CardBox>
           {recipes
             .filter((recipes) => recipes.avgRating >= filterRating)
             .filter((recipes) => {
-              if (recipeDiet === 'All') {
+              if (recipeDiet === 'Any') {
                 return recipes;
               } else if (recipes.diet.includes(recipeDiet)) {
                 return recipes;
@@ -90,7 +87,7 @@ const RecipeList: React.FC = () => {
                   <StyledCardActions
                     onClick={() => nav(`/recipe/${recipe._id}`)}
                   >
-                    <RecipeListButton text={'Cook This'} />
+                    <ArrowForwardButton text={'Cook This'} />
                   </StyledCardActions>
                 </StyledCard>
               );

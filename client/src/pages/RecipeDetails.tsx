@@ -2,7 +2,7 @@ import GetRecipeDetails from '../components/RecipeDetails';
 
 const RecipeDetails = () => {
   return (
-    <div>
+    <div className="center">
       <GetRecipeDetails />
     </div>
   );
