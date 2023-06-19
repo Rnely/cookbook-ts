@@ -9,9 +9,9 @@ import {
   FilterCloseBox,
 } from './style';
 import Text from '../../TextComponent';
-import FilterRadio from './FilterRadio';
+import FilterDiet from './FilterDiet';
 import FilterRating from './FilterRating';
-import FilterSearch from './FilterSearch/FilterSearch';
+import FilterSearch from './FilterSearch';
 
 const RecipeFilter = () => {
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ const RecipeFilter = () => {
           <Divider />
           <FilterRating />
           <FilterSearch />
-          <FilterRadio />
+          <FilterDiet />
         </FilterCard>
       ) : (
         <FilterButtonBox>
