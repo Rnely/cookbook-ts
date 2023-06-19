@@ -15,9 +15,14 @@ export interface IRecipe {
   }[];
   image: string;
   comments: {
+    commentId: string;
     userName: string;
     userId: string;
     comment: string;
+    likes: number;
+    likedBy: {
+      userId: String;
+    }[];
   }[];
 }
 
