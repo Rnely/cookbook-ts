@@ -1,5 +1,5 @@
-import RecipeComments from '../components/RecipeComments/RecipeComments';
-import GetRecipeDetails from '../components/RecipeDetails';
+import RecipeComments from '../components/RecipeComponent/RecipeComments';
+import GetRecipeDetails from '../components/RecipeComponent/RecipeDetails';
 
 const RecipeDetails = () => {
   return (
