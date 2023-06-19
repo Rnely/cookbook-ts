@@ -79,6 +79,13 @@ export const RatingBox = styled(Box)`
 `;
 export const SaveBox = styled(Box)`
   grid-area: save;
+  padding: 10px;
+`;
+export const TextBox = styled(Box)`
+  padding-right: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
 `;
 export const IngBox = styled(Box)`
   grid-area: ing;
