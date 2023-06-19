@@ -138,6 +138,13 @@ export const updateCommentLikes = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Comment not found' });
     }
 
+    // Check if currentUserId matches the userId of the comment
+    if (currentUserId === userId) {
+      return res
+        .status(400)
+        .json({ message: "You can't rate your own comment" });
+    }
+
     // Check if currentUserId already exists in the likedBy array
     const userIndex = comment.likedBy.indexOf(currentUserId);
     if (userIndex > -1) {
@@ -154,21 +161,21 @@ export const updateCommentLikes = async (req: Request, res: Response) => {
       return res
         .status(200)
         .json({ message: 'Removed like from comment', updatedRecipe });
-    } else {
-      // Increase the likes of the comment by 1
-      comment.likes += 1;
-
-      // Add currentUserId to the likedBy array
-      comment.likedBy.push(currentUserId);
-
-      // Update the recipe in the database
-      const updatedRecipe = await Recipe.updateOne(
-        { _id: req.params.id },
-        { $set: { comments: recipe.comments } },
-      );
-
-      res.status(200).json({ message: 'Added like to comment', updatedRecipe });
     }
+
+    // Increase the likes of the comment by 1
+    comment.likes += 1;
+
+    // Add currentUserId to the likedBy array
+    comment.likedBy.push(currentUserId);
+
+    // Update the recipe in the database
+    const updatedRecipe = await Recipe.updateOne(
+      { _id: req.params.id },
+      { $set: { comments: recipe.comments } },
+    );
+
+    res.status(200).json({ message: 'Added like to comment', updatedRecipe });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
