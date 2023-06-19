@@ -36,6 +36,9 @@ const RecipeList: React.FC = () => {
   const filterRating = useSelector(
     (state: RootState) => state.filterRating.value,
   );
+  const filterCookTime = useSelector(
+    (state: RootState) => state.filterCookTime.time,
+  );
 
   useGetRecipes();
 
@@ -59,6 +62,15 @@ const RecipeList: React.FC = () => {
                 recipes.title.toLowerCase().includes(query.toLowerCase())
               ) {
                 return recipes;
+              }
+            })
+            .filter((recipes) => {
+              if (filterCookTime === 'any') {
+                return recipes;
+              } else if (filterCookTime === 'long') {
+                return recipes.time > 60;
+              } else {
+                return recipes.time <= parseInt(filterCookTime);
               }
             })
             .map((recipe) => {
