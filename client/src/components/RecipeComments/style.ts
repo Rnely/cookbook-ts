@@ -11,7 +11,7 @@ export const StyledCard = styled(Card)`
   @media screen and (max-width: 700px) {
     width: 100%;
     margin: 0;
-    padding: 20px 0;
+    padding: 25px 0;
   }
   box-shadow: 4px 8px 12px #878787;
   &:hover {
@@ -32,6 +32,10 @@ export const CommentBox = styled(Box)`
   border-radius: 32px;
   padding-left: 20px;
   margin: 5px;
+  width: 88%;
+  @media screen and (max-width: 700px) {
+    width: 88%;
+  }
 `;
 export const CommentUser = styled(Box)`
   display: flex;
@@ -48,4 +52,11 @@ export const LikeBox = styled(Box)`
 `;
 export const ColoredLike = styled(ThumbUp)`
   color: #1976d2;
+`;
+export const CenteredCard = styled(Box)`
+  display: flex;
+  justify-content: center;
+`;
+export const TextBox = styled(Box)`
+  padding-left: 10px;
 `;

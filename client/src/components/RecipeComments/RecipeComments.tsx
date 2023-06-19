@@ -7,11 +7,13 @@ import { useEffect, useState } from 'react';
 import {
   ButtonBox,
   CardAction,
+  CenteredCard,
   ColoredLike,
   CommentBox,
   CommentUser,
   LikeBox,
   StyledCard,
+  TextBox,
 } from './style';
 import { CardActions, TextField } from '@mui/material';
 import Text from '../TextComponent/TextComponent';
@@ -120,14 +122,16 @@ const RecipeComments = () => {
 
   return (
     <StyledCard>
-      <Text text="Comments" variant="h5" fontWeight={600} />
-      <TextField
-        id="standard-basic"
-        label="Write a Comment"
-        variant="standard"
-        fullWidth
-        onChange={(e) => setComment(e.target.value)}
-      />
+      <Text text="Comments" variant="h5" fontWeight={600} pl={1} />
+      <TextBox>
+        <TextField
+          id="standard-basic"
+          label="Write a Comment"
+          variant="standard"
+          fullWidth
+          onChange={(e) => setComment(e.target.value)}
+        />
+      </TextBox>
       <ButtonBox>
         <CardActions
           onClick={() =>
@@ -139,7 +143,7 @@ const RecipeComments = () => {
       </ButtonBox>
       {comments.map((comment, index) => {
         return (
-          <div key={index}>
+          <CenteredCard key={index}>
             <CommentBox>
               <CommentUser>
                 <CardAction onClick={() => nav(`/user/${comment.userId}`)}>
@@ -160,7 +164,7 @@ const RecipeComments = () => {
                 <Text text={`${comment.likes}`} variant="subtitle2" />
               </LikeBox>
             </CommentBox>
-          </div>
+          </CenteredCard>
         );
       })}
     </StyledCard>

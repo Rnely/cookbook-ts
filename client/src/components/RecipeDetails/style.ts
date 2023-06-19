@@ -41,7 +41,7 @@ export const StyledCard2 = styled(Card)`
   @media screen and (max-width: 700px) {
     width: 100%;
     margin: 0;
-    padding: 20px 0;
+    padding: 25px 0;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50px 50px 250px 50px 2fr;
     grid-template-areas:
