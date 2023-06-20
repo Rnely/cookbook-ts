@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { setCollRecipes } from '../../../redux/slices/userCollRecipesSlice';
 import axios from 'axios';
 import { setUserCollections } from '../../../redux/slices/userCollections';
+import { StyledCardActions } from './style';
+import { ArrowDownButton } from '../../StyledButtons/StyledButtons';
 
 interface Collections {
   name: string;
@@ -68,9 +70,9 @@ const UserCollections = () => {
 
   return (
     <>
-      <button onClick={(e) => setAnchorEl(e.currentTarget)}>
-        {anchorEl ? 'Close' : 'Open'}
-      </button>
+      <StyledCardActions onClick={(e) => setAnchorEl(e.currentTarget)}>
+        <ArrowDownButton text={anchorEl ? 'Close' : 'Collections'} />
+      </StyledCardActions>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

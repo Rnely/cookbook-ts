@@ -13,7 +13,7 @@ import {
   StyledDivider,
 } from './style';
 import { Box } from '@mui/system';
-import { FollowListButton } from '../../StyledButtons/StyledButtons';
+import { ArrowDownButton } from '../../StyledButtons/StyledButtons';
 import { StyledCardActions } from '../UserDetails/style';
 import Text from '../../TextComponent';
 
@@ -64,7 +64,7 @@ const UserFollowList: React.FC = () => {
   return (
     <ListBox>
       <StyledCardActions onClick={handleFollowState}>
-        <FollowListButton
+        <ArrowDownButton
           text={followState ? 'Hide Following' : 'Show Following'}
         />
       </StyledCardActions>

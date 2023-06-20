@@ -56,7 +56,7 @@ export const UserUnfollowButton = () => {
   );
 };
 
-export const FollowListButton: React.FC<ITextProps> = ({ text }) => {
+export const ArrowDownButton: React.FC<ITextProps> = ({ text }) => {
   return (
     <button className="cssbuttons-io-button">
       {text}

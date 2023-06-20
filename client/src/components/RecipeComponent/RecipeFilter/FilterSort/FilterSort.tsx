@@ -27,7 +27,7 @@ const FilterSort = () => {
 
   const [open, setOpen] = useState(false);
   const [selectedRating, setSelectedRating] = useState(sortByRating);
-  const [selectedCookTime, setSelectedCookTime] = useState(sortByRating);
+  const [selectedCookTime, setSelectedCookTime] = useState(sortByCookTime);
 
   const handleSortByRating = (event: any) => {
     const value = event.target.value;
