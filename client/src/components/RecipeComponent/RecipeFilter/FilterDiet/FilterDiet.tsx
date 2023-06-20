@@ -12,7 +12,7 @@ import { RootState } from '../../../../redux/store';
 import { useState } from 'react';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
-const FilterRadio = () => {
+const FilterDiet = () => {
   const dispatch = useDispatch();
   const recipeDiet = useSelector((state: RootState) => state.recipeDiet.value);
 
@@ -70,4 +70,4 @@ const FilterRadio = () => {
   );
 };
 
-export default FilterRadio;
+export default FilterDiet;

@@ -15,6 +15,8 @@ import recipeDietReducer from './slices/recipeDietSlice';
 import filterRatingReducer from './slices/filterRatingSlice';
 import userCollectionsReducer from './slices/userCollections';
 import userCollRecipes from './slices/userCollRecipesSlice';
+import filterCookTimeReducer from './slices/filterCookTimeSlice';
+import filterSortByReducer from './slices/filterSortBySlice';
 
 export const store = configureStore({
   reducer: {
@@ -34,6 +36,8 @@ export const store = configureStore({
     filterRating: filterRatingReducer,
     userCollections: userCollectionsReducer,
     userCollRecipes: userCollRecipes,
+    filterCookTime: filterCookTimeReducer,
+    filterSortBy: filterSortByReducer,
   },
 });
 
