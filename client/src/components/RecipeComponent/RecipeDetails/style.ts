@@ -23,6 +23,7 @@ export const AuthorBox = styled(Box)`
 export const StyledCardActions = styled(CardActions)`
   display: inline-flex;
   justify-content: center;
+  padding: 0;
 `;
 
 export const StyledCard2 = styled(Card)`
@@ -96,4 +97,7 @@ export const StepsBox = styled(Box)`
   grid-area: steps;
   border-left: 1px solid #e0e0e0;
   padding: 10px;
+`;
+export const CollButtons = styled(Button)`
+  color: black;
 `;

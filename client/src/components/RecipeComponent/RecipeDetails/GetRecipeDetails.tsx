@@ -14,11 +14,14 @@ import {
   StepsBox,
   DietBox,
   TextBox,
+  StyledCardActions,
+  CollButtons,
 } from './style';
 import Text from '../../TextComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import {
+  Button,
   Divider,
   Menu,
   MenuItem,
@@ -29,6 +32,7 @@ import {
 import { toast } from 'react-toastify';
 import LoadingComponent from '../../LoadingComponent';
 import { setUserCollections } from '../../../redux/slices/userCollections';
+import { AddButton } from '../../StyledButtons/StyledButtons';
 
 interface Recipe {
   _id: string;
@@ -124,41 +128,57 @@ const RecipeDetails: React.FC = () => {
 
   const handleCreateCollection = async () => {
     if (currentUserId) {
-      try {
-        await axios.post(
-          `http://localhost:5000/cookbook/users/${currentUserId}`,
-          {
-            collections: { name: newCollName, private: privColl, recipes: [] },
-          },
-        );
-        setNewCollName('');
-        if (id) {
-          dispatch(
-            setUserCollections([
-              ...userCollections,
-              { name: newCollName, private: privColl, recipes: [id] },
-            ]),
+      if (newCollName === '') {
+        toast.error('New collection name cannot be empty', {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        try {
+          await axios.post(
+            `http://localhost:5000/cookbook/users/${currentUserId}`,
+            {
+              collections: {
+                name: newCollName,
+                private: privColl,
+                recipes: [],
+              },
+            },
           );
+          setNewCollName('');
+          if (id) {
+            dispatch(
+              setUserCollections([
+                ...userCollections,
+                { name: newCollName, private: privColl, recipes: [id] },
+              ]),
+            );
+          }
+          toast.success('Successfully created collection', {
+            position: 'top-right',
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } catch (error: any) {
+          toast.error(error.response.data.message, {
+            position: 'top-right',
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
-        toast.success('Successfully created collection', {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } catch (error: any) {
-        toast.error(error.response.data.message, {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       }
     } else {
       nav('/authentication');
@@ -241,9 +261,9 @@ const RecipeDetails: React.FC = () => {
               />
             </RatingBox>
             <SaveBox>
-              <button onClick={(e) => setAnchorEl(e.currentTarget)}>
-                save
-              </button>
+              <StyledCardActions onClick={(e) => setAnchorEl(e.currentTarget)}>
+                <AddButton text="Save to collection" />
+              </StyledCardActions>
               <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -272,15 +292,17 @@ const RecipeDetails: React.FC = () => {
                     onChange={(e) => setNewCollName(e.target.value)}
                   />
                   {privColl ? (
-                    <button onClick={() => setPrivColl(!privColl)}>
+                    <CollButtons onClick={() => setPrivColl(!privColl)}>
                       Private
-                    </button>
+                    </CollButtons>
                   ) : (
-                    <button onClick={() => setPrivColl(!privColl)}>
+                    <CollButtons onClick={() => setPrivColl(!privColl)}>
                       Public
-                    </button>
+                    </CollButtons>
                   )}
-                  <button onClick={handleCreateCollection}>create</button>
+                  <CollButtons onClick={handleCreateCollection}>
+                    create
+                  </CollButtons>
                 </TextBox>
               </Menu>
             </SaveBox>
