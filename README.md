@@ -15,10 +15,9 @@ Priekš sava gala eksāmena projekta esmu izlēmis izveidot virtuālās pavārgr
 - CSS - Lielākoties izmantots ar MUI styled()
 - Git & GitHub
 - Visual Studio Code
-- Trello
 
 ##### Datubāze
-- MySQL Workbench
+- MongoDB
 
 ##### Dokumentācija
 - Word 2016
